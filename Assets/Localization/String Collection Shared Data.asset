@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: String Collection Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: String Collection
+  m_TableCollectionNameGuidString: e835a47ffdb87cc4dace8dd38f583c40
+  m_Entries:
+  - m_Id: 2360966488064
+    m_Key: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1967494635520
+    m_Key: QuitGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2790958145536
+    m_Key: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2988996403200
+    m_Key: LoadGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3093879169024
+    m_Key: NewGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3211617476608
+    m_Key: ResumeGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38486561366016
+    m_Key: General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38594224955392
+    m_Key: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38640907558912
+    m_Key: Accessibility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42289360642048
+    m_Key: GameTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44005023916032
+    m_Key: Language Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 64514696519680
+    m_Key: Master Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 64825691578368
+    m_Key: Music Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65027009781760
+    m_Key: Sound Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68263741595648
+    m_Key: UI Scale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 441037463068672
+    m_Key: Pause Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 442715654430720
+    m_Key: Settings Button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 442987302723584
+    m_Key: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 443195583471616
+    m_Key: Back To Title
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3394155497145237528
+  references:
+    version: 2
+    RefIds:
+    - rid: 3394155497145237528
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1687344074275

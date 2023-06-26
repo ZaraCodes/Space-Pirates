@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: String Collection_de
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: e835a47ffdb87cc4dace8dd38f583c40, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 2360966488064
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1967494635520
+    m_Localized: Beenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2790958145536
+    m_Localized: Einstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2988996403200
+    m_Localized: Spiel laden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3093879169024
+    m_Localized: Neues Spiel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3211617476608
+    m_Localized: Fortfahren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38486561366016
+    m_Localized: Allgemein
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38594224955392
+    m_Localized: Steuerung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38640907558912
+    m_Localized: Barrierefreiheit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42289360642048
+    m_Localized: Queer Space Pirates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44005023916032
+    m_Localized: Sprache
+    m_Metadata:
+      m_Items: []
+  - m_Id: 64514696519680
+    m_Localized: "Hauptlautst\xE4rke"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 64825691578368
+    m_Localized: Musik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65027009781760
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68263741595648
+    m_Localized: "UI Gr\xF6\xDFe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 441037463068672
+    m_Localized: "Pause Men\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 442987302723584
+    m_Localized: Speichern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 443195583471616
+    m_Localized: "Zur\xFCck zum Hauptmen\xFC"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
