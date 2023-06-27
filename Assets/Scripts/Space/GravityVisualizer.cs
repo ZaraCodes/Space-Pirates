@@ -42,6 +42,10 @@ public class GravityVisualizer : MonoBehaviour
 
                 dot.transform.position = new(i, j, result);
                 dot.transform.SetParent(dotsContainer.transform);
+
+                float newScale = result / 6000 + dot.transform.localScale.x;
+                dot.transform.localScale = new Vector3(newScale, newScale, 1);
+                
                 dot.isStatic = true;
             }
         }
