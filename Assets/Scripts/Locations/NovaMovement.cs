@@ -33,8 +33,12 @@ public class NovaMovement : MonoBehaviour
         if (true)
         {
             rb.velocity = moveInput * Time.fixedDeltaTime * movementSpeed;
-            mainCamera.transform.position = new(transform.position.x, transform.position.y, mainCamera.transform.position.z);
         }
+    }
+
+    private void LateUpdate()
+    {
+        mainCamera.transform.position = new(transform.position.x, transform.position.y, mainCamera.transform.position.z);
     }
 
     private void OnEnable()
