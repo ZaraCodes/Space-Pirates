@@ -52,16 +52,11 @@ public class ChargedBullet : MonoBehaviour
     }
 
     #region Unity Stuff
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        print($"Other: {collision.gameObject.tag} Me: {tag}");
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (++bounces >= maxBounces)
         {
-            SpawnAudioSource(.2f, destroyedSound);
             Destroy(gameObject);
         }
         else
@@ -87,6 +82,8 @@ public class ChargedBullet : MonoBehaviour
 
     private void OnDestroy()
     {
+        SpawnAudioSource(.2f, destroyedSound);
+
         //Todo: Play ball destroyed animation.
     }
 

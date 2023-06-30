@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2826693335761819012}
   - component: {fileID: 2826693335761819035}
   - component: {fileID: 2826693335761819008}
+  - component: {fileID: 3617672237640850567}
   - component: {fileID: 2826693335761819015}
   - component: {fileID: 2826693335761819014}
   m_Layer: 6
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -867061391, guid: 85590731be372c14e992d76f32b29b43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -127,6 +128,21 @@ MonoBehaviour:
   audioMixerGroup: {fileID: -1117011005594918836, guid: 473490cfa95219a41b7298790decd578, type: 2}
   bounceSounds: []
   destroyedSound: {fileID: 8300000, guid: bfcb0ae708234a34dbb94a2fdf428b25, type: 3}
+--- !u!114 &3617672237640850567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2826693335761819034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f7ea794cc54ea4e8593de958c77b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Origin>k__BackingField: 0
+  damage: 5
+  knockback: 2
 --- !u!50 &2826693335761819015
 Rigidbody2D:
   serializedVersion: 4

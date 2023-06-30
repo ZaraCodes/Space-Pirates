@@ -38,9 +38,8 @@ public class NovaMovement : MonoBehaviour
 
     private void DoRangedAttack(InputAction.CallbackContext ctx)
     {
-        if (ctx.action.WasReleasedThisFrame())
+        if (ctx.action.WasReleasedThisFrame() && GameManager.Instance.IsPlaying)
         {
-            StopAllCoroutines();
             chargeAudioSource.Stop();
 
             if (attackDirection == Vector2.zero) attackDirection = Vector2.right;
@@ -53,6 +52,7 @@ public class NovaMovement : MonoBehaviour
                 chargedBulletGO.transform.position = ballSpawnPosition.position;
                 chargedBulletGO.tag = tag;
                 chargedBullet.Rb.velocity = attackDirection.normalized * chargedBullet.MovementSpeed;
+                chargedBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
             }
             else
             {
@@ -62,19 +62,14 @@ public class NovaMovement : MonoBehaviour
                 smallBulletGO.transform.position = ballSpawnPosition.position;
                 smallBulletGO.tag = tag;
                 smallBullet.Rb.velocity = attackDirection.normalized * smallBullet.MovementSpeed;
+                smallBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
             }
         }
         else if (ctx.action.WasPerformedThisFrame())
         {
             chargeAttackTimer = chargeAttackTime;
-            StartCoroutine(StartChargeAudioDelayed());
+            chargeAudioSource.PlayDelayed(.15f);
         }
-    }
-
-    private IEnumerator StartChargeAudioDelayed()
-    {
-        yield return new WaitForSeconds(0.15f);
-        chargeAudioSource.Play();
     }
 
     private void SetAttackDirection(InputAction.CallbackContext ctx)
