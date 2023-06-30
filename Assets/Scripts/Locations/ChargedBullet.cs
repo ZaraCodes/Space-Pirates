@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Audio;
 
 public class ChargedBullet : MonoBehaviour
 {
@@ -21,31 +24,59 @@ public class ChargedBullet : MonoBehaviour
     /// <summary>Velocity of the ball</summary>
     private Vector2 velocity;
 
+    [Header("Audio Assets")]
+    [SerializeField] private AudioMixerGroup audioMixerGroup;
+
+    [SerializeField] private AudioClip[] bounceSounds;
+    [SerializeField] private AudioClip destroyedSound;
+
+
+    /// <summary>
+    /// Creates an audio source at the position of the collision and plays a sound
+    /// </summary>
+    private void SpawnAudioSource(float lifetime, AudioClip soundClip)
+    {
+        var audioSourceGO = new GameObject();
+        audioSourceGO.transform.position = transform.position;
+
+        var audioSource = audioSourceGO.AddComponent<AudioSource>();
+        audioSource.clip = soundClip;
+        audioSource.outputAudioMixerGroup = audioMixerGroup;
+        audioSource.spatialBlend = .8f;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.maxDistance = 100;
+        audioSource.Play();
+
+        var selfDestruct = audioSourceGO.AddComponent<SelfDestructionScript>();
+        selfDestruct.lifetime = lifetime;
+    }
+
     #region Unity Stuff
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.gameObject.tag);
+        print($"Other: {collision.gameObject.tag} Me: {tag}");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (++bounces >= maxBounces)
         {
+            SpawnAudioSource(.2f, destroyedSound);
             Destroy(gameObject);
         }
+        else
+        {
+            SpawnAudioSource(.2f, bounceSounds[Random.Range(0, bounceSounds.Length - 1)]);
 
+            var contactPoint = collision.GetContact(0);
+            var newVelocity = Vector2.Reflect(velocity, contactPoint.normal);
 
-        ContactPoint2D contactPoint = collision.GetContact(0);
-
-        Vector2 newVelocity = Vector2.Reflect(velocity, contactPoint.normal);
-
-        rb.velocity = newVelocity;
-
+            rb.velocity = newVelocity;
+        }
     }
 
     private void Start()
     {
-        // rb.velocity = new Vector2(1,1).normalized * movementSpeed;
         bounces = 0;
     }
 

@@ -19,6 +19,9 @@ public class SettingsS
     private SettingsS()
     {
         UIScale = 3;
+        SoundVolume = .5f;
+        MusicVolume = .5f;
+        MasterVolume = .5f;
         // Load Settings from File or default settings
     }
 
@@ -31,6 +34,9 @@ public class SettingsS
 
     /// <summary>The current Music Volume</summary>
     public float MusicVolume { get; set; }
+
+    /// <summary>The current Master Volume</summary>
+    public float MasterVolume { get; set; }
     
     /// <summary>Defines if the HP Bar should always be shown (true) or only when it's relevant (false)</summary>
     public bool AlwaysShowHP { get; set; }
@@ -40,4 +46,6 @@ public class SettingsS
 
     /// <summary>The scale of the UI Canvas</summary>
     public float UIScale { get; set; }
+
+
 }

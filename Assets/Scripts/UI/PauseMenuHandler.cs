@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -51,6 +52,16 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    /// <summary>Closes the Pause Menu</summary>
+    /// <param name="ctx"></param>
+    private void ClosePauseMenu(InputAction.CallbackContext ctx)
+    {
+        if (ctx.action.WasPerformedThisFrame() && !GameManager.Instance.IsSettingsMenuOpen && !GameManager.Instance.IsPlaying)
+        {
+            if (!ctx.control.device.name.Contains("Keyboard")) TogglePauseMenu(ctx);
+        }
+    }
+
     private void InstantiatePauseMenu()
     {
         pauseMenuGO = Instantiate(pauseMenuPrefab);
@@ -80,7 +91,7 @@ public class PauseMenuHandler : MonoBehaviour
         controls = new();
 
         controls.UI.Pause.performed += ctx => TogglePauseMenu(ctx);
-
+        controls.UI.UIBack.performed += ctx => ClosePauseMenu(ctx);
     }
 
     private void OnEnable()

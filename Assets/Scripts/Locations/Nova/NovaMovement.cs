@@ -13,12 +13,19 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private float chargeAttackTime;
     [SerializeField] private float movementSpeed;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform ballSpawnPosition;
     [SerializeField] private Camera mainCamera;
+
+    [Header("Prefabs")]
     [SerializeField] private GameObject chargedBulletPrefab;
+    [SerializeField] private GameObject smallBulletPrefab;
+
+    [Header("Audio Assets")]
+    [SerializeField] private AudioSource chargeAudioSource;
 
 
-    private float startTimeRangedAttackInput;
-    private float stopTimeRangedAttackInput;
+
+    private float chargeAttackTimer;
 
     private Vector2 attackDirection;
 
@@ -33,26 +40,39 @@ public class NovaMovement : MonoBehaviour
     {
         if (ctx.action.WasReleasedThisFrame())
         {
-            stopTimeRangedAttackInput = Time.time;
-            var inputTime = stopTimeRangedAttackInput - startTimeRangedAttackInput;
+            StopAllCoroutines();
+            chargeAudioSource.Stop();
 
-            if (inputTime > chargeAttackTime)
+            if (chargeAttackTimer <= 0)
             {
                 var chargedBulletGO = Instantiate(chargedBulletPrefab);
                 var chargedBullet = chargedBulletGO.GetComponent<ChargedBullet>();
 
-                chargedBulletGO.transform.position = transform.position;
+                chargedBulletGO.transform.position = ballSpawnPosition.position;
+                chargedBulletGO.tag = tag;
                 chargedBullet.Rb.velocity = attackDirection.normalized * chargedBullet.MovementSpeed;
             }
             else
             {
-                //Todo: Spawn normal bullet
+                var smallBulletGO = Instantiate(smallBulletPrefab);
+                var chargedBullet = smallBulletGO.GetComponent<ChargedBullet>();
+
+                smallBulletGO.transform.position = ballSpawnPosition.position;
+                smallBulletGO.tag = tag;
+                chargedBullet.Rb.velocity = attackDirection.normalized * chargedBullet.MovementSpeed;
             }
         }
         else if (ctx.action.WasPerformedThisFrame())
         {
-            startTimeRangedAttackInput = Time.time;
+            chargeAttackTimer = chargeAttackTime;
+            StartCoroutine(StartChargeAudioDelayed());
         }
+    }
+
+    private IEnumerator StartChargeAudioDelayed()
+    {
+        yield return new WaitForSeconds(0.15f);
+        chargeAudioSource.Play();
     }
 
     private void SetAttackDirection(InputAction.CallbackContext ctx)
@@ -84,9 +104,14 @@ public class NovaMovement : MonoBehaviour
         controls.SpaceShip.Rotate.performed += ctx => SetAttackDirection(ctx);
     }
 
+    private void Update()
+    {
+        if (chargeAttackTimer >= 0 && GameManager.Instance.IsPlaying) chargeAttackTimer -= Time.deltaTime;
+    }
+
     private void FixedUpdate()
     {
-        if (true)
+        if (GameManager.Instance.IsPlaying)
         {
             rb.velocity = moveInput * Time.fixedDeltaTime * movementSpeed;
         }

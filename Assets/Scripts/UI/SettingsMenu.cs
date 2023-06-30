@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
@@ -30,6 +32,14 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private GameObject generalSettings;
     [SerializeField] private GameObject controlSettings;
     [SerializeField] private GameObject accessibilitySettings;
+    [Header("Audio Settings")]
+    [SerializeField] private AudioMixer mixer;
+    [SerializeField] private TextMeshProUGUI masterVolumeDisplay;
+    [SerializeField] private TextMeshProUGUI musicVolumeDisplay;
+    [SerializeField] private TextMeshProUGUI soundVolumeDisplay;
+    [SerializeField] private Slider masterVolumeSlider;
+    [SerializeField] private Slider musicVolumeSlider;
+    [SerializeField] private Slider soundVolumeSlider;
     
 
     /// <summary>Shows the general settings tab</summary>
@@ -44,6 +54,9 @@ public class SettingsMenu : MonoBehaviour
     public void ShowGeneralSettings()
     {
         ShowSettingsTab(true, false, false);
+        masterVolumeSlider.value = SettingsS.Instance.MasterVolume;
+        musicVolumeSlider.value = SettingsS.Instance.MusicVolume;
+        soundVolumeSlider.value = SettingsS.Instance.SoundVolume;
     }
 
     /// <summary>Shows the Controls Settings tab</summary>
@@ -73,6 +86,8 @@ public class SettingsMenu : MonoBehaviour
     /// <param name="scale">The scale factor by which the canvas will be scaled</param>
     public void ScaleCanvas(float scale)
     {
+        mainCanvasScaler ??= transform.parent.GetComponent<CanvasScaler>();
+
         if (mainCanvasScaler != null)
         {
 
@@ -83,6 +98,10 @@ public class SettingsMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Closes the settings menu
+    /// </summary>
+    /// <param name="ctx"></param>
     private void CloseSettingsMenu(InputAction.CallbackContext ctx)
     {
         print($"{ctx.control.displayName} \"{ctx.control.device.displayName}\"");
@@ -91,6 +110,36 @@ public class SettingsMenu : MonoBehaviour
         returnButtonToSelect.Select();
     }
 
+    /// <summary>Calculates and sets the master volume</summary>
+    /// <param name="value">Slider value between .0001f and 1f</param>
+    public void SetMasterVolume(float value)
+    {
+        mixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20);
+        SettingsS.Instance.MasterVolume = value;
+        masterVolumeDisplay.text = $"{(int) (value * 200f)}";
+    }
+
+    /// <summary>Calculates and sets the music volume</summary>
+    /// <param name="value">Slider value between .0001f and 1f</param>
+    public void SetMusicVolume(float value)
+    {
+        mixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20);
+        SettingsS.Instance.MusicVolume = value;
+        musicVolumeDisplay.text = $"{(int)(value * 200f)}";
+    }
+
+    /// <summary>
+    /// Calculates and sets the sound volume
+    /// </summary>
+    /// <param name="value">Slider value between .0001f and 1f</param>
+    public void SetSoundVolume(float value)
+    {
+        mixer.SetFloat("SoundVolume", Mathf.Log10(value) * 20);
+        SettingsS.Instance.SoundVolume = value;
+        soundVolumeDisplay.text = $"{(int)(value * 200f)}";
+    }
+
+    #region Unity Stuff
     private void Awake()
     {
         controls = new();
@@ -102,7 +151,6 @@ public class SettingsMenu : MonoBehaviour
         controls.Enable();
         ShowGeneralSettings();
         controlsButton.Select();
-        mainCanvasScaler = transform.parent.GetComponent<CanvasScaler>();
         GameManager.Instance.IsSettingsMenuOpen = true;
     }
 
@@ -110,4 +158,5 @@ public class SettingsMenu : MonoBehaviour
     {
         controls.Disable();
     }
+    #endregion
 }
