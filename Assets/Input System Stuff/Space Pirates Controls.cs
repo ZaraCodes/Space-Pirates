@@ -193,6 +193,15 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""293a5765-720e-4d29-a275-0a8fd4c677f8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -287,11 +296,33 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8f818fcb-a74f-400c-a2ae-e9c0d87d7df4"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Ranged Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""630adb00-b8bd-4dd9-8a8e-474c309d9ba2"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f552c5ff-0f2c-4925-8d96-f5de1ee8d3b2"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse + Keyboard"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -341,6 +372,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         m_Nova_Move = m_Nova.FindAction("Move", throwIfNotFound: true);
         m_Nova_MeleeAttack = m_Nova.FindAction("Melee Attack", throwIfNotFound: true);
         m_Nova_RangedAttack = m_Nova.FindAction("Ranged Attack", throwIfNotFound: true);
+        m_Nova_Aim = m_Nova.FindAction("Aim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -513,6 +545,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Nova_Move;
     private readonly InputAction m_Nova_MeleeAttack;
     private readonly InputAction m_Nova_RangedAttack;
+    private readonly InputAction m_Nova_Aim;
     public struct NovaActions
     {
         private @SpacePiratesControls m_Wrapper;
@@ -520,6 +553,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Nova_Move;
         public InputAction @MeleeAttack => m_Wrapper.m_Nova_MeleeAttack;
         public InputAction @RangedAttack => m_Wrapper.m_Nova_RangedAttack;
+        public InputAction @Aim => m_Wrapper.m_Nova_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Nova; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -538,6 +572,9 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             @RangedAttack.started += instance.OnRangedAttack;
             @RangedAttack.performed += instance.OnRangedAttack;
             @RangedAttack.canceled += instance.OnRangedAttack;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
         }
 
         private void UnregisterCallbacks(INovaActions instance)
@@ -551,6 +588,9 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             @RangedAttack.started -= instance.OnRangedAttack;
             @RangedAttack.performed -= instance.OnRangedAttack;
             @RangedAttack.canceled -= instance.OnRangedAttack;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
         }
 
         public void RemoveCallbacks(INovaActions instance)
@@ -601,5 +641,6 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnMeleeAttack(InputAction.CallbackContext context);
         void OnRangedAttack(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
 }

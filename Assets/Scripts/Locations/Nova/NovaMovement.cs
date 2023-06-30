@@ -43,6 +43,8 @@ public class NovaMovement : MonoBehaviour
             StopAllCoroutines();
             chargeAudioSource.Stop();
 
+            if (attackDirection == Vector2.zero) attackDirection = Vector2.right;
+
             if (chargeAttackTimer <= 0)
             {
                 var chargedBulletGO = Instantiate(chargedBulletPrefab);
@@ -101,7 +103,7 @@ public class NovaMovement : MonoBehaviour
         controls.Nova.RangedAttack.performed += ctx => DoRangedAttack(ctx);
         controls.Nova.RangedAttack.canceled += ctx => DoRangedAttack(ctx);
 
-        controls.SpaceShip.Rotate.performed += ctx => SetAttackDirection(ctx);
+        controls.Nova.Aim.performed += ctx => SetAttackDirection(ctx);
     }
 
     private void Update()

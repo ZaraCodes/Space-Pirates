@@ -104,6 +104,8 @@ public class SettingsMenu : MonoBehaviour
     /// <param name="ctx"></param>
     private void CloseSettingsMenu(InputAction.CallbackContext ctx)
     {
+        GameManager.Instance.IsSettingsMenuOpen = false;
+
         print($"{ctx.control.displayName} \"{ctx.control.device.displayName}\"");
         parentMenu.SetActive(true);
         gameObject.SetActive(false);
