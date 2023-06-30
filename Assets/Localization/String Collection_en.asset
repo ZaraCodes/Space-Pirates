@@ -94,6 +94,18 @@ MonoBehaviour:
     m_Localized: Back To Title
     m_Metadata:
       m_Items: []
+  - m_Id: 3303671023640576
+    m_Localized: Choose Scene
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3305187142901760
+    m_Localized: Space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3305338607607808
+    m_Localized: Location Test
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

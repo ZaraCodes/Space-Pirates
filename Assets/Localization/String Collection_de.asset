@@ -90,6 +90,18 @@ MonoBehaviour:
     m_Localized: "Zur\xFCck zum Hauptmen\xFC"
     m_Metadata:
       m_Items: []
+  - m_Id: 3303671023640576
+    m_Localized: "Szene ausw\xE4hlen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3305187142901760
+    m_Localized: Weltraum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3305338607607808
+    m_Localized: Location Test
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

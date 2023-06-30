@@ -91,6 +91,18 @@ MonoBehaviour:
     m_Key: Back To Title
     m_Metadata:
       m_Items: []
+  - m_Id: 3303671023640576
+    m_Key: Choose Scene
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3305187142901760
+    m_Key: Space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3305338607607808
+    m_Key: Location Test
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

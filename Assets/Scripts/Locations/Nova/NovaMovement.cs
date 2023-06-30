@@ -55,11 +55,11 @@ public class NovaMovement : MonoBehaviour
             else
             {
                 var smallBulletGO = Instantiate(smallBulletPrefab);
-                var chargedBullet = smallBulletGO.GetComponent<ChargedBullet>();
+                var smallBullet = smallBulletGO.GetComponent<ChargedBullet>();
 
                 smallBulletGO.transform.position = ballSpawnPosition.position;
                 smallBulletGO.tag = tag;
-                chargedBullet.Rb.velocity = attackDirection.normalized * chargedBullet.MovementSpeed;
+                smallBullet.Rb.velocity = attackDirection.normalized * smallBullet.MovementSpeed;
             }
         }
         else if (ctx.action.WasPerformedThisFrame())
