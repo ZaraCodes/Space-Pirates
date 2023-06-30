@@ -191,7 +191,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                     ""id"": ""2372a23c-6602-4a1c-991f-2c5c72c884f4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -276,10 +276,21 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9a6d6e88-e960-4a1d-9aea-193f4e9e9a36"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Mouse + Keyboard"",
+                    ""action"": ""Ranged Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f818fcb-a74f-400c-a2ae-e9c0d87d7df4"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Ranged Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

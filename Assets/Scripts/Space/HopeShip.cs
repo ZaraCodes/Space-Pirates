@@ -26,7 +26,6 @@ public class HopeShip : MonoBehaviour
     /// <param name="ctx"></param>
     private void ToggleAcceleration(InputAction.CallbackContext ctx)
     {
-        //print(callbackContext.control.device.displayName);
         if (ctx.action.WasPressedThisFrame())
         {
             accelerate = true;
