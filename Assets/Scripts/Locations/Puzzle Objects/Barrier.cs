@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barrier : MonoBehaviour
+public class Barrier : ActivatableObject
 {
     #region Fields
-    [SerializeField] private ToggleObject toggleObject;
 
+    [Header("Barrier")]
     [SerializeField] private SpriteRenderer spriteBounds;
     [SerializeField] private SpriteRenderer spriteClosed;
     [SerializeField] private SpriteRenderer spriteOpen;
@@ -16,23 +16,12 @@ public class Barrier : MonoBehaviour
 
 
     [SerializeField] private bool horizontal;
-
-    private bool state;
-    public bool State
-    {
-        get { return state; }
-        private set
-        {
-            state = value;
-            ToggleBarrier();
-        }
-    }
-
     #endregion
 
-    private void ToggleBarrier()
+    #region Methods
+    protected override void Toggle()
     {
-        if (State)
+        if (State || (invertState && !State))
         {
             spriteClosed.enabled = false;
             spriteOpen.enabled = true;
@@ -47,18 +36,27 @@ public class Barrier : MonoBehaviour
             playerCollider.enabled = true;
         }
     }
-
-
+    #endregion
     #region Unity Stuff
+
+    private void Start()
+    {
+        Toggle();
+    }
 
 #if UNITY_EDITOR
     private void _OnValidate()
     {
         if (horizontal)
         {
+            spriteBounds.sortingOrder = -Mathf.RoundToInt(spriteBounds.transform.position.y - 1);
+
             spriteClosed.size = spriteBounds.size;
+            spriteClosed.sortingOrder = spriteBounds.sortingOrder;
             spriteOpen.size = new(spriteBounds.size.x, 1);
             spriteOpen.transform.localPosition = new Vector3(0, -(spriteBounds.size.y / 2f) + .5f, 0);
+            spriteOpen.sortingOrder = spriteBounds.sortingOrder;
+
             playerCollider.offset = new Vector2(0, -(spriteBounds.size.y / 2f) + .5f);
             playerCollider.size = new Vector2(spriteBounds.size.x, 0.25f);
             ballCollider.offset = new Vector2(0, -(spriteBounds.size.y / 2f) + 1.5f);
@@ -73,15 +71,5 @@ public class Barrier : MonoBehaviour
         UnityEditor.EditorApplication.update += _OnValidate;
     }
 #endif
-
-    private void OnEnable()
-    {
-        toggleObject.SwitchToggleEvent += value => State = value;
-    }
-
-    private void OnDisable()
-    {
-        toggleObject.SwitchToggleEvent -= value => State = value;
-    }
     #endregion
 }

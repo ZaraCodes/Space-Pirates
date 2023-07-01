@@ -11,6 +11,9 @@ public class ChargedBullet : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     public Rigidbody2D Rb { get { return rb; } }
 
+    /// <summary>Reference to the sprite renderer</summary>
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     /// <summary>The speed at which the ball will move</summary>
     [SerializeField] private float movementSpeed;
     public float MovementSpeed { get { return movementSpeed; } }
@@ -31,9 +34,7 @@ public class ChargedBullet : MonoBehaviour
     [SerializeField] private AudioClip destroyedSound;
 
 
-    /// <summary>
-    /// Creates an audio source at the position of the collision and plays a sound
-    /// </summary>
+    /// <summary>Creates an audio source at the position of the collision and plays a sound</summary>
     private void SpawnAudioSource(float lifetime, AudioClip soundClip)
     {
         var audioSourceGO = new GameObject();
@@ -67,6 +68,14 @@ public class ChargedBullet : MonoBehaviour
             var newVelocity = Vector2.Reflect(velocity, contactPoint.normal);
 
             rb.velocity = newVelocity;
+        }
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance.IsPlaying)
+        {
+            spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y) + 1;
         }
     }
 

@@ -12,7 +12,10 @@ public class NovaMovement : MonoBehaviour
 
     [SerializeField] private float chargeAttackTime;
     [SerializeField] private float movementSpeed;
+
+    [Header("References")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform ballSpawnPosition;
     [SerializeField] private Camera mainCamera;
 
@@ -38,37 +41,40 @@ public class NovaMovement : MonoBehaviour
 
     private void DoRangedAttack(InputAction.CallbackContext ctx)
     {
-        if (ctx.action.WasReleasedThisFrame() && GameManager.Instance.IsPlaying)
+        if (GameManager.Instance.IsPlaying)
         {
-            chargeAudioSource.Stop();
-
-            if (attackDirection == Vector2.zero) attackDirection = Vector2.right;
-
-            if (chargeAttackTimer <= 0)
+            if (ctx.action.WasReleasedThisFrame())
             {
-                var chargedBulletGO = Instantiate(chargedBulletPrefab);
-                var chargedBullet = chargedBulletGO.GetComponent<ChargedBullet>();
+                chargeAudioSource.Stop();
 
-                chargedBulletGO.transform.position = ballSpawnPosition.position;
-                chargedBulletGO.tag = tag;
-                chargedBullet.Rb.velocity = attackDirection.normalized * chargedBullet.MovementSpeed;
-                chargedBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
+                if (attackDirection == Vector2.zero) attackDirection = Vector2.right;
+
+                if (chargeAttackTimer <= 0)
+                {
+                    var chargedBulletGO = Instantiate(chargedBulletPrefab);
+                    var chargedBullet = chargedBulletGO.GetComponent<ChargedBullet>();
+
+                    chargedBulletGO.transform.position = ballSpawnPosition.position;
+                    chargedBulletGO.tag = tag;
+                    chargedBullet.Rb.velocity = attackDirection.normalized * chargedBullet.MovementSpeed;
+                    chargedBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
+                }
+                else
+                {
+                    var smallBulletGO = Instantiate(smallBulletPrefab);
+                    var smallBullet = smallBulletGO.GetComponent<ChargedBullet>();
+
+                    smallBulletGO.transform.position = ballSpawnPosition.position;
+                    smallBulletGO.tag = tag;
+                    smallBullet.Rb.velocity = attackDirection.normalized * smallBullet.MovementSpeed;
+                    smallBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
+                }
             }
-            else
+            else if (ctx.action.WasPerformedThisFrame())
             {
-                var smallBulletGO = Instantiate(smallBulletPrefab);
-                var smallBullet = smallBulletGO.GetComponent<ChargedBullet>();
-
-                smallBulletGO.transform.position = ballSpawnPosition.position;
-                smallBulletGO.tag = tag;
-                smallBullet.Rb.velocity = attackDirection.normalized * smallBullet.MovementSpeed;
-                smallBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
+                chargeAttackTimer = chargeAttackTime;
+                chargeAudioSource.PlayDelayed(.15f);
             }
-        }
-        else if (ctx.action.WasPerformedThisFrame())
-        {
-            chargeAttackTimer = chargeAttackTime;
-            chargeAudioSource.PlayDelayed(.15f);
         }
     }
 
@@ -103,7 +109,11 @@ public class NovaMovement : MonoBehaviour
 
     private void Update()
     {
-        if (chargeAttackTimer >= 0 && GameManager.Instance.IsPlaying) chargeAttackTimer -= Time.deltaTime;
+        if (GameManager.Instance.IsPlaying)
+        {
+            if (chargeAttackTimer >= 0) chargeAttackTimer -= Time.deltaTime;
+            spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y);
+        }
     }
 
     private void FixedUpdate()

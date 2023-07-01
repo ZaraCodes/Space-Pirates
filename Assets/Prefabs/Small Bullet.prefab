@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2826693335761819015}
+  spriteRenderer: {fileID: 2826693335761819012}
   movementSpeed: 25
   maxBounces: 0
   audioMixerGroup: {fileID: -1117011005594918836, guid: 473490cfa95219a41b7298790decd578, type: 2}

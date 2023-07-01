@@ -9,10 +9,6 @@ public class Switch : ToggleObject
     #endregion
 
     #region Unity Stuff
-    private void Start()
-    {
-        State = false;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
