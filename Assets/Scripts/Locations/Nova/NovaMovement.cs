@@ -17,7 +17,7 @@ public class NovaMovement : MonoBehaviour
 
     /// <summary>The max speed at which Nove moves</summary>
     [SerializeField] private float movementSpeed;
-
+    
 
     /// <summary>Reference to Nova's rigidbody2D</summary>
     [Header("References"), SerializeField] private Rigidbody2D rb;
@@ -36,6 +36,10 @@ public class NovaMovement : MonoBehaviour
 
     private Vector2 attackDirection;
 
+    private List<InteractableTrigger> interactableTriggers;
+
+    private InteractableTrigger performedInteraction;
+
     /// <summary>Caches the movement input for Nova</summary>
     /// <param name="ctx"></param>
     private void ReadMovementInput(InputAction.CallbackContext ctx)
@@ -43,6 +47,8 @@ public class NovaMovement : MonoBehaviour
         moveInput = ctx.ReadValue<Vector2>();
     }
 
+    /// <summary>Does a ranged attack depending on how long the button has been pressed</summary>
+    /// <param name="ctx"></param>
     private void DoRangedAttack(InputAction.CallbackContext ctx)
     {
         if (GameManager.Instance.IsPlaying)
@@ -98,6 +104,18 @@ public class NovaMovement : MonoBehaviour
         }
     }
 
+    private void DoInteract(InputAction.CallbackContext ctx)
+    {
+        if (ctx.action.WasPerformedThisFrame())
+        {
+            if (performedInteraction != null) performedInteraction.Interact();
+        }
+        if (ctx.action.WasReleasedThisFrame())
+        {
+            if (performedInteraction != null) performedInteraction.StopInteract();
+        }
+    }
+
 
     #region Unity Stuff
     private void Awake()
@@ -109,6 +127,10 @@ public class NovaMovement : MonoBehaviour
         controls.Nova.RangedAttack.canceled += ctx => DoRangedAttack(ctx);
 
         controls.Nova.Aim.performed += ctx => SetAttackDirection(ctx);
+        controls.Nova.Interact.performed += ctx => DoInteract(ctx);
+        controls.Nova.Interact.canceled += ctx => DoInteract(ctx);
+
+        interactableTriggers = new();
     }
 
     private void Update()
@@ -141,6 +163,32 @@ public class NovaMovement : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out InteractableTrigger interactableTrigger))
+        {
+            interactableTriggers.Add(interactableTrigger);
+            performedInteraction = interactableTriggers[0];
+
+            //todo: show interact prompt
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out InteractableTrigger interactableTrigger))
+        {
+            if (interactableTriggers.Contains(interactableTrigger))
+            {
+                interactableTriggers.Remove(interactableTrigger);
+                if (interactableTrigger == performedInteraction)
+                {
+                    performedInteraction.StopInteract();
+                }
+            }
+        }
     }
     #endregion
 }

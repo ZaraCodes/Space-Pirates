@@ -108,6 +108,10 @@ MonoBehaviour:
     m_Localized: Location Test
     m_Metadata:
       m_Items: []
+  - m_Id: 3987352306425856
+    m_Localized: Move Box
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

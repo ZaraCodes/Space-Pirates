@@ -31,7 +31,7 @@ public class ActivatableDoor : ActivatableObject
             spriteRenderer.sprite = State ? activeSprite : inactiveSprite;
             trigger.enabled = State;
         }
-        Debug.Log($"name: {name} State: {false}");
+        // Debug.Log($"name: {name} State: {false}");
     }
     #endregion
 
@@ -42,7 +42,7 @@ public class ActivatableDoor : ActivatableObject
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Button Trigger") && collision.name.Contains("Nova"))
         {
             //connectedDoor.teleportEnabled = false;
             var rb = collision.transform.parent.GetComponent<Rigidbody2D>();

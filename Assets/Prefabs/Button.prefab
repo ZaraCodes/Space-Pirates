@@ -152,3 +152,4 @@ MonoBehaviour:
   <InactiveColor>k__BackingField: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 1}
   enableClip: {fileID: 0}
   disableClip: {fileID: 0}
+  objectCount: 0

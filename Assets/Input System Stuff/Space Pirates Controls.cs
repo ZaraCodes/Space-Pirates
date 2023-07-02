@@ -202,6 +202,15 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""50f988bd-7900-450f-88e0-c640bf6e04aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -325,6 +334,28 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f1238cc-5283-4681-a743-59e955f2e5e3"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""beb16047-0d9f-47b0-9a11-1a11be7d7a64"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse + Keyboard"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -373,6 +404,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         m_Nova_MeleeAttack = m_Nova.FindAction("Melee Attack", throwIfNotFound: true);
         m_Nova_RangedAttack = m_Nova.FindAction("Ranged Attack", throwIfNotFound: true);
         m_Nova_Aim = m_Nova.FindAction("Aim", throwIfNotFound: true);
+        m_Nova_Interact = m_Nova.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -546,6 +578,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Nova_MeleeAttack;
     private readonly InputAction m_Nova_RangedAttack;
     private readonly InputAction m_Nova_Aim;
+    private readonly InputAction m_Nova_Interact;
     public struct NovaActions
     {
         private @SpacePiratesControls m_Wrapper;
@@ -554,6 +587,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         public InputAction @MeleeAttack => m_Wrapper.m_Nova_MeleeAttack;
         public InputAction @RangedAttack => m_Wrapper.m_Nova_RangedAttack;
         public InputAction @Aim => m_Wrapper.m_Nova_Aim;
+        public InputAction @Interact => m_Wrapper.m_Nova_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Nova; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -575,6 +609,9 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(INovaActions instance)
@@ -591,6 +628,9 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(INovaActions instance)
@@ -642,5 +682,6 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         void OnMeleeAttack(InputAction.CallbackContext context);
         void OnRangedAttack(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
