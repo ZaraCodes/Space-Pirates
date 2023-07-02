@@ -4,11 +4,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat.Extensions;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.UI;
+
+public class DynamicSettingsInfo
+{
+    public int uiScale;
+}
 
 public class SettingsMenu : MonoBehaviour
 {
+    private DynamicSettingsInfo dynamicSettingsInfo;
 
     private CanvasScaler mainCanvasScaler;
 
@@ -32,8 +42,9 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private GameObject generalSettings;
     [SerializeField] private GameObject controlSettings;
     [SerializeField] private GameObject accessibilitySettings;
-    [Header("Audio Settings")]
-    [SerializeField] private AudioMixer mixer;
+    [SerializeField] private LocalizeStringEvent uiScaleLabelEvent;
+
+    [Header("Audio Settings"), SerializeField] private AudioMixer mixer;
     [SerializeField] private TextMeshProUGUI masterVolumeDisplay;
     [SerializeField] private TextMeshProUGUI musicVolumeDisplay;
     [SerializeField] private TextMeshProUGUI soundVolumeDisplay;
@@ -95,7 +106,17 @@ public class SettingsMenu : MonoBehaviour
 
             mainCanvasScaler.scaleFactor = scale;
             SettingsS.Instance.UIScale = scale;
+            SetUiScaleLabel(scale);
         }
+    }
+
+    /// <summary>Changes the global variable that handles the display of the current UI scale</summary>
+    /// <param name="scale">The new scale</param>
+    private void SetUiScaleLabel(float scale)
+    {
+        var source = LocalizationSettings.StringDatabase.SmartFormatter.GetSourceExtension<PersistentVariablesSource>();
+        var uiScale = source["global"]["uiScale"] as IntVariable;
+        uiScale.Value = (int) scale;
     }
 
     /// <summary>
@@ -153,7 +174,7 @@ public class SettingsMenu : MonoBehaviour
         controls.Enable();
         ShowGeneralSettings();
         controlsButton.Select();
-        GameManager.Instance.IsSettingsMenuOpen = true;
+        SetUiScaleLabel(SettingsS.Instance.UIScale);
     }
 
     private void OnDisable()

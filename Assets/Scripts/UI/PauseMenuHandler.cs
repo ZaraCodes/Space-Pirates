@@ -8,9 +8,8 @@ using UnityEngine.UI;
 /// <summary>
 /// To Include the Pause Menu in a scene, please do the following:
 /// 1) Add this script to the canvas that contains the menu
-/// 2) Assign the Pause Menu GameObject to the pauseMenu field in the inspector.
-/// 3) Assign the Resume Button from the Pause Menu to the resumeButton field in the inspector.
-/// 4) Drag the Settings Menu Prefab into the settingMenu field in the inspector.
+/// 2) Drag the Pause Menu Prefab into the pauseMenu field in the inspector.
+/// 3) Drag the Settings Menu Prefab into the settingMenu field in the inspector.
 /// </summary>
 public class PauseMenuHandler : MonoBehaviour
 {

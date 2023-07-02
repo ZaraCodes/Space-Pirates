@@ -3,28 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>This class is the character controller for Nova, who is controlled in Locations</summary>
 public class NovaMovement : MonoBehaviour
 {
+    /// <summary>Input System Class/// </summary>
     private SpacePiratesControls controls;
 
+    /// <summary>Caches the movement input for physics calculation</summary>
     private Vector2 moveInput;
 
-
+    /// <summary>The time it takes to charge a bouncy shot</summary>
     [SerializeField] private float chargeAttackTime;
+
+    /// <summary>The max speed at which Nove moves</summary>
     [SerializeField] private float movementSpeed;
 
-    [Header("References")]
-    [SerializeField] private Rigidbody2D rb;
+
+    /// <summary>Reference to Nova's rigidbody2D</summary>
+    [Header("References"), SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform ballSpawnPosition;
     [SerializeField] private Camera mainCamera;
 
-    [Header("Prefabs")]
-    [SerializeField] private GameObject chargedBulletPrefab;
+    [Header("Prefabs"), SerializeField] private GameObject chargedBulletPrefab;
     [SerializeField] private GameObject smallBulletPrefab;
 
-    [Header("Audio Assets")]
-    [SerializeField] private AudioSource chargeAudioSource;
+    [Header("Audio Assets"), SerializeField] private AudioSource chargeAudioSource;
 
 
 
@@ -32,7 +36,7 @@ public class NovaMovement : MonoBehaviour
 
     private Vector2 attackDirection;
 
-    /// <summary>Handles the movement input for Nova</summary>
+    /// <summary>Caches the movement input for Nova</summary>
     /// <param name="ctx"></param>
     private void ReadMovementInput(InputAction.CallbackContext ctx)
     {

@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: de
   m_SharedData: {fileID: 11400000, guid: e835a47ffdb87cc4dace8dd38f583c40, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 7800274189987610627
   m_TableData:
   - m_Id: 2360966488064
     m_Localized: Mitwirkende
@@ -75,9 +76,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68263741595648
-    m_Localized: "UI Gr\xF6\xDFe"
+    m_Localized: "UI Gr\xF6\xDFe [{global.uiScale}]"
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 7800274189987610627
   - m_Id: 441037463068672
     m_Localized: "Pause Men\xFC"
     m_Metadata:
@@ -104,4 +106,8 @@ MonoBehaviour:
       m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 7800274189987610627
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00a011e4153e0000

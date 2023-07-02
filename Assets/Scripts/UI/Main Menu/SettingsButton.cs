@@ -22,5 +22,6 @@ public class SettingsButton : MonoBehaviour
     {
         settingsMenu.SetActive(true);
         currentMenu.SetActive(false);
+        GameManager.Instance.IsSettingsMenuOpen = true;
     }
 }
