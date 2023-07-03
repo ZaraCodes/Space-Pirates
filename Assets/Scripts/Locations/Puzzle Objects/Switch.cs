@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Switch : ToggleObject
 {
+    [Header("Switch Attributes"), SerializeField] private float activationTime = -1;
+
+    private float timer;
     #region Methods
 
     #endregion
@@ -13,6 +16,28 @@ public class Switch : ToggleObject
     private void OnTriggerEnter2D(Collider2D collision)
     {
         State = !State;
+        if (activationTime > 0f)
+        {
+            if (State) timer = activationTime;
+            else timer = 0f;
+        }
+    }
+
+    private void Update()
+    {
+        if (activationTime > 0f && timer > 0f)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0f)
+            {
+                State = !State;
+            }
+        }
+    }
+
+    private void Start()
+    {
+        timer = 0f;
     }
 
 
