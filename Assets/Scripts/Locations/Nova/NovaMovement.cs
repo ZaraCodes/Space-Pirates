@@ -24,6 +24,7 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform ballSpawnPosition;
     [SerializeField] private Camera mainCamera;
+    private Transform bulletContainer;
 
     [Header("Prefabs"), SerializeField] private GameObject chargedBulletPrefab;
     [SerializeField] private GameObject smallBulletPrefab;
@@ -68,6 +69,8 @@ public class NovaMovement : MonoBehaviour
                     chargedBulletGO.tag = tag;
                     chargedBullet.Rb.velocity = attackDirection.normalized * chargedBullet.MovementSpeed;
                     chargedBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
+
+                    chargedBulletGO.transform.parent = bulletContainer;
                 }
                 else
                 {
@@ -78,6 +81,8 @@ public class NovaMovement : MonoBehaviour
                     smallBulletGO.tag = tag;
                     smallBullet.Rb.velocity = attackDirection.normalized * smallBullet.MovementSpeed;
                     smallBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
+
+                    smallBulletGO.transform.parent = bulletContainer;
                 }
             }
             else if (ctx.action.WasPerformedThisFrame())
@@ -131,6 +136,8 @@ public class NovaMovement : MonoBehaviour
         controls.Nova.Interact.canceled += ctx => DoInteract(ctx);
 
         interactableTriggers = new();
+
+        bulletContainer = GameObject.Find("Bullets").GetComponent<Transform>();
     }
 
     private void Update()
