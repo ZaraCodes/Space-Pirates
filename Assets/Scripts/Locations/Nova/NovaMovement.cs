@@ -17,7 +17,8 @@ public class NovaMovement : MonoBehaviour
 
     /// <summary>The max speed at which Nove moves</summary>
     [SerializeField] private float movementSpeed;
-    
+
+    [SerializeField] private InteractionPrompt interactionPrompt;
 
     /// <summary>Reference to Nova's rigidbody2D</summary>
     [Header("References"), SerializeField] private Rigidbody2D rb;
@@ -25,9 +26,11 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private Transform ballSpawnPosition;
     [SerializeField] private Camera mainCamera;
     private Transform bulletContainer;
+    [SerializeField] private Canvas mainCanvas;
 
     [Header("Prefabs"), SerializeField] private GameObject chargedBulletPrefab;
     [SerializeField] private GameObject smallBulletPrefab;
+    [SerializeField] private GameObject interacttionPromptPrefab;
 
     [Header("Audio Assets"), SerializeField] private AudioSource chargeAudioSource;
 
@@ -113,11 +116,24 @@ public class NovaMovement : MonoBehaviour
     {
         if (ctx.action.WasPerformedThisFrame())
         {
-            if (performedInteraction != null) performedInteraction.Interact();
+            if (performedInteraction != null)
+            {
+                performedInteraction.Interact();
+                interactionPrompt.Hide();
+            }
         }
         if (ctx.action.WasReleasedThisFrame())
         {
-            if (performedInteraction != null) performedInteraction.StopInteract();
+            if (performedInteraction != null)
+            {
+                performedInteraction.StopInteract();
+
+                if (!interactableTriggers.Contains(performedInteraction))
+                {
+                    performedInteraction = null;
+                }
+                else interactionPrompt.EnablePrompt(performedInteraction.InteractText, "a_green");
+            }
         }
     }
 
@@ -190,6 +206,13 @@ public class NovaMovement : MonoBehaviour
             performedInteraction = interactableTriggers[0];
 
             //todo: show interact prompt
+            if (interactionPrompt == null)
+            {
+                var go = Instantiate(interacttionPromptPrefab);
+                interactionPrompt = go.GetComponent<InteractionPrompt>();
+                interactionPrompt.transform.SetParent(mainCanvas.transform, false);
+            }
+            interactionPrompt.EnablePrompt(performedInteraction.InteractText, "a_green", performedInteraction.gameObject.transform);
         }
     }
 
@@ -205,6 +228,7 @@ public class NovaMovement : MonoBehaviour
                     performedInteraction.StopInteract();
                 }
             }
+            interactionPrompt.Hide();
         }
     }
     #endregion

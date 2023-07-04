@@ -7,6 +7,7 @@ using UnityEngine.Localization;
 public class InteractableTrigger : MonoBehaviour
 {
     [SerializeField] private LocalizedString interactText;
+    public LocalizedString InteractText { get { return interactText; } }
 
     [SerializeField] private EInteractMode interactMode;
 
