@@ -55,7 +55,7 @@ public class PauseMenuHandler : MonoBehaviour
     /// <param name="ctx"></param>
     private void ClosePauseMenu(InputAction.CallbackContext ctx)
     {
-        Debug.Log($"settings: {GameManager.Instance.IsSettingsMenuOpen} playing: {GameManager.Instance.IsPlaying}");
+        // Debug.Log($"settings: {GameManager.Instance.IsSettingsMenuOpen} playing: {GameManager.Instance.IsPlaying}");
         if (ctx.action.WasPerformedThisFrame() && !GameManager.Instance.IsSettingsMenuOpen && !GameManager.Instance.IsPlaying)
         {
             if (!ctx.control.device.name.Contains("Keyboard")) TogglePauseMenu(ctx);

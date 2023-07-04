@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 3197858797763493592}
   - component: {fileID: 3197858797763493595}
   m_Layer: 0
-  m_Name: Barrier
+  m_Name: Horizontal Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggleObjects:
   - {fileID: 0}
+  activatableObjects: []
   activationMode: 0
   invertState: 0
   spriteBounds: {fileID: 3197858797763493595}

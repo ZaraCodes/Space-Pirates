@@ -7,6 +7,7 @@ public abstract class ActivatableObject : MonoBehaviour
     #region Fields
     [Header("Activatable Object")]
     [SerializeField] protected ToggleObject[] toggleObjects;
+    [SerializeField] protected ActivatableObject[] activatableObjects;
     [SerializeField] protected ActivationMode activationMode;
     [SerializeField] protected bool invertState;
     protected int activeInputs;
@@ -35,10 +36,17 @@ public abstract class ActivatableObject : MonoBehaviour
         get { return state; }
         protected set
         {
+            if (state != value)
+            {
+                OnStateChanged?.Invoke(value);
+            }
             state = value;
             Toggle();
         }
     }
+
+    public delegate void ChangeState(bool state);
+    public event ChangeState OnStateChanged;
     #endregion
 
     #region Methods
@@ -59,6 +67,10 @@ public abstract class ActivatableObject : MonoBehaviour
         {
             toggleObject.SwitchToggleEvent += value => ReceiveInput(value);
         }
+        foreach (var activatableObject in activatableObjects)
+        {
+            activatableObject.OnStateChanged += value => ReceiveInput(value);
+        }
     }
 
     private void OnDisable()
@@ -66,6 +78,10 @@ public abstract class ActivatableObject : MonoBehaviour
         foreach (var toggleObject in toggleObjects)
         {
             toggleObject.SwitchToggleEvent -= value => ReceiveInput(value);
+        }
+        foreach (var activatableObject in activatableObjects)
+        {
+            activatableObject.OnStateChanged -= value => ReceiveInput(value);
         }
     }
     #endregion

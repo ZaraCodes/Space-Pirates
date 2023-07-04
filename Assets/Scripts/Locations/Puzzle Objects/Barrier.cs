@@ -21,12 +21,16 @@ public class Barrier : ActivatableObject
     #region Methods
     protected override void Toggle()
     {
-        if (State || (invertState && !State))
+        if ((!invertState && State) || (invertState && !State))
         {
             spriteClosed.enabled = false;
             spriteOpen.enabled = true;
             ballCollider.enabled = false;
             playerCollider.enabled = false;
+            if (!horizontal)
+            {
+                spriteClosed.sortingOrder = -9999;
+            }
         }
         else
         {
@@ -34,6 +38,10 @@ public class Barrier : ActivatableObject
             spriteOpen.enabled = false;
             ballCollider.enabled = true;
             playerCollider.enabled = true;
+            if (!horizontal)
+            {
+                spriteOpen.sortingOrder = -9999;
+            }
         }
     }
     #endregion
@@ -61,6 +69,22 @@ public class Barrier : ActivatableObject
             playerCollider.size = new Vector2(spriteBounds.size.x, 0.25f);
             ballCollider.offset = new Vector2(0, -(spriteBounds.size.y / 2f) + 1.5f);
             ballCollider.size = new Vector2(spriteBounds.size.x, 0.25f);
+        }
+        else
+        {
+            spriteBounds.sortingOrder = -Mathf.RoundToInt(spriteBounds.transform.position.y - 1);
+
+            spriteClosed.size = new(1, spriteBounds.size.y);
+            spriteClosed.sortingOrder = spriteBounds.sortingOrder;
+            spriteClosed.transform.localPosition = new(0, -.25f);
+            spriteOpen.size = new(1, spriteBounds.size.y - 2.5f);
+            spriteOpen.transform.localPosition = new Vector3(0, -1.5f);
+            spriteOpen.sortingOrder = spriteBounds.sortingOrder;
+
+            playerCollider.offset = new Vector2(0, -1.5f);
+            playerCollider.size = new Vector2(0.25f, spriteBounds.size.y - 2.5f);
+            ballCollider.offset = new Vector2(0, -.5f);
+            ballCollider.size = new Vector2(0.25f, spriteBounds.size.y - 2.5f);
         }
 
         UnityEditor.EditorApplication.update -= _OnValidate;
