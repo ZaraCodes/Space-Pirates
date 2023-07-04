@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3672,6 +3672,10 @@ PrefabInstance:
       value: Door 01a
       objectReference: {fileID: 0}
     - target: {fileID: 1344413370451628507, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
+      propertyPath: BulletsParent
+      value: 
+      objectReference: {fileID: 1692565916}
+    - target: {fileID: 1344413370451628507, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
       propertyPath: connectedDoor
       value: 
       objectReference: {fileID: 1319842313}
@@ -5380,6 +5384,10 @@ PrefabInstance:
       value: Door 01b
       objectReference: {fileID: 0}
     - target: {fileID: 1344413370451628507, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
+      propertyPath: BulletsParent
+      value: 
+      objectReference: {fileID: 1692565916}
+    - target: {fileID: 1344413370451628507, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
       propertyPath: connectedDoor
       value: 
       objectReference: {fileID: 1776256002}
@@ -6243,7 +6251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6588796525193461544, guid: 63d10e0b798bda14cade019fd0b653c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 70
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 6588796525193461544, guid: 63d10e0b798bda14cade019fd0b653c6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9717,6 +9725,10 @@ PrefabInstance:
       propertyPath: invertState
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1344413370451628507, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
+      propertyPath: BulletsParent
+      value: 
+      objectReference: {fileID: 1692565916}
     - target: {fileID: 1344413370451628507, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
       propertyPath: connectedDoor
       value: 
@@ -17626,6 +17638,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door 00a
       objectReference: {fileID: 0}
+    - target: {fileID: 1344413370451628507, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
+      propertyPath: BulletsParent
+      value: 
+      objectReference: {fileID: 1692565916}
     - target: {fileID: 1344413370451628507, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
       propertyPath: connectedDoor
       value: 

@@ -13,8 +13,8 @@ public class ActivatableDoor : ActivatableObject
     [SerializeField] private BoxCollider2D trigger;
     public BoxCollider2D Trigger { get { return trigger; } set {  trigger = value; } }
     [Space]
+    [Header("Must Have References"), SerializeField] private Transform BulletsParent;
     [SerializeField] private ActivatableDoor connectedDoor;
-    public bool teleportEnabled;
     // public ActivatableDoor ConnectedDoor { get { return connectedDoor; } set { connectedDoor = value; } }
     #endregion
 
@@ -33,6 +33,23 @@ public class ActivatableDoor : ActivatableObject
         }
         // Debug.Log($"name: {name} State: {false}");
     }
+
+    /// <summary>Teleports the player and removes all bullets</summary>
+    /// <param name="playerTransform">The transform of the player</param>
+    private void TeleportPlayer(Transform playerTransform)
+    {
+        playerTransform.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, playerTransform.position.z);
+        
+        ChargedBullet.playDestroySound = false;
+        
+        foreach (Transform t in BulletsParent)
+        {
+            if (t.TryGetComponent<ChargedBullet>(out var bullet))
+            {
+                Destroy(bullet.gameObject);
+            }
+        }
+    }
     #endregion
 
     #region Unity Stuff
@@ -48,8 +65,7 @@ public class ActivatableDoor : ActivatableObject
             var rb = collision.transform.parent.GetComponent<Rigidbody2D>();
             var angle = Vector2.Angle(rb.velocity, transform.right);
 
-            if (rb.velocity.sqrMagnitude > 0 && angle < 45)
-                collision.transform.parent.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, collision.transform.parent.position.z);
+            if (rb.velocity.sqrMagnitude > 0 && angle < 45) TeleportPlayer(collision.transform.parent);
         }
     }
 
@@ -57,7 +73,11 @@ public class ActivatableDoor : ActivatableObject
     {
         if (connectedDoor == null && name != "Door")
         {
-            Debug.LogWarning($"Connected door field of GameObject {name} is null!");
+            Debug.LogWarning($"GameObject {name}: Connected door is null!");
+        }
+        if (BulletsParent == null && name != "Door")
+        {
+            Debug.LogWarning($"GameObject {name}: Bullets Reference is null!");
         }
     }
     #endregion

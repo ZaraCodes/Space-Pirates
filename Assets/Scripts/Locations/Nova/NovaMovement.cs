@@ -137,7 +137,17 @@ public class NovaMovement : MonoBehaviour
 
         interactableTriggers = new();
 
-        bulletContainer = GameObject.Find("Bullets").GetComponent<Transform>();
+        if (bulletContainer == null)
+        {
+            var bulletsGO = GameObject.Find("Bullets");
+            if (bulletsGO == null)
+            {
+                bulletsGO = new();
+                bulletsGO.name = "Bullets";
+                Debug.LogWarning("Player had to spawn the Bullets GameObject! Please make sure it exists and assign it to the bulletContainer field!");
+            }
+            bulletContainer = bulletsGO.transform;
+        }
     }
 
     private void Update()

@@ -9,6 +9,7 @@ public class BackToTitleButton : MonoBehaviour
     {
         Time.timeScale = 1f;
         GameManager.Instance.IsPlaying = true;
+        ChargedBullet.playDestroySound = false;
         SceneManager.LoadScene("Main Menu");
     }
 }

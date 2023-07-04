@@ -33,6 +33,8 @@ public class ChargedBullet : MonoBehaviour
     [SerializeField] private AudioClip[] bounceSounds;
     [SerializeField] private AudioClip destroyedSound;
 
+    /// <summary>If true, the bullet will play a sound when it gets destroyed</summary>
+    public static bool playDestroySound;
 
     /// <summary>Creates an audio source at the position of the collision and plays a sound</summary>
     private void SpawnAudioSource(float lifetime, AudioClip soundClip)
@@ -82,6 +84,12 @@ public class ChargedBullet : MonoBehaviour
     private void Start()
     {
         bounces = 0;
+        playDestroySound = true;
+        if (transform.parent == null)
+        {
+            Debug.LogWarning("Please make sure that the object that spawns this bullet gives the bullets it spawns a parent GameObject with the name \"Bullets\"");
+            transform.parent = GameObject.Find("Bullets").transform;
+        }
     }
 
     private void FixedUpdate()
@@ -91,8 +99,10 @@ public class ChargedBullet : MonoBehaviour
 
     private void OnDestroy()
     {
-        SpawnAudioSource(.2f, destroyedSound);
-
+        if (playDestroySound)
+        {
+            SpawnAudioSource(.2f, destroyedSound);
+        }
         //Todo: Play ball destroyed animation.
     }
 
