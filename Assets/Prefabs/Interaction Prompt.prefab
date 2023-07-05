@@ -54,6 +54,7 @@ MonoBehaviour:
   interactText: {fileID: 7477880418980813919}
   textTransform: {fileID: 7477880418980813889}
   backgroundTransform: {fileID: 7477880418534170581}
+  buttonIcons: {fileID: 11400000, guid: 5a9438e81f59844498534f7c439a6992, type: 2}
 --- !u!1 &7477880418980813890
 GameObject:
   m_ObjectHideFlags: 0

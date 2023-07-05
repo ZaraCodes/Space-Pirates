@@ -48,6 +48,7 @@ public class NovaMovement : MonoBehaviour
     /// <param name="ctx"></param>
     private void ReadMovementInput(InputAction.CallbackContext ctx)
     {
+        GameManager.Instance.ChangeInputScheme(ctx);
         moveInput = ctx.ReadValue<Vector2>();
     }
 
@@ -55,6 +56,8 @@ public class NovaMovement : MonoBehaviour
     /// <param name="ctx"></param>
     private void DoRangedAttack(InputAction.CallbackContext ctx)
     {
+        GameManager.Instance.ChangeInputScheme(ctx);
+
         if (GameManager.Instance.IsPlaying)
         {
             if (ctx.action.WasReleasedThisFrame())
@@ -98,6 +101,8 @@ public class NovaMovement : MonoBehaviour
 
     private void SetAttackDirection(InputAction.CallbackContext ctx)
     {
+        GameManager.Instance.ChangeInputScheme(ctx);
+
         if (GameManager.Instance.IsPlaying)
         {
             Vector2 direction = ctx.ReadValue<Vector2>();
@@ -114,6 +119,8 @@ public class NovaMovement : MonoBehaviour
 
     private void DoInteract(InputAction.CallbackContext ctx)
     {
+        GameManager.Instance.ChangeInputScheme(ctx);
+
         if (ctx.action.WasPerformedThisFrame())
         {
             if (performedInteraction != null)
@@ -132,7 +139,7 @@ public class NovaMovement : MonoBehaviour
                 {
                     performedInteraction = null;
                 }
-                else interactionPrompt.EnablePrompt(performedInteraction.InteractText, "a_green");
+                else interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings);
             }
         }
     }
@@ -212,7 +219,7 @@ public class NovaMovement : MonoBehaviour
                 interactionPrompt = go.GetComponent<InteractionPrompt>();
                 interactionPrompt.transform.SetParent(mainCanvas.transform, false);
             }
-            interactionPrompt.EnablePrompt(performedInteraction.InteractText, "a_green", performedInteraction.gameObject.transform);
+            interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings, performedInteraction.gameObject.transform);
         }
     }
 

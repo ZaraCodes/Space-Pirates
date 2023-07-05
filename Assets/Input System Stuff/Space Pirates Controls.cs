@@ -49,22 +49,22 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""c37b5029-1470-4768-86ff-87b5e2e10d23"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""id"": ""6707d4af-32c2-4ecb-8380-47f45f23c498"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Mouse + Keyboard"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Accelerate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6707d4af-32c2-4ecb-8380-47f45f23c498"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""c37b5029-1470-4768-86ff-87b5e2e10d23"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Mouse + Keyboard"",
                     ""action"": ""Accelerate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -293,22 +293,22 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9a6d6e88-e960-4a1d-9aea-193f4e9e9a36"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""8f818fcb-a74f-400c-a2ae-e9c0d87d7df4"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Mouse + Keyboard"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Ranged Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8f818fcb-a74f-400c-a2ae-e9c0d87d7df4"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""id"": ""9a6d6e88-e960-4a1d-9aea-193f4e9e9a36"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Mouse + Keyboard"",
                     ""action"": ""Ranged Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

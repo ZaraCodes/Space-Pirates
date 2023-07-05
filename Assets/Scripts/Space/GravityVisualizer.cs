@@ -17,9 +17,9 @@ public class GravityVisualizer : MonoBehaviour
     public void SpawnGravityVisualizer()
     {
         if (!calcucaleDots) return;
-        float c1 = 0.04f;
-        float c2 = 150f;
-        float m = 150f;
+        //float c1 = 0.04f;
+        //float c2 = 150f;
+        //float m = 150f;
 
         int limit = 500;
         int stepSize = 5;

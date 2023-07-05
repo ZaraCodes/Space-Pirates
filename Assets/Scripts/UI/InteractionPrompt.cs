@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Localization;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 
 public class InteractionPrompt : MonoBehaviour
 {
@@ -10,6 +12,10 @@ public class InteractionPrompt : MonoBehaviour
     [Header("Reference"), SerializeField] private TextMeshProUGUI interactText;
     [SerializeField] private RectTransform textTransform;
     [SerializeField] private RectTransform backgroundTransform;
+    [SerializeField] private TMP_SpriteAsset buttonIcons;
+
+    private LocalizedString promptText;
+    private ReadOnlyArray<InputBinding> bindings;
 
     private Transform objectToAttachTo;
     private Camera cam;
@@ -20,17 +26,47 @@ public class InteractionPrompt : MonoBehaviour
     /// <param name="text">The text that should be displayed</param>
     /// <param name="button">The input button</param>
     /// <param name="other">The transform this prompt should be attached to</param>
-    public void EnablePrompt(LocalizedString text, string button, Transform other = null)
+    public void EnablePrompt(LocalizedString text, ReadOnlyArray<InputBinding> bindings, Transform other = null)
     {
-        gameObject.SetActive(true);
-        interactText.text = $"<sprite name=\"{button}\">{text.GetLocalizedString()}";
-
+        this.bindings = bindings;
         if (other != null) objectToAttachTo = other;
+        gameObject.SetActive(true);
+
+        SetText(text);
+    }
+
+    public void SetText(LocalizedString text)
+    {
+        promptText = text;
         
+        //todo: test for availability of button sprite
+        interactText.text = $"<sprite name=\"{InputIconStringSetter.GetIconStringFromBinding(bindings)}\"> {promptText.GetLocalizedString()}";
+
         Canvas.ForceUpdateCanvases();
         backgroundTransform.sizeDelta = textTransform.sizeDelta;
 
         if (cam == null) cam = Camera.main;
+    }
+
+    public void UpdateIcon(EInputScheme scheme)
+    {
+        string buttonName = InputIconStringSetter.GetIconStringFromBinding(bindings);
+
+        //Todo: test for availability of button sprite
+        //bool noMatchFound = true;
+        //foreach (var buttonIcon in buttonIcons.spriteInfoList)
+        //{
+        //    if (buttonIcon.name == buttonName)
+        //    {
+        //        noMatchFound = false;
+        //    }
+        //}
+        //if (noMatchFound)
+        //{
+        //    interactText.text = $"[] {promptText.GetLocalizedString()}";
+        //}
+        //else
+        interactText.text = $"<sprite name=\"{buttonName}\"> {promptText.GetLocalizedString()}";
     }
 
     public void Hide()
@@ -46,7 +82,16 @@ public class InteractionPrompt : MonoBehaviour
         {
             transform.position = cam.WorldToScreenPoint(objectToAttachTo.position);
         }
-        
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.OnInputSchemeChanged += newScheme => UpdateIcon(newScheme);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnInputSchemeChanged -= newScheme => UpdateIcon(newScheme);
     }
     #endregion
 }
