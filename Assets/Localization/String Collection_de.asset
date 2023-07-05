@@ -108,6 +108,10 @@ MonoBehaviour:
     m_Localized: Box bewegen
     m_Metadata:
       m_Items: []
+  - m_Id: 5154648923201536
+    m_Localized: Segel setzen
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -27,7 +27,7 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     private Transform bulletContainer;
     [SerializeField] private Canvas mainCanvas;
-
+    public Rigidbody2D MovableObject;
     [Header("Prefabs"), SerializeField] private GameObject chargedBulletPrefab;
     [SerializeField] private GameObject smallBulletPrefab;
     [SerializeField] private GameObject interacttionPromptPrefab;
@@ -186,7 +186,8 @@ public class NovaMovement : MonoBehaviour
     {
         if (GameManager.Instance.IsPlaying)
         {
-            rb.velocity = moveInput * Time.fixedDeltaTime * movementSpeed;
+            rb.velocity = movementSpeed * Time.fixedDeltaTime * moveInput;
+            if (MovableObject != null) rb.velocity += MovableObject.velocity;
         }
     }
 
