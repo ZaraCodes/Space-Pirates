@@ -72,7 +72,7 @@ public class NovaMovement : MonoBehaviour
                     var chargedBullet = chargedBulletGO.GetComponent<ChargedBullet>();
 
                     chargedBulletGO.transform.position = ballSpawnPosition.position;
-                    chargedBulletGO.tag = tag;
+                    //chargedBulletGO.tag = tag;
                     chargedBullet.Rb.velocity = attackDirection.normalized * chargedBullet.MovementSpeed;
                     chargedBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
 
@@ -84,7 +84,7 @@ public class NovaMovement : MonoBehaviour
                     var smallBullet = smallBulletGO.GetComponent<ChargedBullet>();
 
                     smallBulletGO.transform.position = ballSpawnPosition.position;
-                    smallBulletGO.tag = tag;
+                    //smallBulletGO.tag = tag;
                     smallBullet.Rb.velocity = attackDirection.normalized * smallBullet.MovementSpeed;
                     smallBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
 

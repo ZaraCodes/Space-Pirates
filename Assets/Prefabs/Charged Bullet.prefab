@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2246023741586482037}
   m_Layer: 6
   m_Name: Charged Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

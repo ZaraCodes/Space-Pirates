@@ -9,6 +9,7 @@ public class MovableBox : MonoBehaviour
 
     private Rigidbody2D novaRigidbody;
     [SerializeField] private Rigidbody2D boxRigidbody;
+    [SerializeField] private SpriteRenderer boxSprite;
     #region Methods
     public void Move(bool horizontal)
     {
@@ -39,7 +40,13 @@ public class MovableBox : MonoBehaviour
     #endregion
 
     #region Unity Stuff
-
+    private void Update()
+    {
+        if (GameManager.Instance.IsPlaying)
+        {
+            boxSprite.sortingOrder = -Mathf.RoundToInt(transform.position.y);
+        }
+    }
     #endregion
 
 }

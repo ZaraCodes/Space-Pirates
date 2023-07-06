@@ -99,14 +99,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleObjects: []
+  activatableObjects: []
   activationMode: 0
   invertState: 0
   spriteRenderer: {fileID: 1344413370451628504}
   activeSprite: {fileID: -1626553568, guid: f7c0e0f236101ae40b9d19adc5a7d479, type: 3}
   inactiveSprite: {fileID: -681662384, guid: f7c0e0f236101ae40b9d19adc5a7d479, type: 3}
   trigger: {fileID: 1219725745566399232}
+  BulletsParent: {fileID: 0}
   connectedDoor: {fileID: 0}
-  teleportEnabled: 0
 --- !u!61 &1219725745566399232
 BoxCollider2D:
   m_ObjectHideFlags: 0

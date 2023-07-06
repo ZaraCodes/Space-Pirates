@@ -54,6 +54,7 @@ MonoBehaviour:
   horizontalTrigger: {fileID: 6104969953101286324}
   verticalTrigger: {fileID: 6104969953501143363}
   boxRigidbody: {fileID: 6104969952786479544}
+  boxSprite: {fileID: 6104969952786479541}
 --- !u!212 &6104969952786479541
 SpriteRenderer:
   m_ObjectHideFlags: 0

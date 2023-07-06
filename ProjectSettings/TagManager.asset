@@ -7,17 +7,19 @@ TagManager:
   - Switch
   - Interaction Trigger
   - Button Trigger
+  - Raft Brake
+  - Bullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Bullets
   - Damage Receiver
   - Buttons
-  - 
+  - Raft
   - 
   - 
   - 

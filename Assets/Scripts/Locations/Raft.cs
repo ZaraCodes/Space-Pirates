@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Raft : MonoBehaviour
 {
     #region Fields
     [SerializeField] private bool move;
+    [SerializeField] private bool brake;
     [SerializeField] private float accelerationTime;
+    [SerializeField] private bool movementAxisY;
     private float accelerationTimer = 0;
+    private Vector3 movementDirectionSnapshot;
 
     [Header("References"), SerializeField] private BoxCollider2D NorthCollision;
     [SerializeField] private BoxCollider2D SouthCollision;
@@ -24,6 +28,21 @@ public class Raft : MonoBehaviour
         SouthCollision.enabled = enabled;
         EastCollision.enabled = enabled;
         WestCollision.enabled = enabled;
+    }
+
+    private void StopMovement()
+    {
+        rb.bodyType = RigidbodyType2D.Static;
+        if (movementAxisY)
+        {
+            if (movementDirectionSnapshot.y < 0) NorthCollision.enabled = false;
+            else SouthCollision.enabled = false;
+        }
+        else
+        {
+            if (movementDirectionSnapshot.x < 0) WestCollision.enabled = false;
+            else EastCollision.enabled = false; 
+        }
     }
 
     public void SetMove(bool move) => this.move = move;
@@ -45,28 +64,51 @@ public class Raft : MonoBehaviour
             accelerationTimer = accelerationTime;
             interactableTrigger.gameObject.SetActive(false);
         }
+        if (brake)
+        {
+            var decelerationVector = new Vector3(-3, 0);
+            move = false;
+            accelerationTimer = 0;
+            if (movementAxisY && ((movementDirectionSnapshot.y > 0 && rb.velocity.y < 0) || (movementDirectionSnapshot.y < 0 && rb.velocity.y > 0)))
+                StopMovement();
+            else if (!movementAxisY && ((movementDirectionSnapshot.x > 0 && rb.velocity.x < 0) || (movementDirectionSnapshot.x < 0 && rb.velocity.x > 0)))
+                StopMovement();
+            rb.AddForce(decelerationVector);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             if (collision.transform.parent.TryGetComponent(out NovaMovement player))
             {
                 player.MovableObject = rb;
             }
         }
+        else if (collision.CompareTag("Raft Brake"))
+        {
+            brake = true;
+            movementDirectionSnapshot = rb.velocity;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             if (collision.transform.parent.TryGetComponent(out NovaMovement player))
             {
                 player.MovableObject = null;
             }
         }
+    }
+
+    private void Start()
+    {
+        if (movementAxisY) rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        else rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        rb.freezeRotation = true;
     }
     #endregion
 }

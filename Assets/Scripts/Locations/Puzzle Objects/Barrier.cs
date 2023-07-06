@@ -38,10 +38,9 @@ public class Barrier : ActivatableObject
             spriteOpen.enabled = false;
             ballCollider.enabled = true;
             playerCollider.enabled = true;
-            if (!horizontal)
-            {
-                spriteOpen.sortingOrder = -9999;
-            }
+            
+            spriteOpen.sortingOrder = -9999;
+            
         }
     }
     #endregion
@@ -57,7 +56,7 @@ public class Barrier : ActivatableObject
     {
         if (horizontal)
         {
-            spriteBounds.sortingOrder = -Mathf.RoundToInt(spriteBounds.transform.position.y - 1);
+            spriteBounds.sortingOrder = -Mathf.RoundToInt(spriteBounds.transform.position.y /*- 1*/- 1);
 
             spriteClosed.size = spriteBounds.size;
             spriteClosed.sortingOrder = spriteBounds.sortingOrder;

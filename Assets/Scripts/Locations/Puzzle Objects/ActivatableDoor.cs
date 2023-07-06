@@ -40,7 +40,7 @@ public class ActivatableDoor : ActivatableObject
     {
         playerTransform.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, playerTransform.position.z);
         
-        ChargedBullet.playDestroySound = false;
+        ChargedBullet.playDestroySoundStatic = false;
         
         foreach (Transform t in BulletsParent)
         {
