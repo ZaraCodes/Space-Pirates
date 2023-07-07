@@ -19,6 +19,7 @@ public class PauseMenuHandler : MonoBehaviour
     [SerializeField] private GameObject settingsMenuPrefab;
     [SerializeField] private GameObject dialogsPrefab;
     [SerializeField] private GameObject gameplayDialogBoxPrefab;
+    [SerializeField] private GameObject dialogOverlayPrefab;
 
     private static bool dialogsInstantiated = false;
 
@@ -111,7 +112,14 @@ public class PauseMenuHandler : MonoBehaviour
         
         GameplayDialogBox gameplayDialogBox = gameplayDialogBoxGO.GetComponent<GameplayDialogBox>();
         GameManager.Instance.GameplayDialog = gameplayDialogBox;
-        
+
+        GameObject dialogOverlayGO = Instantiate(dialogOverlayPrefab);
+        dialogOverlayGO.transform.SetParent(transform, false);
+        dialogOverlayGO.name = dialogOverlayPrefab.name;
+        dialogOverlayGO.SetActive(false);
+
+        DialogOverlay dialogOverlay = dialogOverlayGO.GetComponent<DialogOverlay>();
+        GameManager.Instance.DialogOverlay = dialogOverlay;
     }
 
     private void OnEnable()

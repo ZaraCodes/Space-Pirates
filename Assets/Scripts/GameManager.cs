@@ -24,6 +24,9 @@ public class GameManager
     /// <summary>Reference to the gameplay dialog box of the current scene</summary>
     public GameplayDialogBox GameplayDialog { get; set; }
 
+    /// <summary>Reference to the dialog overlay of the current scene</summary>
+    public DialogOverlay DialogOverlay { get; set; }
+
     public delegate void InputSchemeChanged(EInputScheme newScheme);
     public event InputSchemeChanged OnInputSchemeChanged;
 

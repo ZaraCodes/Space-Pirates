@@ -51,6 +51,28 @@ MonoBehaviour:
       can have various little titbits you can pay attention to if you want to.'
     m_Metadata:
       m_Items: []
+  - m_Id: 408324882407424
+    m_Localized: 'Hiiiiii Rayyy :3
+
+      Are you doing okay?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 408481292197888
+    m_Localized: "OMG hiiiiii Nova! \nYeah of course.\n||\nThe cat is currently purring
+      on my lap... Life could not be better uwu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 409370673389568
+    m_Localized: AAAAAAAAAAAAAA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 428293854699520
+    m_Localized: 'Quick Nova, hurry up!
+
+      SHE''S LYING HERE AND IS SUPER CUTE
+      AND I CAN''T MOVE TO TAKE A PICTURE HURRYYYYYYYYYY'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

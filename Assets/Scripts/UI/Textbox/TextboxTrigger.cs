@@ -8,6 +8,7 @@ public class TextboxTrigger : MonoBehaviour
     #region Fields
     [SerializeField] private string DialogID;
     [SerializeField] private bool gameplayDialog;
+
     #endregion
     #region Unity Stuff
 
@@ -20,6 +21,13 @@ public class TextboxTrigger : MonoBehaviour
                 //Todo: Test for progression / story flag
 
                 GameManager.Instance.GameplayDialog.LoadDialog(DialogID);
+            }
+            else
+            {
+                //Todo: Test for progression / story flag
+
+                GameManager.Instance.DialogOverlay.LoadDialog(DialogID);
+                //overlay.LoadDialog(DialogID);
             }
         }
     }

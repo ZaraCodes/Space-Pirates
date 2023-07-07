@@ -26,8 +26,6 @@ public class GameplayDialogBox : MonoBehaviour
     
     private int currentSectionIndex;
     private float timer;
-
-    public UnityEvent OnTextboxClosed;
     #endregion
 
     #region Methods
@@ -37,14 +35,15 @@ public class GameplayDialogBox : MonoBehaviour
 
         if (textboxSequence == null)
         {
-            Debug.LogWarning($"The dialog {sequenceName} does not exist!");
+            Debug.LogWarning($"The dialog \"{sequenceName}\" does not exist!");
             return;
         }
         
-        sequenceLength = textboxSequence.Contents.Length;
-        sectionStrings = textboxSequence.Contents[currentSequenceIndex].SequenceText.GetLocalizedString().Split("\n||\n");
         currentSequenceIndex = 0;
         currentSectionIndex = -1;
+
+        sequenceLength = textboxSequence.Contents.Length;
+        sectionStrings = textboxSequence.Contents[currentSequenceIndex].SequenceText.GetLocalizedString().Split("\n||\n");
 
         gameObject.SetActive(true);
 
@@ -59,6 +58,8 @@ public class GameplayDialogBox : MonoBehaviour
 
             if (currentSequenceIndex < sequenceLength)
             {
+                textboxSequence.Contents[currentSequenceIndex].OnContentFinished.Invoke();
+
                 sectionStrings = textboxSequence.Contents[currentSequenceIndex].SequenceText.GetLocalizedString().Split("\n||\n");
                 currentSectionIndex = 0;
             }
@@ -66,7 +67,7 @@ public class GameplayDialogBox : MonoBehaviour
             {
                 gameObject.SetActive(false);
 
-                OnTextboxClosed.Invoke();
+                // OnTextboxClosed.Invoke();
 
                 return;
             }
@@ -111,7 +112,7 @@ public class GameplayDialogBox : MonoBehaviour
                 visibleText += invisibleText[0];
                 invisibleText = invisibleText.Remove(0, 1);
                 content.text = $"{visibleText}<color #FFF0>{invisibleText}";
-                timer += 1 / SettingsS.Instance.TextboxSpeed * textboxSequence.Contents[currentSequenceIndex].TextSpeedMultiplier;
+                timer += 1f / SettingsS.Instance.TextboxSpeed * textboxSequence.Contents[currentSequenceIndex].TextSpeedMultiplier;
             }
             if (invisibleText.Length != 0 && timer > 0)
             {

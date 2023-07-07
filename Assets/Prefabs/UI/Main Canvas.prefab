@@ -131,3 +131,4 @@ MonoBehaviour:
   settingsMenuPrefab: {fileID: 6368866873259857783, guid: 087a6dbc85ba6e54aa93594ea5afb214, type: 3}
   dialogsPrefab: {fileID: 7254931293810538712, guid: 7c366fa23f2db234394881460a5ac71b, type: 3}
   gameplayDialogBoxPrefab: {fileID: 5547386541882447664, guid: 872631b644ddc3849ab7044350d2810d, type: 3}
+  dialogOverlayPrefab: {fileID: 5259319958173589497, guid: eb70687bdef68b64e8816e531351a9a3, type: 3}
