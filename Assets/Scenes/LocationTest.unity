@@ -10468,6 +10468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuPrefab: {fileID: 6281331653007961748, guid: 4c6f70214f4c2f64dab96b8a6184aae3, type: 3}
   settingsMenuPrefab: {fileID: 6368866873259857783, guid: 087a6dbc85ba6e54aa93594ea5afb214, type: 3}
+  dialogsPrefab: {fileID: 7254931293810538712, guid: 7c366fa23f2db234394881460a5ac71b, type: 3}
 --- !u!114 &1492590467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10775,7 +10776,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: hewwo <color #FFF0>uwu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c5beade0583d1164ab26231742a5c5e2, type: 2}
   m_sharedMaterial: {fileID: -2015894506654442584, guid: c5beade0583d1164ab26231742a5c5e2, type: 2}
@@ -37027,8 +37028,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e7afef0e6e53847a8a46dc7303ad57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseTimeBetweenBoxes: 4
   content: {fileID: 1592613921}
   characterPortrait: {fileID: 99831718}
+  OnTextboxClosed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1956652124
 GameObject:
   m_ObjectHideFlags: 0

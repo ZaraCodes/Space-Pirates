@@ -424,6 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuPrefab: {fileID: 6281331653007961748, guid: 4c6f70214f4c2f64dab96b8a6184aae3, type: 3}
   settingsMenuPrefab: {fileID: 6368866873259857783, guid: 087a6dbc85ba6e54aa93594ea5afb214, type: 3}
+  dialogsPrefab: {fileID: 7254931293810538712, guid: 7c366fa23f2db234394881460a5ac71b, type: 3}
 --- !u!1 &1053428324
 GameObject:
   m_ObjectHideFlags: 0

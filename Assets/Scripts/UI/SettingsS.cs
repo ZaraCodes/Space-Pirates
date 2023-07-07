@@ -22,6 +22,7 @@ public class SettingsS
         SoundVolume = .5f;
         MusicVolume = .5f;
         MasterVolume = .5f;
+        TextboxSpeed = 60f;
         // Load Settings from File or default settings
     }
 

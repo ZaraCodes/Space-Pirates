@@ -17,6 +17,9 @@ public class PauseMenuHandler : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenuPrefab;
     [SerializeField] private GameObject settingsMenuPrefab;
+    [SerializeField] private GameObject dialogsPrefab;
+
+    private static bool dialogsInstantiated = false;
 
     private GameObject pauseMenuGO;
     private GameObject settingsMenuGO;
@@ -86,12 +89,19 @@ public class PauseMenuHandler : MonoBehaviour
         settingsMenuGO.SetActive(false);
     }
 
+    #region Unity Stuff
     private void Awake()
     {
         controls = new();
 
         controls.UI.Pause.performed += ctx => TogglePauseMenu(ctx);
         controls.UI.UIBack.performed += ctx => ClosePauseMenu(ctx);
+
+        if (!dialogsInstantiated)
+        {
+            Instantiate(dialogsPrefab);
+            dialogsInstantiated = true;
+        }
     }
 
     private void OnEnable()
@@ -103,4 +113,5 @@ public class PauseMenuHandler : MonoBehaviour
     {
         controls.Disable();
     }
+    #endregion
 }

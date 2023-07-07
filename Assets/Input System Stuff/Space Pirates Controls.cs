@@ -114,6 +114,15 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Proceed Dialog"",
+                    ""type"": ""Button"",
+                    ""id"": ""51b81a0f-6dff-461a-b661-d96d81700399"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -158,6 +167,28 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse + Keyboard"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9391722f-ae17-4d84-9467-889e9500e78b"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Proceed Dialog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55d963d7-72b2-42a8-ad11-7986cc62e4cf"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse + Keyboard"",
+                    ""action"": ""Proceed Dialog"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -398,6 +429,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_UIBack = m_UI.FindAction("UI Back", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        m_UI_ProceedDialog = m_UI.FindAction("Proceed Dialog", throwIfNotFound: true);
         // Nova
         m_Nova = asset.FindActionMap("Nova", throwIfNotFound: true);
         m_Nova_Move = m_Nova.FindAction("Move", throwIfNotFound: true);
@@ -522,12 +554,14 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_UIBack;
     private readonly InputAction m_UI_Pause;
+    private readonly InputAction m_UI_ProceedDialog;
     public struct UIActions
     {
         private @SpacePiratesControls m_Wrapper;
         public UIActions(@SpacePiratesControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @UIBack => m_Wrapper.m_UI_UIBack;
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
+        public InputAction @ProceedDialog => m_Wrapper.m_UI_ProceedDialog;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -543,6 +577,9 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @ProceedDialog.started += instance.OnProceedDialog;
+            @ProceedDialog.performed += instance.OnProceedDialog;
+            @ProceedDialog.canceled += instance.OnProceedDialog;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -553,6 +590,9 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @ProceedDialog.started -= instance.OnProceedDialog;
+            @ProceedDialog.performed -= instance.OnProceedDialog;
+            @ProceedDialog.canceled -= instance.OnProceedDialog;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -675,6 +715,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
     {
         void OnUIBack(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnProceedDialog(InputAction.CallbackContext context);
     }
     public interface INovaActions
     {
