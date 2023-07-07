@@ -59,6 +59,7 @@ public class Raft : MonoBehaviour
 
         if (move)
         {
+            rb.bodyType = RigidbodyType2D.Dynamic;
             EnableCollisions(true);
             move = false;
             accelerationTimer = accelerationTime;

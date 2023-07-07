@@ -37,6 +37,20 @@ MonoBehaviour:
       does not get interrupted.'
     m_Metadata:
       m_Items: []
+  - m_Id: 311467053260800
+    m_Localized: Ray
+    m_Metadata:
+      m_Items: []
+  - m_Id: 311628366192640
+    m_Localized: 'That''s right, dialogs like this can have little side conversations
+      that are not essential to the story or the gameplay...
+
+      ||
+
+      ...but
+      can have various little titbits you can pay attention to if you want to.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

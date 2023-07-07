@@ -18,7 +18,11 @@ public class GameManager
     /// <summary>This bool is used to enable or disable various gameplay elements depending on its value</summary>
     public bool IsPlaying { get; set; }
 
+    /// <summary>Tracks if the settings menu is currently open</summary>
     public bool IsSettingsMenuOpen { get; set; }
+
+    /// <summary>Reference to the gameplay dialog box of the current scene</summary>
+    public GameplayDialogBox GameplayDialog { get; set; }
 
     public delegate void InputSchemeChanged(EInputScheme newScheme);
     public event InputSchemeChanged OnInputSchemeChanged;

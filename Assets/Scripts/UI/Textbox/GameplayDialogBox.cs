@@ -31,7 +31,7 @@ public class GameplayDialogBox : MonoBehaviour
     #endregion
 
     #region Methods
-    private void LoadDialog(string sequenceName)
+    public void LoadDialog(string sequenceName)
     {
         textboxSequence = AllDialogs.Instance.GetSequence(sequenceName);
 
@@ -76,6 +76,9 @@ public class GameplayDialogBox : MonoBehaviour
             currentSectionIndex++;
         }
         invisibleText = sectionStrings[currentSectionIndex];
+        characterPortrait.sprite = textboxSequence.Contents[currentSequenceIndex].Speaker.Portrait;
+        content.text = string.Empty;
+        content.color = textboxSequence.Contents[currentSequenceIndex].Speaker.TextColor;
         visibleText = string.Empty;
         timer = 1 / SettingsS.Instance.TextboxSpeed * textboxSequence.Contents[currentSequenceIndex].TextSpeedMultiplier;
     }
@@ -92,7 +95,7 @@ public class GameplayDialogBox : MonoBehaviour
     #region Unity Stuff
     private void Start()
     {
-        LoadDialog("Test Sequence");
+        // LoadDialog("Test Sequence");
         timer = 0;
         pauseTimer = pauseTimeBetweenBoxes;
         //invisibleText = string.Empty;
@@ -101,7 +104,7 @@ public class GameplayDialogBox : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.IsPlaying)
+        if (GameManager.Instance.IsPlaying && invisibleText is not null)
         {
             while (timer <= 0 && invisibleText.Length > 0)
             {

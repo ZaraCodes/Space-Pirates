@@ -23,6 +23,14 @@ MonoBehaviour:
     m_Key: Gameplay Dialog - Test
     m_Metadata:
       m_Items: []
+  - m_Id: 311467053260800
+    m_Key: Name Ray
+    m_Metadata:
+      m_Items: []
+  - m_Id: 311628366192640
+    m_Key: Gameplay Dialog - Test 2
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

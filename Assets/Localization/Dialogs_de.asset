@@ -29,6 +29,17 @@ MonoBehaviour:
       Weg wird das Gameplay nicht unterbrochen."
     m_Metadata:
       m_Items: []
+  - m_Id: 311467053260800
+    m_Localized: Ray
+    m_Metadata:
+      m_Items: []
+  - m_Id: 311628366192640
+    m_Localized: "Genau! Diese Dialoge k\xF6nnen kleine nebenher laufende Unterhaltungen
+      abbilden, die nicht essentiell f\xFCr die Story oder das Gameplay sind...\n||\n..aber
+      verschiedene kleine Details zu den Charakteren zeigen k\xF6nnen, denen man
+      seine Aufmerksamkeit schenken kann."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

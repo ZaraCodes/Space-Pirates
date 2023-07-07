@@ -15,9 +15,10 @@ public class PauseMenuHandler : MonoBehaviour
 {
     private SpacePiratesControls controls;
 
-    [SerializeField] private GameObject pauseMenuPrefab;
+    [Header("Essential Prefabs"), SerializeField] private GameObject pauseMenuPrefab;
     [SerializeField] private GameObject settingsMenuPrefab;
     [SerializeField] private GameObject dialogsPrefab;
+    [SerializeField] private GameObject gameplayDialogBoxPrefab;
 
     private static bool dialogsInstantiated = false;
 
@@ -102,6 +103,15 @@ public class PauseMenuHandler : MonoBehaviour
             Instantiate(dialogsPrefab);
             dialogsInstantiated = true;
         }
+
+        GameObject gameplayDialogBoxGO = Instantiate(gameplayDialogBoxPrefab);
+        gameplayDialogBoxGO.transform.SetParent(transform, false);
+        gameplayDialogBoxGO.name = gameplayDialogBoxPrefab.name;
+        gameplayDialogBoxGO.SetActive(false);
+        
+        GameplayDialogBox gameplayDialogBox = gameplayDialogBoxGO.GetComponent<GameplayDialogBox>();
+        GameManager.Instance.GameplayDialog = gameplayDialogBox;
+        
     }
 
     private void OnEnable()
