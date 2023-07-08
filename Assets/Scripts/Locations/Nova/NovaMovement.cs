@@ -121,25 +121,28 @@ public class NovaMovement : MonoBehaviour
     {
         GameManager.Instance.ChangeInputScheme(ctx);
 
-        if (ctx.action.WasPerformedThisFrame())
+        if (GameManager.Instance.IsPlaying)
         {
-            if (performedInteraction != null)
+            if (ctx.action.WasPerformedThisFrame())
             {
-                performedInteraction.Interact();
-                interactionPrompt.Hide();
-            }
-        }
-        if (ctx.action.WasReleasedThisFrame())
-        {
-            if (performedInteraction != null)
-            {
-                performedInteraction.StopInteract();
-
-                if (!interactableTriggers.Contains(performedInteraction))
+                if (performedInteraction != null)
                 {
-                    performedInteraction = null;
+                    performedInteraction.Interact();
+                    interactionPrompt.Hide();
                 }
-                else interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings);
+            }
+            if (ctx.action.WasReleasedThisFrame())
+            {
+                if (performedInteraction != null)
+                {
+                    performedInteraction.StopInteract();
+
+                    if (!interactableTriggers.Contains(performedInteraction))
+                    {
+                        performedInteraction = null;
+                    }
+                    else interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings);
+                }
             }
         }
     }

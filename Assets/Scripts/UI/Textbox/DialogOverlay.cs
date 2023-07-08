@@ -35,6 +35,8 @@ public class DialogOverlay : MonoBehaviour
     #region Methods
     public void LoadDialog(string sequenceName)
     {
+        GameManager.Instance.IsDialogOverlayOpen = true;
+
         scrolledDistance = originalScrollPosition.y;
         //scrollField.transform.position = new Vector3(scrollField.transform.position.x, 0);
 
@@ -76,8 +78,9 @@ public class DialogOverlay : MonoBehaviour
             else
             {
                 RemoveAllMessages();
-                scrollField.transform.position = originalScrollPosition;
+                scrollField.transform.position = new(scrollField.transform.position.x, originalScrollPosition.y);
                 gameObject.SetActive(false);
+                GameManager.Instance.IsDialogOverlayOpen = false;
                 return;
             }
         }
@@ -139,9 +142,15 @@ public class DialogOverlay : MonoBehaviour
 
     private void OnProceedDialog(InputAction.CallbackContext ctx)
     {
-        if (ctx.action.WasPerformedThisFrame())
+        if (!GameManager.Instance.IsPauseMenuOpen)
         {
-            LoadNextBox();
+            if (ctx.action.WasPerformedThisFrame())
+            {
+                if (currentDialogMessage.InvisibleText.Length > 0)
+                    currentDialogMessage.TextSpeedMultiplier = 0;
+                else 
+                    LoadNextBox();
+            }
         }
     }
 
@@ -155,14 +164,12 @@ public class DialogOverlay : MonoBehaviour
     #endregion
 
     #region Unity Stuff
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
-        if (currentDialogMessage != null) FillCurrentBox();
+        if (!GameManager.Instance.IsPauseMenuOpen)
+        {
+            if (currentDialogMessage != null) FillCurrentBox();
+        }
     }
 
     private void Awake()

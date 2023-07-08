@@ -26,6 +26,7 @@ public class GameplayDialogBox : MonoBehaviour
     
     private int currentSectionIndex;
     private float timer;
+    private float textCompletionMultiplier;
     #endregion
 
     #region Methods
@@ -41,6 +42,7 @@ public class GameplayDialogBox : MonoBehaviour
         
         currentSequenceIndex = 0;
         currentSectionIndex = -1;
+        textCompletionMultiplier = 1;
 
         sequenceLength = textboxSequence.Contents.Length;
         sectionStrings = textboxSequence.Contents[currentSequenceIndex].SequenceText.GetLocalizedString().Split("\n||\n");
@@ -81,6 +83,7 @@ public class GameplayDialogBox : MonoBehaviour
         content.text = string.Empty;
         content.color = textboxSequence.Contents[currentSequenceIndex].Speaker.TextColor;
         visibleText = string.Empty;
+        textCompletionMultiplier = 1;
         timer = 1 / SettingsS.Instance.TextboxSpeed * textboxSequence.Contents[currentSequenceIndex].TextSpeedMultiplier;
     }
 
@@ -88,7 +91,8 @@ public class GameplayDialogBox : MonoBehaviour
     {
         if (ctx.action.WasPerformedThisFrame())
         {
-            LoadNextBox();
+            if (invisibleText.Length > 0) textCompletionMultiplier = 0;
+            else LoadNextBox();
         }
     }
     #endregion
@@ -112,7 +116,7 @@ public class GameplayDialogBox : MonoBehaviour
                 visibleText += invisibleText[0];
                 invisibleText = invisibleText.Remove(0, 1);
                 content.text = $"{visibleText}<color #FFF0>{invisibleText}";
-                timer += 1f / SettingsS.Instance.TextboxSpeed * textboxSequence.Contents[currentSequenceIndex].TextSpeedMultiplier;
+                timer += 1f / SettingsS.Instance.TextboxSpeed * textboxSequence.Contents[currentSequenceIndex].TextSpeedMultiplier * textCompletionMultiplier;
             }
             if (invisibleText.Length != 0 && timer > 0)
             {

@@ -33,8 +33,8 @@ public class PauseMenuHandler : MonoBehaviour
         {
             if (pauseMenuGO == null) InstantiatePauseMenu();
 
-            GameManager.Instance.IsPlaying = !GameManager.Instance.IsPlaying;
-            if (GameManager.Instance.IsPlaying)
+            GameManager.Instance.IsPauseMenuOpen = !GameManager.Instance.IsPauseMenuOpen;
+            if (!GameManager.Instance.IsPauseMenuOpen)
             {
                 if (!GameManager.Instance.IsSettingsMenuOpen)
                 {
@@ -44,7 +44,7 @@ public class PauseMenuHandler : MonoBehaviour
                 else
                 {
                     GameManager.Instance.IsSettingsMenuOpen = false;
-                    GameManager.Instance.IsPlaying = !GameManager.Instance.IsPlaying;
+                    GameManager.Instance.IsPauseMenuOpen = !GameManager.Instance.IsPauseMenuOpen;
                 }
             }
             else
@@ -61,7 +61,7 @@ public class PauseMenuHandler : MonoBehaviour
     private void ClosePauseMenu(InputAction.CallbackContext ctx)
     {
         // Debug.Log($"settings: {GameManager.Instance.IsSettingsMenuOpen} playing: {GameManager.Instance.IsPlaying}");
-        if (ctx.action.WasPerformedThisFrame() && !GameManager.Instance.IsSettingsMenuOpen && !GameManager.Instance.IsPlaying)
+        if (ctx.action.WasPerformedThisFrame() && !GameManager.Instance.IsSettingsMenuOpen && GameManager.Instance.IsPauseMenuOpen)
         {
             if (!ctx.control.device.name.Contains("Keyboard")) TogglePauseMenu(ctx);
         }

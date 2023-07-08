@@ -10,6 +10,6 @@ public class ResumeButton : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-        GameManager.Instance.IsPlaying = true;
+        GameManager.Instance.IsPauseMenuOpen = false;
     }
 }

@@ -23,6 +23,10 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   TextSpeedMultiplier: 1
+  positionedLeft: 1
+  OnContentFinished:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds: []

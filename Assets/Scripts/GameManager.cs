@@ -16,10 +16,25 @@ public class GameManager
     }
 
     /// <summary>This bool is used to enable or disable various gameplay elements depending on its value</summary>
-    public bool IsPlaying { get; set; }
+    public bool IsPlaying
+    {
+        get
+        {
+            if (IsSettingsMenuOpen ||
+                IsPauseMenuOpen ||
+                IsDialogOverlayOpen
+                ) 
+                return false;
+            return true;
+        }
+    }
 
     /// <summary>Tracks if the settings menu is currently open</summary>
     public bool IsSettingsMenuOpen { get; set; }
+
+    public bool IsPauseMenuOpen { get; set; }
+
+    public bool IsDialogOverlayOpen { get; set; }
 
     /// <summary>Reference to the gameplay dialog box of the current scene</summary>
     public GameplayDialogBox GameplayDialog { get; set; }
@@ -50,8 +65,10 @@ public class GameManager
     private GameManager()
     {
         //Todo: Load Default Game State
-        IsPlaying = true;
         IsSettingsMenuOpen = false;
+        IsPauseMenuOpen = false;
+        IsDialogOverlayOpen = false;
+
         CurrentInputScheme = EInputScheme.MouseKeyboard;
     }
 
