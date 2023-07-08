@@ -27,6 +27,8 @@ public class DialogOverlay : MonoBehaviour
 
     private float scrolledDistance;
 
+    private bool avatarDisplayedInLastBox;
+
     [Header("References"), SerializeField] private GameObject scrollField;
     [Header("Prefabs"), SerializeField] private GameObject leftMessagePrefab;
     [SerializeField] private GameObject rightMessagePrefab;
@@ -37,6 +39,7 @@ public class DialogOverlay : MonoBehaviour
     {
         GameManager.Instance.IsDialogOverlayOpen = true;
 
+        avatarDisplayedInLastBox = false;
         scrolledDistance = originalScrollPosition.y;
         //scrollField.transform.position = new Vector3(scrollField.transform.position.x, 0);
 
@@ -101,13 +104,19 @@ public class DialogOverlay : MonoBehaviour
 
         if (currentAlignment == previousAlignment && currentName == previousName)
         {
+            if (avatarDisplayedInLastBox)
+            {
+                scrollingOffset = 60 * SettingsS.Instance.UIScale;
+                avatarDisplayedInLastBox = false;
+            }
+            else scrollingOffset = (scrollingOffset + 10) * SettingsS.Instance.UIScale;
             currentDialogMessage.PortraitFrame.SetActive(false);
-            scrollingOffset *= 5;
         }
         else
         {
             // Debug.Log($"{currentName} {previousName} {currentAlignment} {previousAlignment}");
-            scrollingOffset = 180;
+            scrollingOffset = 60 * SettingsS.Instance.UIScale;
+            avatarDisplayedInLastBox = true;
         }
         // Debug.Log(scrollingOffset);
         scrolledDistance += scrollingOffset;
