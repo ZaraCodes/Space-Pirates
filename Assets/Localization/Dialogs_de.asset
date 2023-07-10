@@ -57,7 +57,8 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 428293854699520
     m_Localized: "Schnell Nova, schnell!!\nBEEILUNG SIE LIEGT GERADE SUPER S\xDC\xDF
-      DA UND ICH KANN NICHT AUFSTEHEN UM EIN FOTO ZU MACHEN"
+      DA UND ICH KANN NICHT AUFSTEHEN UM EIN FOTO ZU MACHEN\n||\nOk aber ernsthaft
+      jetzt... hier ein einzeiliger Test\n||\nZwei\nZeilen\n||\n\xC4hh...\nDrei\nZeilen\n||\nUnd\nletztendlich...\nvier\nZeilen"
     m_Metadata:
       m_Items: []
   references:
