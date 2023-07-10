@@ -27,7 +27,11 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     private Transform bulletContainer;
     [SerializeField] private Canvas mainCanvas;
-    public Rigidbody2D MovableObject;
+    [SerializeField] private GameObject wallCollider;
+    [SerializeField] private GameObject damageCollider;
+    [SerializeField] private GameObject buttonTrigger;
+    [HideInInspector] public Rigidbody2D MovableObject;
+
     [Header("Prefabs"), SerializeField] private GameObject chargedBulletPrefab;
     [SerializeField] private GameObject smallBulletPrefab;
     [SerializeField] private GameObject interacttionPromptPrefab;
@@ -192,6 +196,10 @@ public class NovaMovement : MonoBehaviour
             rb.velocity = movementSpeed * Time.fixedDeltaTime * moveInput;
             if (MovableObject != null) rb.velocity += MovableObject.velocity;
         }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     private void LateUpdate()
@@ -240,6 +248,15 @@ public class NovaMovement : MonoBehaviour
                 }
             }
             interactionPrompt.Hide();
+        }
+    }
+    /// <summary>This helps make sure that I set up the character in new scenes correctly lol</summary>
+    private void OnValidate()
+    {
+        if (gameObject.scene.name != null)
+        {
+            if (mainCanvas == null) Debug.LogWarning($"Main Canvas not assigned for {gameObject.name} in Scene {gameObject.scene.name}");
+            if (mainCamera == null) Debug.LogWarning($"Main Camera not assigned for {gameObject.name} in Scene {gameObject.scene.name}");
         }
     }
     #endregion

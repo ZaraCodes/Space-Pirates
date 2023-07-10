@@ -71,13 +71,17 @@ public class ActivatableDoor : ActivatableObject
 
     private void OnValidate()
     {
-        if (connectedDoor == null && name != "Door")
+        if (gameObject.scene.name != null)
         {
-            Debug.LogWarning($"GameObject {name}: Connected door is null!");
-        }
-        if (BulletsParent == null && name != "Door")
-        {
-            Debug.LogWarning($"GameObject {name}: Bullets Reference is null!");
+
+            if (connectedDoor == null)
+            {
+                Debug.LogWarning($"GameObject {name}: Connected door is null!");
+            }
+            if (BulletsParent == null)
+            {
+                Debug.LogWarning($"GameObject {name}: Bullets Reference is null!");
+            }
         }
     }
     #endregion
