@@ -42,6 +42,9 @@ public class GameManager
     /// <summary>Reference to the dialog overlay of the current scene</summary>
     public DialogOverlay DialogOverlay { get; set; }
 
+    public NovaMovement Nova { get; set; }
+
+
     public delegate void InputSchemeChanged(EInputScheme newScheme);
     public event InputSchemeChanged OnInputSchemeChanged;
 

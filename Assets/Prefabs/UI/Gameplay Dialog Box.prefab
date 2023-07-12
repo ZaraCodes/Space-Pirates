@@ -205,9 +205,6 @@ MonoBehaviour:
   pauseTimeBetweenBoxes: 4
   content: {fileID: 5547386541515776562}
   characterPortrait: {fileID: 5547386542706307509}
-  OnTextboxClosed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5547386542121871256
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 47, y: -3.5}
+  m_AnchoredPosition: {x: 47, y: -4}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5547386542160505943

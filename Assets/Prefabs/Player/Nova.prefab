@@ -133,6 +133,7 @@ MonoBehaviour:
   chargeAttackTime: 0.95
   movementSpeed: 300
   interactionPrompt: {fileID: 0}
+  fallTime: 0.785
   rb: {fileID: 1657004508329249632}
   spriteRenderer: {fileID: 1657004509160416977}
   ballSpawnPosition: {fileID: 1657004508539838254}
@@ -228,7 +229,7 @@ GameObject:
   - component: {fileID: 1657004508539838254}
   - component: {fileID: 1657004508539838255}
   - component: {fileID: 1657004508539838252}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ball Spawn Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}

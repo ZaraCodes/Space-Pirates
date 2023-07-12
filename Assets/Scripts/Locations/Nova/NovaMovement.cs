@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 /// <summary>This class is the character controller for Nova, who is controlled in Locations</summary>
 public class NovaMovement : MonoBehaviour
 {
+    #region Fields
     /// <summary>Input System Class/// </summary>
     private SpacePiratesControls controls;
 
@@ -19,7 +21,8 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private float movementSpeed;
 
     [SerializeField] private InteractionPrompt interactionPrompt;
-
+    [SerializeField] private float fallTime;
+    private float fallTimer;
     /// <summary>Reference to Nova's rigidbody2D</summary>
     [Header("References"), SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -27,9 +30,11 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     private Transform bulletContainer;
     [SerializeField] private Canvas mainCanvas;
+
     [SerializeField] private GameObject wallCollider;
     [SerializeField] private GameObject damageCollider;
     [SerializeField] private GameObject buttonTrigger;
+    
     [HideInInspector] public Rigidbody2D MovableObject;
 
     [Header("Prefabs"), SerializeField] private GameObject chargedBulletPrefab;
@@ -37,8 +42,6 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private GameObject interacttionPromptPrefab;
 
     [Header("Audio Assets"), SerializeField] private AudioSource chargeAudioSource;
-
-
 
     private float chargeAttackTimer;
 
@@ -48,6 +51,17 @@ public class NovaMovement : MonoBehaviour
 
     private InteractableTrigger performedInteraction;
 
+    private float fallingSpeed;
+
+    private bool doFall;
+
+    private int sortingOffset;
+
+    private BoxCollider2D firstFloorMovableBox;
+
+    #endregion
+
+    #region Methods
     /// <summary>Caches the movement input for Nova</summary>
     /// <param name="ctx"></param>
     private void ReadMovementInput(InputAction.CallbackContext ctx)
@@ -70,30 +84,8 @@ public class NovaMovement : MonoBehaviour
 
                 if (attackDirection == Vector2.zero) attackDirection = Vector2.right;
 
-                if (chargeAttackTimer <= 0)
-                {
-                    var chargedBulletGO = Instantiate(chargedBulletPrefab);
-                    var chargedBullet = chargedBulletGO.GetComponent<ChargedBullet>();
-
-                    chargedBulletGO.transform.position = ballSpawnPosition.position;
-                    //chargedBulletGO.tag = tag;
-                    chargedBullet.Rb.velocity = attackDirection.normalized * chargedBullet.MovementSpeed;
-                    chargedBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
-
-                    chargedBulletGO.transform.parent = bulletContainer;
-                }
-                else
-                {
-                    var smallBulletGO = Instantiate(smallBulletPrefab);
-                    var smallBullet = smallBulletGO.GetComponent<ChargedBullet>();
-
-                    smallBulletGO.transform.position = ballSpawnPosition.position;
-                    //smallBulletGO.tag = tag;
-                    smallBullet.Rb.velocity = attackDirection.normalized * smallBullet.MovementSpeed;
-                    smallBullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
-
-                    smallBulletGO.transform.parent = bulletContainer;
-                }
+                if (chargeAttackTimer <= 0) SpawnBullet(chargedBulletPrefab);
+                else SpawnBullet(smallBulletPrefab);
             }
             else if (ctx.action.WasPerformedThisFrame())
             {
@@ -101,6 +93,20 @@ public class NovaMovement : MonoBehaviour
                 chargeAudioSource.PlayDelayed(.15f);
             }
         }
+    }
+
+    private void SpawnBullet(GameObject bulletPrefab)
+    {
+        var bulletGO = Instantiate(bulletPrefab);
+        var bullet = bulletGO.GetComponent<ChargedBullet>();
+
+        bulletGO.transform.position = ballSpawnPosition.position;
+        bulletGO.layer = ballSpawnPosition.gameObject.layer;
+        //chargedBulletGO.tag = tag;
+        bullet.Rb.velocity = attackDirection.normalized * bullet.MovementSpeed;
+        bullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
+
+        bulletGO.transform.parent = bulletContainer;
     }
 
     private void SetAttackDirection(InputAction.CallbackContext ctx)
@@ -151,6 +157,42 @@ public class NovaMovement : MonoBehaviour
         }
     }
 
+    public void SwitchFloor(bool groundFloor)
+    {
+        if (groundFloor) SetColliderLayers(3, 7, 8, 6);
+        else SetColliderLayers(13, 10, 11, 12);
+    }
+
+    private void SetColliderLayers(int wall, int damage, int button, int bullets)
+    {
+        wallCollider.layer = wall;
+        damageCollider.layer = damage;
+        buttonTrigger.layer = button;
+        ballSpawnPosition.gameObject.layer = bullets;
+    }
+
+    public void BeginFall()
+    {
+        if (rb.velocity.y > 0) sortingOffset = 0;
+        doFall = true;
+        // yPosAtBeginningOfFall = transform.position.y;
+        fallingSpeed = 8f;
+        fallTimer = fallTime;
+    }
+
+    private void StopFall()
+    {
+        sortingOffset = 0;
+        fallTimer = 0;
+        doFall = false;
+        rb.velocity = new();
+        if (firstFloorMovableBox != null)
+        {
+            firstFloorMovableBox.enabled = true;
+            firstFloorMovableBox = null;
+        }
+    }
+    #endregion
 
     #region Unity Stuff
     private void Awake()
@@ -178,6 +220,9 @@ public class NovaMovement : MonoBehaviour
             }
             bulletContainer = bulletsGO.transform;
         }
+        GameManager.Instance.Nova = this;
+        fallTimer = 0;
+        sortingOffset = 0;
     }
 
     private void Update()
@@ -185,7 +230,7 @@ public class NovaMovement : MonoBehaviour
         if (GameManager.Instance.IsPlaying)
         {
             if (chargeAttackTimer >= 0) chargeAttackTimer -= Time.deltaTime;
-            spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y);
+            spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y) + sortingOffset;
         }
     }
 
@@ -195,6 +240,23 @@ public class NovaMovement : MonoBehaviour
         {
             rb.velocity = movementSpeed * Time.fixedDeltaTime * moveInput;
             if (MovableObject != null) rb.velocity += MovableObject.velocity;
+
+            if (doFall)
+            {
+                //fallingSpeed += Time.fixedDeltaTime;
+                
+                if (fallTimer <= 0)
+                {
+                    StopFall();
+                    SwitchFloor(true);
+                }
+                else
+                {
+                    fallTimer -= Time.fixedDeltaTime;
+                    fallingSpeed -= Time.fixedDeltaTime * 25f;
+                    rb.velocity += new Vector2(0, fallingSpeed);
+                }
+            }
         }
         else
         {
@@ -233,6 +295,12 @@ public class NovaMovement : MonoBehaviour
             }
             interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings, performedInteraction.gameObject.transform);
         }
+        else if (collision.gameObject.CompareTag("1st Floor") && fallTimer > fallTime / 3f)
+        {
+            StopFall();
+            firstFloorMovableBox = collision.gameObject.GetComponent<BoxCollider2D>();
+            sortingOffset = 3;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -249,11 +317,16 @@ public class NovaMovement : MonoBehaviour
             }
             interactionPrompt.Hide();
         }
+        else if (collision.gameObject.CompareTag("1st Floor") && firstFloorMovableBox != null)
+        {
+            firstFloorMovableBox.enabled = false;
+            BeginFall();
+        }
     }
     /// <summary>This helps make sure that I set up the character in new scenes correctly lol</summary>
     private void OnValidate()
     {
-        if (gameObject.scene.name != null)
+        if (gameObject.scene.name != null && gameObject.scene.name != gameObject.name)
         {
             if (mainCanvas == null) Debug.LogWarning($"Main Canvas not assigned for {gameObject.name} in Scene {gameObject.scene.name}");
             if (mainCamera == null) Debug.LogWarning($"Main Camera not assigned for {gameObject.name} in Scene {gameObject.scene.name}");
