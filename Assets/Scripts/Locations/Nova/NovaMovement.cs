@@ -335,6 +335,8 @@ public class NovaMovement : MonoBehaviour
         {
             StopFall();
             firstFloorMovableBox = collision.gameObject.GetComponent<BoxCollider2D>();
+            MovableObject = firstFloorMovableBox.GetComponentInParent<Rigidbody2D>();
+
             sortingOffset = 3;
         }
     }
@@ -356,6 +358,7 @@ public class NovaMovement : MonoBehaviour
         else if (collision.gameObject.CompareTag("1st Floor") && firstFloorMovableBox != null)
         {
             firstFloorMovableBox.enabled = false;
+            MovableObject = null;
             BeginFall();
         }
     }
