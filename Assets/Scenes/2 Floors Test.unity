@@ -194,9 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646ffce74a99a5c4c9b57e5d7a0a6085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 0
   groundFloor: 1
   playFallAnimation: 0
-  deactivationTime: 3
+  TriggerEnabled: 0
 --- !u!1 &141762442
 GameObject:
   m_ObjectHideFlags: 0
@@ -8931,7 +8932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6104969952786479542, guid: 4cc0e081c0f781d4b884897e8e8f454d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8
+      value: -8.5
       objectReference: {fileID: 0}
     - target: {fileID: 6104969952786479542, guid: 4cc0e081c0f781d4b884897e8e8f454d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9038,9 +9039,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646ffce74a99a5c4c9b57e5d7a0a6085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 0
   groundFloor: 0
   playFallAnimation: 0
-  deactivationTime: 3
+  TriggerEnabled: 0
 --- !u!1 &650073901
 GameObject:
   m_ObjectHideFlags: 0
@@ -9608,6 +9610,81 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 907150680691096468, guid: 0aff997189ce6f946a5500e5350b471d, type: 3}
   m_PrefabInstance: {fileID: 1144678594}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1178209412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1178209415}
+  - component: {fileID: 1178209414}
+  - component: {fileID: 1178209413}
+  m_Layer: 14
+  m_Name: Vertical Stairs Floor 0 Trigger (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1178209413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178209412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646ffce74a99a5c4c9b57e5d7a0a6085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 6
+  groundFloor: 1
+  playFallAnimation: 1
+  TriggerEnabled: 0
+--- !u!61 &1178209414
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178209412}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 14}
+  m_EdgeRadius: 0
+--- !u!4 &1178209415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178209412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 102, y: -12.14, z: 1.4516762}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1285582366
 GameObject:
   m_ObjectHideFlags: 0
@@ -11598,9 +11675,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646ffce74a99a5c4c9b57e5d7a0a6085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 6
   groundFloor: 1
   playFallAnimation: 1
-  deactivationTime: 3
+  TriggerEnabled: 0
 --- !u!61 &1612321681
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11788,9 +11866,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646ffce74a99a5c4c9b57e5d7a0a6085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 4
   groundFloor: 1
   playFallAnimation: 1
-  deactivationTime: 3.5
+  TriggerEnabled: 0
 --- !u!61 &1677057382
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11815,7 +11894,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 11.3}
+  m_Size: {x: 2, y: 0.1}
   m_EdgeRadius: 0
 --- !u!4 &1677057383
 Transform:
@@ -11825,7 +11904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677057380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 88, y: -0.73, z: 1.4516762}
+  m_LocalPosition: {x: 88, y: 4.95, z: 1.4516762}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11995,9 +12074,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646ffce74a99a5c4c9b57e5d7a0a6085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 4
   groundFloor: 1
   playFallAnimation: 1
-  deactivationTime: 3
+  TriggerEnabled: 0
 --- !u!61 &1903307198
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12032,7 +12112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903307196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 91, y: -5.1, z: 1.4516762}
+  m_LocalPosition: {x: 90.87, y: -5.05, z: 1.4516762}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

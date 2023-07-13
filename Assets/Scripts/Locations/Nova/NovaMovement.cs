@@ -22,7 +22,14 @@ public class NovaMovement : MonoBehaviour
 
     [SerializeField] private InteractionPrompt interactionPrompt;
     [SerializeField] private float fallTime;
+    public float FallTime { get { return fallTime; } }
     private float fallTimer;
+    public float FallTimer { get { return fallTimer; } }
+
+    private bool switchFloor;
+
+    private Vector2 jumpDirection;
+    public FloorTransition TransitionTrigger { get; set; }
     /// <summary>Reference to Nova's rigidbody2D</summary>
     [Header("References"), SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -34,7 +41,7 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private GameObject wallCollider;
     [SerializeField] private GameObject damageCollider;
     [SerializeField] private GameObject buttonTrigger;
-    
+
     [HideInInspector] public Rigidbody2D MovableObject;
 
     [Header("Prefabs"), SerializeField] private GameObject chargedBulletPrefab;
@@ -53,7 +60,7 @@ public class NovaMovement : MonoBehaviour
 
     private float fallingSpeed;
 
-    private bool doFall;
+    public bool DoFall { get; set; }
 
     private int sortingOffset;
 
@@ -67,6 +74,7 @@ public class NovaMovement : MonoBehaviour
     private void ReadMovementInput(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.ChangeInputScheme(ctx);
+
         moveInput = ctx.ReadValue<Vector2>();
     }
 
@@ -159,8 +167,16 @@ public class NovaMovement : MonoBehaviour
 
     public void SwitchFloor(bool groundFloor)
     {
-        if (groundFloor) SetColliderLayers(3, 7, 8, 6);
-        else SetColliderLayers(13, 10, 11, 12);
+        if (groundFloor)
+        {
+            spriteRenderer.color = Color.white;
+            SetColliderLayers(3, 7, 8, 6);
+        }
+        else
+        {
+            spriteRenderer.color = Color.gray;
+            SetColliderLayers(13, 10, 11, 12);
+        }
     }
 
     private void SetColliderLayers(int wall, int damage, int button, int bullets)
@@ -174,22 +190,38 @@ public class NovaMovement : MonoBehaviour
     public void BeginFall()
     {
         if (rb.velocity.y > 0) sortingOffset = 0;
-        doFall = true;
+        DoFall = true;
         // yPosAtBeginningOfFall = transform.position.y;
         fallingSpeed = 8f;
         fallTimer = fallTime;
+        jumpDirection = moveInput;
     }
 
-    private void StopFall()
+    public void StopFall(bool topLanding = false)
     {
-        sortingOffset = 0;
-        fallTimer = 0;
-        doFall = false;
-        rb.velocity = new();
-        if (firstFloorMovableBox != null)
+        if (topLanding)
         {
-            firstFloorMovableBox.enabled = true;
-            firstFloorMovableBox = null;
+            switchFloor = false;
+            var newFallTimer = fallTimer - fallTime / 4f;
+            fallTimer = newFallTimer > 0 ? newFallTimer : fallTimer;
+            //Debug.Log(fallTimer);
+        }
+        else
+        {
+            if (TransitionTrigger != null)
+            {
+                TransitionTrigger.TriggerEnabled = true;
+                TransitionTrigger = null;
+            }
+            sortingOffset = 0;
+            fallTimer = 0;
+            DoFall = false;
+            rb.velocity = new();
+            if (firstFloorMovableBox != null)
+            {
+                firstFloorMovableBox.enabled = true;
+                firstFloorMovableBox = null;
+            }
         }
     }
     #endregion
@@ -223,6 +255,7 @@ public class NovaMovement : MonoBehaviour
         GameManager.Instance.Nova = this;
         fallTimer = 0;
         sortingOffset = 0;
+        switchFloor = true;
     }
 
     private void Update()
@@ -238,23 +271,25 @@ public class NovaMovement : MonoBehaviour
     {
         if (GameManager.Instance.IsPlaying)
         {
-            rb.velocity = movementSpeed * Time.fixedDeltaTime * moveInput;
+            rb.velocity = movementSpeed * Time.fixedDeltaTime * (DoFall ? jumpDirection * 0.8f : moveInput);
             if (MovableObject != null) rb.velocity += MovableObject.velocity;
 
-            if (doFall)
+            if (DoFall)
             {
                 //fallingSpeed += Time.fixedDeltaTime;
-                
+
                 if (fallTimer <= 0)
                 {
                     StopFall();
-                    SwitchFloor(true);
+                    if (switchFloor) SwitchFloor(true);
+                    else switchFloor = true;
                 }
                 else
                 {
                     fallTimer -= Time.fixedDeltaTime;
                     fallingSpeed -= Time.fixedDeltaTime * 25f;
                     rb.velocity += new Vector2(0, fallingSpeed);
+
                 }
             }
         }
@@ -286,7 +321,6 @@ public class NovaMovement : MonoBehaviour
             interactableTriggers.Add(interactableTrigger);
             performedInteraction = interactableTriggers[0];
 
-            //todo: show interact prompt
             if (interactionPrompt == null)
             {
                 var go = Instantiate(interacttionPromptPrefab);
@@ -295,7 +329,8 @@ public class NovaMovement : MonoBehaviour
             }
             interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings, performedInteraction.gameObject.transform);
         }
-        else if (collision.gameObject.CompareTag("1st Floor") && fallTimer > fallTime / 3f)
+        // movable box 1st floor
+        else if (collision.gameObject.CompareTag("1st Floor") && fallTimer > fallTime / 4f)
         {
             StopFall();
             firstFloorMovableBox = collision.gameObject.GetComponent<BoxCollider2D>();
