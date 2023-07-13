@@ -6352,6 +6352,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c79ec7edb88fc3429c4e5771d3c8e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1110960285 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5004904449619130702, guid: 7eddf469ebe25c94eb69ccfe4c28f9d7, type: 3}
+  m_PrefabInstance: {fileID: 5004904449812965742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1120290872
 GameObject:
   m_ObjectHideFlags: 0
@@ -36601,6 +36606,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5004904448845774769, guid: 7eddf469ebe25c94eb69ccfe4c28f9d7, type: 3}
+      propertyPath: movementDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5004904448845774769, guid: 7eddf469ebe25c94eb69ccfe4c28f9d7, type: 3}
+      propertyPath: barriersToDisableOnArrival.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5004904448845774769, guid: 7eddf469ebe25c94eb69ccfe4c28f9d7, type: 3}
+      propertyPath: barriersToDisableOnArrival.Array.data[0]
+      value: 
+      objectReference: {fileID: 1110960285}
     - target: {fileID: 5004904448845774770, guid: 7eddf469ebe25c94eb69ccfe4c28f9d7, type: 3}
       propertyPath: m_Name
       value: Raft
