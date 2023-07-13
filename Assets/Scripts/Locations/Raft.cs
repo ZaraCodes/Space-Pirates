@@ -9,7 +9,7 @@ public class Raft : MonoBehaviour
     [SerializeField] private bool move;
     [SerializeField] private bool brake;
     [SerializeField] private float accelerationTime;
-    [SerializeField] private bool movementAxisY;
+    [SerializeField] private Vector2 movementDirection;
     private float accelerationTimer = 0;
     private Vector3 movementDirectionSnapshot;
 
@@ -19,6 +19,7 @@ public class Raft : MonoBehaviour
     [SerializeField] private BoxCollider2D WestCollision;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private InteractableTrigger interactableTrigger;
+    [SerializeField] private BoxCollider2D[] barriersToDisableOnArrival;
 
     #endregion
     #region Methods
@@ -33,15 +34,9 @@ public class Raft : MonoBehaviour
     private void StopMovement()
     {
         rb.bodyType = RigidbodyType2D.Static;
-        if (movementAxisY)
+        foreach (var collider in barriersToDisableOnArrival)
         {
-            if (movementDirectionSnapshot.y < 0) NorthCollision.enabled = false;
-            else SouthCollision.enabled = false;
-        }
-        else
-        {
-            if (movementDirectionSnapshot.x < 0) WestCollision.enabled = false;
-            else EastCollision.enabled = false; 
+            collider.enabled = false;
         }
     }
 
@@ -54,7 +49,7 @@ public class Raft : MonoBehaviour
         if (accelerationTimer > 0)
         {
             accelerationTimer -= Time.fixedDeltaTime;
-            rb.AddForce(new Vector3(.7f, 0), ForceMode2D.Force);
+            rb.AddForce(new Vector3(movementDirection.x, movementDirection.y) * 0.7f, ForceMode2D.Force);
         }
 
         if (move)
@@ -70,9 +65,9 @@ public class Raft : MonoBehaviour
             var decelerationVector = new Vector3(-3, 0);
             move = false;
             accelerationTimer = 0;
-            if (movementAxisY && ((movementDirectionSnapshot.y > 0 && rb.velocity.y < 0) || (movementDirectionSnapshot.y < 0 && rb.velocity.y > 0)))
+            if (movementDirection == Vector2.left && rb.velocity.x > 0 || movementDirection == Vector2.right && rb.velocity.x < 0)
                 StopMovement();
-            else if (!movementAxisY && ((movementDirectionSnapshot.x > 0 && rb.velocity.x < 0) || (movementDirectionSnapshot.x < 0 && rb.velocity.x > 0)))
+            else if (movementDirection == Vector2.down && rb.velocity.y > 0 || movementDirection == Vector2.up && rb.velocity.y < 0)
                 StopMovement();
             rb.AddForce(decelerationVector);
         }
@@ -115,7 +110,7 @@ public class Raft : MonoBehaviour
 
     private void Start()
     {
-        if (movementAxisY) rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        if (movementDirection.y != 0) rb.constraints = RigidbodyConstraints2D.FreezePositionX;
         else rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         rb.freezeRotation = true;
     }
