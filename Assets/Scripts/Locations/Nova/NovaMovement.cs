@@ -250,6 +250,7 @@ public class NovaMovement : MonoBehaviour
                 bulletsGO.name = "Bullets";
                 Debug.LogWarning("Player had to spawn the Bullets GameObject! Please make sure it exists and assign it to the bulletContainer field!");
             }
+            if (bulletsGO.GetComponent<BulletContainer>() == null) bulletsGO.AddComponent<BulletContainer>();
             bulletContainer = bulletsGO.transform;
         }
         GameManager.Instance.Nova = this;

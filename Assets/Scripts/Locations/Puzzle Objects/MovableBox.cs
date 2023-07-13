@@ -6,10 +6,14 @@ public class MovableBox : MonoBehaviour
 {
     [SerializeField] private InteractableTrigger horizontalTrigger;
     [SerializeField] private InteractableTrigger verticalTrigger;
+    [HideInInspector] public Rigidbody2D MovableObject;
 
     private Rigidbody2D novaRigidbody;
     [SerializeField] private Rigidbody2D boxRigidbody;
     [SerializeField] private SpriteRenderer boxSprite;
+
+    private Vector2 moveVector;
+
     #region Methods
     public void Move(bool horizontal)
     {
@@ -18,14 +22,14 @@ public class MovableBox : MonoBehaviour
             boxRigidbody.bodyType = RigidbodyType2D.Dynamic;
             if (horizontal)
             {
-                boxRigidbody.velocity = new Vector2(novaRigidbody.velocity.x, 0);
+                moveVector = new Vector2(novaRigidbody.velocity.x, 0);
             }
             else
             {
-                boxRigidbody.velocity = new Vector2(0, novaRigidbody.velocity.y);
+                moveVector = new Vector2(0, novaRigidbody.velocity.y);
             }
             // while interacting with the box, nova should only move along the same axis as the box
-            novaRigidbody.velocity = boxRigidbody.velocity;
+            // novaRigidbody.velocity = boxRigidbody.velocity;
         }
     }
 
@@ -33,7 +37,7 @@ public class MovableBox : MonoBehaviour
     {
         if (boxRigidbody.velocity != Vector2.zero)
         {
-            boxRigidbody.velocity = Vector2.zero;
+            moveVector = Vector2.zero;
             //boxRigidbody.bodyType = RigidbodyType2D.Static;
         }
     }
@@ -46,6 +50,12 @@ public class MovableBox : MonoBehaviour
         {
             boxSprite.sortingOrder = -Mathf.RoundToInt(transform.position.y);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        boxRigidbody.velocity = moveVector;
+        if (MovableObject != null) boxRigidbody.velocity += MovableObject.velocity;
     }
     #endregion
 

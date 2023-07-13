@@ -92,6 +92,14 @@ public class Raft : MonoBehaviour
             brake = true;
             movementDirectionSnapshot = rb.velocity;
         }
+        else if (collision.CompareTag("Button Trigger"))
+        {
+            var box = collision.GetComponentInParent<MovableBox>();
+            if (box != null)
+            {
+                box.MovableObject = rb;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
