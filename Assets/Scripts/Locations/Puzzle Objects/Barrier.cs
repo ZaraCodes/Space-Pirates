@@ -91,7 +91,7 @@ public class Barrier : ActivatableObject
 
     private void OnValidate()
     {
-        // UnityEditor.EditorApplication.update += _OnValidate;
+        //UnityEditor.EditorApplication.update += _OnValidate;
     }
 #endif
     #endregion

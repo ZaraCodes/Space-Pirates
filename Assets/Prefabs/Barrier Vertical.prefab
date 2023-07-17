@@ -192,8 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleObjects: []
-  activatableObjects:
-  - {fileID: 0}
+  activatableObjects: []
   activationMode: 0
   invertState: 0
   spriteBounds: {fileID: 2882063976972034259}
