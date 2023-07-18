@@ -30,6 +30,8 @@ public class NovaMovement : MonoBehaviour
 
     private Vector2 jumpDirection;
     public FloorTransition TransitionTrigger { get; set; }
+
+    public Vector2 MovementConstraint { get; set; }
     /// <summary>Reference to Nova's rigidbody2D</summary>
     [Header("References"), SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -75,7 +77,7 @@ public class NovaMovement : MonoBehaviour
     {
         GameManager.Instance.ChangeInputScheme(ctx);
 
-        moveInput = ctx.ReadValue<Vector2>();
+        moveInput = ctx.ReadValue<Vector2>() * MovementConstraint;
     }
 
     /// <summary>Does a ranged attack depending on how long the button has been pressed</summary>
@@ -257,6 +259,8 @@ public class NovaMovement : MonoBehaviour
         fallTimer = 0;
         sortingOffset = 0;
         switchFloor = true;
+
+        MovementConstraint = new(1, 1);
     }
 
     private void Update()
@@ -319,16 +323,19 @@ public class NovaMovement : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out InteractableTrigger interactableTrigger))
         {
-            interactableTriggers.Add(interactableTrigger);
-            performedInteraction = interactableTriggers[0];
-
-            if (interactionPrompt == null)
+            if (!interactableTriggers.Contains(interactableTrigger))
             {
-                var go = Instantiate(interacttionPromptPrefab);
-                interactionPrompt = go.GetComponent<InteractionPrompt>();
-                interactionPrompt.transform.SetParent(mainCanvas.transform, false);
+                interactableTriggers.Add(interactableTrigger);
+                performedInteraction = interactableTriggers[0];
+
+                if (interactionPrompt == null)
+                {
+                    var go = Instantiate(interacttionPromptPrefab);
+                    interactionPrompt = go.GetComponent<InteractionPrompt>();
+                    interactionPrompt.transform.SetParent(mainCanvas.transform, false);
+                }
+                interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings, performedInteraction.gameObject.transform);
             }
-            interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings, performedInteraction.gameObject.transform);
         }
         // movable box 1st floor
         else if (collision.gameObject.CompareTag("1st Floor") && fallTimer > fallTime / 4f)
@@ -351,6 +358,7 @@ public class NovaMovement : MonoBehaviour
                 if (interactableTrigger == performedInteraction)
                 {
                     performedInteraction.StopInteract();
+                    performedInteraction = null;
                 }
             }
             interactionPrompt.Hide();

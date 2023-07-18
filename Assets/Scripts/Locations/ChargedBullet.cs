@@ -51,7 +51,7 @@ public class ChargedBullet : MonoBehaviour
         audioSource.Play();
 
         var selfDestruct = audioSourceGO.AddComponent<SelfDestructionScript>();
-        selfDestruct.lifetime = lifetime;
+        selfDestruct.Lifetime = lifetime;
     }
 
     #region Unity Stuff
@@ -91,6 +91,9 @@ public class ChargedBullet : MonoBehaviour
             Debug.LogWarning("Please make sure that the object that spawns this bullet gives the bullets it spawns a parent GameObject with the name \"Bullets\"");
             transform.parent = GameObject.Find("Bullets").transform;
         }
+        var selfDestruct = gameObject.AddComponent<SelfDestructionScript>();
+        selfDestruct.Lifetime = 20f;
+        selfDestruct.OnTimerEnded += () => PlayDestroySound = false;
     }
 
     private void FixedUpdate()

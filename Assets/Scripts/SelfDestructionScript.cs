@@ -5,15 +5,19 @@ using UnityEngine;
 public class SelfDestructionScript : MonoBehaviour
 {
     #region Fields
-    public float lifetime;
+    public float Lifetime { get; set; }
+
+    public delegate void TimerEnded();
+    public event TimerEnded OnTimerEnded;
     #endregion
 
     #region Unity Stuff
     private void Update()
     {
-        lifetime -= Time.deltaTime;
-        if (lifetime <= 0)
+        Lifetime -= Time.deltaTime;
+        if (Lifetime <= 0)
         {
+            OnTimerEnded?.Invoke();
             Destroy(gameObject);
         }
     }

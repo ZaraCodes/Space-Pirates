@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalTrigger: {fileID: 6104969953101286324}
   verticalTrigger: {fileID: 6104969953501143363}
+  MovableObject: {fileID: 0}
   boxRigidbody: {fileID: 6104969952786479544}
   boxSprite: {fileID: 6104969952786479541}
 --- !u!212 &6104969952786479541
@@ -367,6 +368,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 6104969952786479543}
+        m_TargetAssemblyTypeName: MovableBox, Assembly-CSharp
+        m_MethodName: SetDistanceToPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OnInteractStop:
     m_PersistentCalls:
       m_Calls:
@@ -474,6 +487,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MovableBox, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6104969952786479543}
+        m_TargetAssemblyTypeName: MovableBox, Assembly-CSharp
+        m_MethodName: SetDistanceToPlayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
