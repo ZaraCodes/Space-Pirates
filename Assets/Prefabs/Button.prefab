@@ -153,3 +153,4 @@ MonoBehaviour:
   enableClip: {fileID: 0}
   disableClip: {fileID: 0}
   objectCount: 0
+  buttonTriggers: []

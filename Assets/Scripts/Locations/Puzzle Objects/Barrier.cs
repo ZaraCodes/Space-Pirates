@@ -49,6 +49,7 @@ public class Barrier : ActivatableObject
     private void Start()
     {
         Toggle();
+        spriteClosed.sortingOrder = -Mathf.RoundToInt(spriteBounds.transform.position.y /*- 1*/- 1);
     }
 
 #if UNITY_EDITOR
@@ -91,7 +92,7 @@ public class Barrier : ActivatableObject
 
     private void OnValidate()
     {
-        //UnityEditor.EditorApplication.update += _OnValidate;
+        // UnityEditor.EditorApplication.update += _OnValidate;
     }
 #endif
     #endregion

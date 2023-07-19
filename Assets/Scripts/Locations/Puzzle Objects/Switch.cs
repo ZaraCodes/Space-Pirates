@@ -21,6 +21,10 @@ public class Switch : ToggleObject
             if (State) timer = activationTime;
             else timer = 0f;
         }
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     private void Update()

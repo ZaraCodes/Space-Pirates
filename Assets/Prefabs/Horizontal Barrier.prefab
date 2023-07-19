@@ -249,8 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead49b28111f2d3499e3cb994bf22e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleObjects:
-  - {fileID: 0}
+  toggleObjects: []
   activatableObjects: []
   activationMode: 0
   invertState: 0
