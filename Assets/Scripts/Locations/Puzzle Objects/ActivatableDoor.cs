@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ActivatableDoor : ActivatableObject
 {
@@ -12,6 +13,9 @@ public class ActivatableDoor : ActivatableObject
     [SerializeField] private Sprite inactiveSprite;
     [SerializeField] private BoxCollider2D trigger;
     public BoxCollider2D Trigger { get { return trigger; } set {  trigger = value; } }
+
+    public UnityEvent OnDoorUsed;
+
     [Space]
     [Header("Must Have References"), SerializeField] private Transform BulletsParent;
     [SerializeField] private ActivatableDoor connectedDoor;
@@ -41,7 +45,9 @@ public class ActivatableDoor : ActivatableObject
         playerTransform.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, playerTransform.position.z);
         
         ChargedBullet.playDestroySoundStatic = false;
-        
+
+        OnDoorUsed?.Invoke();
+
         foreach (Transform t in BulletsParent)
         {
             if (t.TryGetComponent<ChargedBullet>(out var bullet))
