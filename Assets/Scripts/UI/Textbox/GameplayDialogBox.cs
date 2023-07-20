@@ -27,19 +27,16 @@ public class GameplayDialogBox : MonoBehaviour
     private int currentSectionIndex;
     private float timer;
     private float textCompletionMultiplier;
+
+    public UnityEvent OnTextboxClosed;
     #endregion
 
     #region Methods
-    public void LoadDialog(string sequenceName)
+    public void LoadDialog(TextboxSequence textboxSequence, UnityEvent onTextboxClosed)
     {
-        textboxSequence = AllDialogs.Instance.GetSequence(sequenceName);
+        this.textboxSequence = textboxSequence;
+        OnTextboxClosed = onTextboxClosed;
 
-        if (textboxSequence == null)
-        {
-            Debug.LogWarning($"The dialog \"{sequenceName}\" does not exist!");
-            return;
-        }
-        
         currentSequenceIndex = 0;
         currentSectionIndex = -1;
         textCompletionMultiplier = 1;
@@ -69,7 +66,7 @@ public class GameplayDialogBox : MonoBehaviour
             {
                 gameObject.SetActive(false);
 
-                // OnTextboxClosed.Invoke();
+                OnTextboxClosed?.Invoke();
 
                 return;
             }

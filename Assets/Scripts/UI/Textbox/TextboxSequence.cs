@@ -7,4 +7,5 @@ public class TextboxSequence : ScriptableObject
 {
     public string ID;
     public TextboxContent[] Contents;
+    public bool Repeat;
 }

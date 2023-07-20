@@ -9,21 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a3009acc55996a4cb92746e5f616ee9, type: 3}
-  m_Name: Ray
+  m_Script: {fileID: 11500000, guid: f8cba82e83f728e4c977125e74b3a644, type: 3}
+  m_Name: Zero G - 00
   m_EditorClassIdentifier: 
-  SpeakerName:
+  Speaker: {fileID: 11400000, guid: b4cf568279f692645ac6cdcc9d346ff4, type: 2}
+  SequenceText:
     m_TableReference:
       m_TableCollectionName: GUID:588362e9c03acac4f96b2e720eb55ef6
     m_TableEntryReference:
-      m_KeyId: 311467053260800
+      m_KeyId: 5001587987685376
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  TextColor: {r: 1, g: 0.762135, b: 0.4575472, a: 1}
-  NameColor: {r: 1, g: 0.7607843, b: 0.45882353, a: 1}
-  Portrait: {fileID: 21300000, guid: ba0b4219488ae3642b611446e3b02b08, type: 3}
+  TextSpeedMultiplier: 1
+  positionedLeft: 1
+  OnContentFinished:
+    m_PersistentCalls:
+      m_Calls: []
   references:
     version: 2
     RefIds: []

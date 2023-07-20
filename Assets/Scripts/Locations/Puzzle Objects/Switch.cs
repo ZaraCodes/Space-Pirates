@@ -8,12 +8,7 @@ public class Switch : ToggleObject
 
     private float timer;
     #region Methods
-
-    #endregion
-
-    #region Unity Stuff
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Toggle()
     {
         State = !State;
         if (activationTime > 0f)
@@ -21,6 +16,14 @@ public class Switch : ToggleObject
             if (State) timer = activationTime;
             else timer = 0f;
         }
+    }
+    #endregion
+
+    #region Unity Stuff
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Toggle();
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);

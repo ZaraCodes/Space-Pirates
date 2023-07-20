@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class DialogOverlay : MonoBehaviour
@@ -32,24 +33,20 @@ public class DialogOverlay : MonoBehaviour
     [Header("References"), SerializeField] private GameObject scrollField;
     [Header("Prefabs"), SerializeField] private GameObject leftMessagePrefab;
     [SerializeField] private GameObject rightMessagePrefab;
+    public UnityEvent OnDialogFinished;
     #endregion
 
     #region Methods
-    public void LoadDialog(string sequenceName)
+    public void LoadDialog(TextboxSequence dialogSequence, UnityEvent onDialogFinished)
     {
+        this.dialogSequence = dialogSequence;
+        OnDialogFinished = onDialogFinished;
         GameManager.Instance.IsDialogOverlayOpen = true;
 
         avatarDisplayedInLastBox = false;
         scrolledDistance = originalScrollPosition.y;
         //scrollField.transform.position = new Vector3(scrollField.transform.position.x, 0);
 
-        dialogSequence = AllDialogs.Instance.GetSequence(sequenceName);
-
-        if (dialogSequence == null)
-        {
-            Debug.LogWarning($"The dialog \"{sequenceName}\" does not exist!");
-            return;
-        }
         currentSequenceIndex = 0;
         currentSectionIndex = -1;
 
@@ -84,6 +81,7 @@ public class DialogOverlay : MonoBehaviour
                 scrollField.transform.position = new(scrollField.transform.position.x, originalScrollPosition.y);
                 gameObject.SetActive(false);
                 GameManager.Instance.IsDialogOverlayOpen = false;
+                OnDialogFinished?.Invoke();
                 return;
             }
         }

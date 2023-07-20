@@ -116,6 +116,10 @@ MonoBehaviour:
     m_Localized: Set Sail
     m_Metadata:
       m_Items: []
+  - m_Id: 10571101575946240
+    m_Localized: Take Repair Kit
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

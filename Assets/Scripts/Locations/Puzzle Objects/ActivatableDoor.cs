@@ -42,8 +42,9 @@ public class ActivatableDoor : ActivatableObject
     /// <param name="playerTransform">The transform of the player</param>
     private void TeleportPlayer(Transform playerTransform)
     {
+        if (connectedDoor == null) return;
+
         playerTransform.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, playerTransform.position.z);
-        
         ChargedBullet.playDestroySoundStatic = false;
 
         OnDoorUsed?.Invoke();

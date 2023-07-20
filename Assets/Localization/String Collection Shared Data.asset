@@ -111,6 +111,10 @@ MonoBehaviour:
     m_Key: Set Sail
     m_Metadata:
       m_Items: []
+  - m_Id: 10571101575946240
+    m_Key: Take Repair Kit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -61,6 +61,39 @@ MonoBehaviour:
       jetzt... hier ein einzeiliger Test\n||\nZwei\nZeilen\n||\n\xC4hh...\nDrei\nZeilen\n||\nUnd\nletztendlich...\nvier\nZeilen"
     m_Metadata:
       m_Items: []
+  - m_Id: 5001587987685376
+    m_Localized: "Oh fuck, was passiert hier gerade? \nKeine k\xFCnstliche Schwerkraft?!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5001852052676608
+    m_Localized: "Es sieht so aus als w\xE4re dieser Teil der Raumstation besch\xE4digt...\n||\nDu
+      solltest dich aber durch das Abfeuern deiner Waffe trotzdem bewegen k\xF6nnen.
+      Bitte pass auf ja?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5028859910135808
+    m_Localized: "Ray...\nh\xF6rst du mich?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5029108850466816
+    m_Localized: Jup Nova, klar und deutlich.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5029319991730176
+    m_Localized: "Ich habe ein Reparaturkit gefunden, aber ich glaube nicht, dass
+      es ausreicht, um die Sch\xE4den an unserem Raumschiff zu reparieren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5030004627972096
+    m_Localized: "Oh okay :(\nIch hab gehofft, dass sie da hinten ausreichende Teile
+      haben...\n||\nVielleicht findest du im anderen Teil der Raumstation etwas Brauchbares.
+      Red am besten mit dem Verk\xE4ufer, vielleicht l\xE4sst er dich durch :3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5032165516615680
+    m_Localized: Okie.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -32,6 +32,9 @@ public class NovaMovement : MonoBehaviour
     public FloorTransition TransitionTrigger { get; set; }
 
     public Vector2 MovementConstraint { get; set; }
+
+    public bool ZeroGMovement { get; set; }
+
     /// <summary>Reference to Nova's rigidbody2D</summary>
     [Header("References"), SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -77,7 +80,8 @@ public class NovaMovement : MonoBehaviour
     {
         GameManager.Instance.ChangeInputScheme(ctx);
 
-        moveInput = ctx.ReadValue<Vector2>() * MovementConstraint;
+        if (!ZeroGMovement)
+            moveInput = ctx.ReadValue<Vector2>() * MovementConstraint;
     }
 
     /// <summary>Does a ranged attack depending on how long the button has been pressed</summary>
@@ -117,6 +121,8 @@ public class NovaMovement : MonoBehaviour
         bullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
 
         bulletGO.transform.parent = bulletContainer;
+
+        if (ZeroGMovement) moveInput = attackDirection.normalized;
     }
 
     private void SetAttackDirection(InputAction.CallbackContext ctx)
@@ -226,6 +232,11 @@ public class NovaMovement : MonoBehaviour
             }
         }
     }
+
+    public void ToggleZeroG(bool zeroG)
+    {
+        ZeroGMovement = zeroG;
+    }
     #endregion
 
     #region Unity Stuff
@@ -276,7 +287,18 @@ public class NovaMovement : MonoBehaviour
     {
         if (GameManager.Instance.IsPlaying)
         {
-            rb.velocity = movementSpeed * Time.fixedDeltaTime * (DoFall ? jumpDirection * 0.8f : moveInput);
+            if (ZeroGMovement)
+            {
+                rb.velocity *= .99f;
+                if (moveInput != Vector2.zero)
+                {
+                    rb.AddForce(-moveInput);
+                    moveInput = Vector2.zero;
+                }
+            }
+            else
+                rb.velocity = movementSpeed * Time.fixedDeltaTime * (DoFall ? jumpDirection * 0.8f : moveInput);
+            
             if (MovableObject != null) rb.velocity += MovableObject.velocity;
 
             if (DoFall)
@@ -294,7 +316,6 @@ public class NovaMovement : MonoBehaviour
                     fallTimer -= Time.fixedDeltaTime;
                     fallingSpeed -= Time.fixedDeltaTime * 25f;
                     rb.velocity += new Vector2(0, fallingSpeed);
-
                 }
             }
         }

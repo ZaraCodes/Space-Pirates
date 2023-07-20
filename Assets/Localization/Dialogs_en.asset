@@ -95,11 +95,58 @@ MonoBehaviour:
 
       And
 
-      finally
+      finally...
 
       four
 
       lines'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5001587987685376
+    m_Localized: 'Oh fuck what is happening?
+
+      No artifical gravity?!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5001852052676608
+    m_Localized: 'It looks like this part of the space station is damaged...
+
+      ||
+
+      You
+      should be able to move around by firing your weapon. Please be careful okay?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5028859910135808
+    m_Localized: 'Ray...
+
+      are you there?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5029108850466816
+    m_Localized: Yeah Nova, I'm here! I can hear you loud and clear. And queer :3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5029319991730176
+    m_Localized: I found a repair kit, but I doubt it's enough to fix the damages
+      on our ship.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5030004627972096
+    m_Localized: 'Oh okay :(
+
+      I was hoping that they would have had enough
+      supplies back there...
+
+      ||
+
+      Maybe you can find something in the
+      other part of the space station. Try to talk to the shopkeeper, maybe they''ll
+      let you through :3'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5032165516615680
+    m_Localized: Okie.
     m_Metadata:
       m_Items: []
   references:

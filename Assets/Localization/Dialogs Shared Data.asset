@@ -47,6 +47,34 @@ MonoBehaviour:
     m_Key: Test Dialog 3
     m_Metadata:
       m_Items: []
+  - m_Id: 5001587987685376
+    m_Key: Zero G 0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5001852052676608
+    m_Key: Zero G 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5028859910135808
+    m_Key: Repair Kit 1 - 00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5029108850466816
+    m_Key: Repair Kit 1 - 01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5029319991730176
+    m_Key: Repair Kit 1 - 02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5030004627972096
+    m_Key: Repair Kit 1 - 03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5032165516615680
+    m_Key: Repair Kit 1 - 04
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -173,7 +173,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9391722f-ae17-4d84-9467-889e9500e78b"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -183,8 +183,8 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""55d963d7-72b2-42a8-ad11-7986cc62e4cf"",
-                    ""path"": ""<Keyboard>/g"",
+                    ""id"": ""4b73276c-7f67-401a-9c47-ea42b925ac4a"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse + Keyboard"",
