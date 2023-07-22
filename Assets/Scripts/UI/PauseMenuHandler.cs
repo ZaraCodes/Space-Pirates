@@ -17,11 +17,11 @@ public class PauseMenuHandler : MonoBehaviour
 
     [Header("Essential Prefabs"), SerializeField] private GameObject pauseMenuPrefab;
     [SerializeField] private GameObject settingsMenuPrefab;
-    [SerializeField] private GameObject dialogsPrefab;
+    // [SerializeField] private GameObject dialogsPrefab;
     [SerializeField] private GameObject gameplayDialogBoxPrefab;
     [SerializeField] private GameObject dialogOverlayPrefab;
 
-    private static bool dialogsInstantiated = false;
+    //private static bool dialogsInstantiated = false;
 
     private GameObject pauseMenuGO;
     private GameObject settingsMenuGO;
@@ -99,11 +99,11 @@ public class PauseMenuHandler : MonoBehaviour
         controls.UI.Pause.performed += ctx => TogglePauseMenu(ctx);
         controls.UI.UIBack.performed += ctx => ClosePauseMenu(ctx);
 
-        if (!dialogsInstantiated)
-        {
-            Instantiate(dialogsPrefab);
-            dialogsInstantiated = true;
-        }
+        //if (!dialogsInstantiated)
+        //{
+        //    Instantiate(dialogsPrefab);
+        //    dialogsInstantiated = true;
+        //}
 
         GameObject gameplayDialogBoxGO = Instantiate(gameplayDialogBoxPrefab);
         gameplayDialogBoxGO.transform.SetParent(transform, false);

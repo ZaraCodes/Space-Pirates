@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3aac54705bfd34db7ab111ab6e5d6c, type: 3}
+  m_Name: Space Station - Repair Kit 2
+  m_EditorClassIdentifier: 
+  ID: Repair Kit 2
+  Contents:
+  - {fileID: 11400000, guid: 660f8eb222f46924987756dd58159429, type: 2}
+  - {fileID: 11400000, guid: 0b3b99549d3177144b09dbbb89b682c6, type: 2}
+  - {fileID: 11400000, guid: 4cb1a48063b4d594db11ffdd480ddb8b, type: 2}
+  - {fileID: 11400000, guid: 23a5e22cb24a8df498980718a6735620, type: 2}
+  Repeat: 0
+  SummaryDialog: {fileID: 0}

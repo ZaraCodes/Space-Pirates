@@ -99,7 +99,27 @@ MonoBehaviour:
 
       four
 
-      lines'
+      lines
+
+      ||
+
+      and
+      then
+
+      three
+
+      again
+
+      ||
+
+      and now
+
+      two lines
+
+      ||
+
+      at
+      here one :3'
     m_Metadata:
       m_Items: []
   - m_Id: 5001587987685376
@@ -147,6 +167,192 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5032165516615680
     m_Localized: Okie.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5328693024104448
+    m_Localized: Shopkeeper
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5328827753537536
+    m_Localized: 'Welcome to my little space station!
+
+      ||
+
+      It''s a bit
+      out of shape, but I still hope you''ll have a nice stay! How can I help you?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5329924132020224
+    m_Localized: 'Hi, um...
+
+      I''m here because my space ship got damaged after...
+      anway, I have to repair the thrusters and a bit of hull damage.
+
+      ||
+
+      Do
+      you have something that I can use?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5332125378256896
+    m_Localized: 'Damages on your ship, huh?
+
+      ||
+
+      I have to say that
+      I''m pretty low on resources at the moment, but we might still have repair
+      kits you could use in the back.
+
+      ||
+
+      I''ll open the upper door
+      for you...
+
+      and I hope you''ll find what you''re looking for!
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5335200033775616
+    m_Localized: Thanks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5362418826977280
+    m_Localized: '...we might still have repair kits you could use in the back.
+
+      ||
+
+      I''ll
+      open the upper door for you...
+
+      and I hope you''ll find what you''re
+      looking for!
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5365048714305536
+    m_Localized: 'Oh hey, you''re back!
+
+      Did you find what you need?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5365213206519808
+    m_Localized: I did find a repair kit for the thrusters, but there were no pieces
+      for the ship's hull.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5365997717528576
+    m_Localized: 'Oh I see...
+
+      Well, the lower part of this space station fell
+      into disrepair, but there might still be parts that you could use.
+
+      ||
+
+      I
+      will open the lower door for you, so you can look for hull parts.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5367174328852480
+    m_Localized: Okay, thanks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5367305660899328
+    m_Localized: The lower door is open for you so you can look for hull parts.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5408587594702848
+    m_Localized: DinkDonk?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5408731836817408
+    m_Localized: DonkDink!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5414861178773504
+    m_Localized: 'Okay so, I found some pieces in the debris of the station that
+      can help us reinforce for the hull.
+
+      ||
+
+      I can''t wait to finally
+      go and find out where Captain Meow went with [cat] and punch her. :('
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5423646303690752
+    m_Localized: Yes!! Let's find her!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5440736054059008
+    m_Localized: 'Hello again.
+
+      Thanks a lot for your help, I found all I need.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5441062014394368
+    m_Localized: 'Excellent!
+
+      ||
+
+      This will be... 50k Credits!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5445534627241984
+    m_Localized: 'Are you for real?
+
+      ||
+
+      frfr?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5446233628975104
+    m_Localized: 'Well...
+
+      ||
+
+      Yes.
+
+      ||
+
+      I have to bring
+      the space station back in order after all.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5446345008717824
+    m_Localized: 'Now listen to me you little shit!
+
+      ||
+
+      My girlfriend
+      and I have had our cat stolen and our ship badly damaged!
+
+      ||
+
+      So
+      it would be better if you''d stay out of our way! Otherwise, I''ll blow up
+      your pile of junk here, DAMN IT.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5450175922413568
+    m_Localized: Better choose right!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5451733909217280
+    m_Localized: Oh.... uhm...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5452036452753408
+    m_Localized: At least I'll be kind enough to leave you a few Credits until we
+      find Captain Meow :3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5454743976648704
+    m_Localized: '......
+
+      ||
+
+      please don''t hurt me >.<'
     m_Metadata:
       m_Items: []
   references:

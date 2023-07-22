@@ -8,4 +8,6 @@ public class TextboxSequence : ScriptableObject
     public string ID;
     public TextboxContent[] Contents;
     public bool Repeat;
+    /// <summary>This Dialog gets played when Repeat is false, to summarize the message</summary>
+    public TextboxSequence SummaryDialog;
 }

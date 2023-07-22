@@ -120,6 +120,14 @@ MonoBehaviour:
     m_Localized: Take Repair Kit
     m_Metadata:
       m_Items: []
+  - m_Id: 10868879183159296
+    m_Localized: Talk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11007967206940672
+    m_Localized: Interact
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

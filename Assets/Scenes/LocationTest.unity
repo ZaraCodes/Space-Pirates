@@ -6663,6 +6663,10 @@ PrefabInstance:
       value: Test Dialog 00
       objectReference: {fileID: 0}
     - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
+      propertyPath: dialogSequence
+      value: 
+      objectReference: {fileID: 11400000, guid: 80cc6f1515d3c8c47bcf7c4ace2d49e9, type: 2}
+    - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
       propertyPath: gameplayDialog
       value: 0
       objectReference: {fileID: 0}
@@ -36239,6 +36243,10 @@ PrefabInstance:
       value: Test Sequence
       objectReference: {fileID: 0}
     - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
+      propertyPath: dialogSequence
+      value: 
+      objectReference: {fileID: 11400000, guid: 29c6e71035ce1e746ac95a23888fbe25, type: 2}
+    - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
       propertyPath: gameplayDialog
       value: 1
       objectReference: {fileID: 0}
@@ -36627,6 +36635,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3197858797763493592, guid: b6c106b8670904f4a9c5c1bd4192526f, type: 3}
+      propertyPath: toggleObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3197858797763493592, guid: b6c106b8670904f4a9c5c1bd4192526f, type: 3}
       propertyPath: toggleObjects.Array.data[0]
       value: 

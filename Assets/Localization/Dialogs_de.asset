@@ -58,7 +58,9 @@ MonoBehaviour:
   - m_Id: 428293854699520
     m_Localized: "Schnell Nova, schnell!!\nBEEILUNG SIE LIEGT GERADE SUPER S\xDC\xDF
       DA UND ICH KANN NICHT AUFSTEHEN UM EIN FOTO ZU MACHEN\n||\nOk aber ernsthaft
-      jetzt... hier ein einzeiliger Test\n||\nZwei\nZeilen\n||\n\xC4hh...\nDrei\nZeilen\n||\nUnd\nletztendlich...\nvier\nZeilen"
+      jetzt... hier ein einzeiliger Test\n||\nZwei\nZeilen\n||\n\xC4hh...\nDrei\nZeilen\n||\nUnd\nletztendlich...\nvier\nZeilen\n||\nUnd
+      wieder\ndrei\nZeilen\n||\nund danach\nzwei Zeilen\n||\nund hier wieder eine
+      :3\n"
     m_Metadata:
       m_Items: []
   - m_Id: 5001587987685376
@@ -92,6 +94,138 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5032165516615680
     m_Localized: Okie.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5328693024104448
+    m_Localized: "Verk\xE4ufer"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5328827753537536
+    m_Localized: 'Willkommen auf meiner Raumstation!
+
+      ||
+
+      Sie ist nicht
+      mehr ganz in Form, aber ich hoffe dass Du einen guten Aufenthalt haben wirst!
+      Wie kann ich dir helfen?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5329924132020224
+    m_Localized: "Hi, \xE4hh...\nIch bin hier, weil mein Raumschiff besch\xE4digt
+      wurde, nachdem... jedenfalls muss ich die D\xFCsen und Sch\xE4den an der Au\xDFenwand
+      reparieren.\n||\nHast du etwas, das ich benutzen kann?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5332125378256896
+    m_Localized: "Sch\xE4den am Schiff, ja?\n||\nIch muss zugeben, dass ich gerade
+      ziemlich wenig Ressourcen zur Verf\xFCgung habe, aber vielleicht habe ich f\xFCr
+      dich brauchbare Reparaturkits im Lager.\n||\nIch mache die obere T\xFCr f\xFCr
+      dich auf...\nund hoffe, dass du findest, was du brauchst!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5335200033775616
+    m_Localized: Danke.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5362418826977280
+    m_Localized: "...vielleicht habe ich f\xFCr dich brauchbare Reparaturkits im
+      Lager.\n||\nIch mache die obere T\xFCr f\xFCr dich auf...\nund hoffe, dass
+      du findest, was du brauchst!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5365048714305536
+    m_Localized: "Oh hey, du bist zur\xFCck!\nHast du gefunden, was du brauchst?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5365213206519808
+    m_Localized: "Ich habe ein Reparaturkit f\xFCr die D\xFCsen gefunden, aber keine
+      Teile f\xFCr die Au\xDFenwand des Raumschiffs."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5365997717528576
+    m_Localized: "Oh okay...\nAlso, der andere Teil der Raumstation ist etwas besch\xE4digt,
+      aber da k\xF6nnten noch immer Teile sein, die du brauchen kannst.\n||\nIch
+      \xF6ffne die andere T\xFCr f\xFCr dich, damit du dort suchen kannst."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5367174328852480
+    m_Localized: Okay, danke.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5367305660899328
+    m_Localized: "Ich habe die andere T\xFCr f\xFCr dich ge\xF6ffnet, damit du dort
+      suchen kannst."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5408587594702848
+    m_Localized: DinkDonk?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5408731836817408
+    m_Localized: DonkDink!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5414861178773504
+    m_Localized: "Okay, also ich habe zum Gl\xFCck ein paar Teile gefunden, mit denen
+      wir das Raumschiff verst\xE4rken k\xF6nnen.\n||\nIch kann nicht darauf warten
+      loszufliegen und herauszufinden, wo Captain Meow mit [cat] hin ist, damit ich
+      sie schlagen kann :("
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5423646303690752
+    m_Localized: Ja!! Finden wir sie!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5440736054059008
+    m_Localized: "Hallo nochmal.\nDanke f\xFCr deine Hilfe, ich habe alles gefunden,
+      was ich brauche."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5441062014394368
+    m_Localized: 'Hervorragend!
+
+      ||
+
+      Das macht... 50 Tausend Credits!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5445534627241984
+    m_Localized: 'Ist das dein Ernst?
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5446233628975104
+    m_Localized: "Nun...\n||\nJa.\n||\nIch muss schlie\xDFlich die Raumstation wieder
+      in Ordnung bringen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5446345008717824
+    m_Localized: "Jetzt h\xF6r mal zu du Gr\xFCnschnabel!\n||\nMeiner Freundin und
+      mir wurde die Katze gestohlen und das Schiff schwer besch\xE4digt!\n||\nAlso
+      w\xE4re es besser, wenn du uns nicht weiter im Weg stehen w\xFCrdest! Sonst
+      jag ich den Schrotthaufen hier in die Luft VERDAMMT."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5450175922413568
+    m_Localized: Pass besser auf, wie du dich entscheidest!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5451733909217280
+    m_Localized: "Oh... \xE4hh..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5452036452753408
+    m_Localized: Ich bin wenigstens so nett und lasse dir ein paar Credits da, bis
+      wir Captain Meow gefunden haben :3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5454743976648704
+    m_Localized: '......
+
+      ||
+
+      bitte tu mir nicht weh >.<'
     m_Metadata:
       m_Items: []
   references:

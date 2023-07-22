@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3aac54705bfd34db7ab111ab6e5d6c, type: 3}
+  m_Name: Space Station - Shopkeeper 1a
+  m_EditorClassIdentifier: 
+  ID: Shopkeeper 1
+  Contents:
+  - {fileID: 11400000, guid: 03b7d9da2c2a2d943ba9d359bab9cf10, type: 2}
+  - {fileID: 11400000, guid: 2d479548aa9809e43b35f1a8dfb27a2c, type: 2}
+  Repeat: 0
+  SummaryDialog: {fileID: 0}

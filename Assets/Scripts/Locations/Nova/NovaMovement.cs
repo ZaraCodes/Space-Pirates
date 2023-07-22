@@ -19,6 +19,7 @@ public class NovaMovement : MonoBehaviour
 
     /// <summary>The max speed at which Nove moves</summary>
     [SerializeField] private float movementSpeed;
+    public float MovementSpeed { get { return movementSpeed; } }
 
     [SerializeField] private InteractionPrompt interactionPrompt;
     [SerializeField] private float fallTime;
@@ -34,6 +35,8 @@ public class NovaMovement : MonoBehaviour
     public Vector2 MovementConstraint { get; set; }
 
     public bool ZeroGMovement { get; set; }
+
+    public bool CutsceneMovement { get; set; }
 
     /// <summary>Reference to Nova's rigidbody2D</summary>
     [Header("References"), SerializeField] private Rigidbody2D rb;
@@ -296,7 +299,7 @@ public class NovaMovement : MonoBehaviour
                     moveInput = Vector2.zero;
                 }
             }
-            else
+            else if (!CutsceneMovement)
                 rb.velocity = movementSpeed * Time.fixedDeltaTime * (DoFall ? jumpDirection * 0.8f : moveInput);
             
             if (MovableObject != null) rb.velocity += MovableObject.velocity;

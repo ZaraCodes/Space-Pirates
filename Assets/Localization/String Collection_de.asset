@@ -116,6 +116,14 @@ MonoBehaviour:
     m_Localized: Reparaturkit nehmen
     m_Metadata:
       m_Items: []
+  - m_Id: 10868879183159296
+    m_Localized: Reden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11007967206940672
+    m_Localized: Interagieren
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

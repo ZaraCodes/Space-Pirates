@@ -25,6 +25,7 @@ public class DialogOverlay : MonoBehaviour
     private bool currentAlignment;
     private string previousName;
     private string currentName;
+    private float previousOffset;
 
     private float scrolledDistance;
 
@@ -104,16 +105,35 @@ public class DialogOverlay : MonoBehaviour
         {
             if (avatarDisplayedInLastBox)
             {
-                scrollingOffset = 60 * SettingsS.Instance.UIScale;
+                previousOffset = scrollingOffset * SettingsS.Instance.UIScale;
+
+                if (scrollingOffset * SettingsS.Instance.UIScale < 60 * SettingsS.Instance.UIScale)
+                {
+                    //scrollingOffset = 60 * SettingsS.Instance.UIScale;
+                    scrollingOffset = (scrollingOffset + 25) * SettingsS.Instance.UIScale;
+                    previousOffset = scrollingOffset;
+                }
+                else scrollingOffset *= SettingsS.Instance.UIScale;
                 avatarDisplayedInLastBox = false;
             }
-            else scrollingOffset = (scrollingOffset + 10) * SettingsS.Instance.UIScale;
+            else if (previousOffset > (scrollingOffset + 25) * SettingsS.Instance.UIScale)
+            {
+                // Debug.Log($"{previousOffset} > {(scrollingOffset + 25) * SettingsS.Instance.UIScale}");
+                scrollingOffset = (scrollingOffset + 25) * SettingsS.Instance.UIScale;
+                previousOffset = scrollingOffset;
+            }
+            else
+            {
+                scrollingOffset = (scrollingOffset + 10) * SettingsS.Instance.UIScale;
+                previousOffset = scrollingOffset;
+            }
             currentDialogMessage.PortraitFrame.SetActive(false);
         }
         else
         {
             // Debug.Log($"{currentName} {previousName} {currentAlignment} {previousAlignment}");
             scrollingOffset = 60 * SettingsS.Instance.UIScale;
+            previousOffset = scrollingOffset;
             avatarDisplayedInLastBox = true;
         }
         // Debug.Log(scrollingOffset);

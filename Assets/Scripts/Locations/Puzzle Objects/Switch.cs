@@ -17,6 +17,11 @@ public class Switch : ToggleObject
             else timer = 0f;
         }
     }
+
+    public void SetState(bool state)
+    {
+        State = state;
+    }
     #endregion
 
     #region Unity Stuff

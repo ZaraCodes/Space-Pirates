@@ -7,11 +7,13 @@ using UnityEngine.Events;
 public class TextboxTrigger : MonoBehaviour
 {
     #region Fields
-    [SerializeField] private string DialogID;
+    [SerializeField] private TextboxSequence dialogSequence;
     [SerializeField] private bool gameplayDialog;
     
     /// <summary>This array contains all the required progression flags that have to be set for this dialog to activate</summary>
     [SerializeField] private EProgressionFlag[] requirements;
+    /// <summary>This arrac contains all progression flags that will prevent this dialog to be activated</summary>
+    [SerializeField] private EProgressionFlag[] antiRequirements;
 
     [SerializeField] private UnityEvent OnDialogFinished;
 
@@ -20,6 +22,13 @@ public class TextboxTrigger : MonoBehaviour
     #region Methods
     public void LoadDialog()
     {
+        foreach (var antiRequirement in antiRequirements)
+        {
+            if (ProgressionManager.Instance.Flags.Contains(antiRequirement))
+            {
+                return;
+            }
+        }
         foreach (var requirement in requirements)
         {
             if (!ProgressionManager.Instance.Flags.Contains(requirement))
@@ -27,31 +36,24 @@ public class TextboxTrigger : MonoBehaviour
                 return;
             }
         }
-        TextboxSequence dialogSequence = AllDialogs.Instance.GetSequence(DialogID);
-
-        if (dialogSequence == null)
+        var dialog = dialogSequence;
+        if (ProgressionManager.Instance.ViewedDialogs.Contains(dialogSequence.ID))
         {
-            Debug.LogWarning($"The dialog \"{DialogID}\" does not exist!");
-            return;
+            if (!dialogSequence.Repeat && dialogSequence.SummaryDialog != null)
+            {
+                dialog = dialogSequence.SummaryDialog;
+            }
+            else return;
         }
-        if (ProgressionManager.Instance.ViewedDialogs.Contains(DialogID))
-        {
-            if (!dialogSequence.Repeat) return;
-        }
-        else ProgressionManager.Instance.ViewedDialogs.Add(DialogID);
+        else ProgressionManager.Instance.ViewedDialogs.Add(dialogSequence.ID);
 
         if (gameplayDialog)
         {
-            //Todo: Test for progression / story flag
-
-            GameManager.Instance.GameplayDialog.LoadDialog(dialogSequence, OnDialogFinished);
+            GameManager.Instance.GameplayDialog.LoadDialog(dialog, OnDialogFinished);
         }
         else
         {
-            //Todo: Test for progression / story flag
-
-            GameManager.Instance.DialogOverlay.LoadDialog(dialogSequence, OnDialogFinished);
-            //overlay.LoadDialog(DialogID);
+            GameManager.Instance.DialogOverlay.LoadDialog(dialog, OnDialogFinished);
         }
     }
     #endregion
