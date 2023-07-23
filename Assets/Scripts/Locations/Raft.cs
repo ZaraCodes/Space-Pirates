@@ -11,7 +11,6 @@ public class Raft : MonoBehaviour
     [SerializeField] private float accelerationTime;
     [SerializeField] private Vector2 movementDirection;
     private float accelerationTimer = 0;
-    private Vector3 movementDirectionSnapshot;
 
     [Header("References"), SerializeField] private BoxCollider2D NorthCollision;
     [SerializeField] private BoxCollider2D SouthCollision;
@@ -62,7 +61,8 @@ public class Raft : MonoBehaviour
         }
         if (brake)
         {
-            var decelerationVector = new Vector3(-3, 0);
+            var decelerationVector = -movementDirection * 3;
+;
             move = false;
             accelerationTimer = 0;
             if (movementDirection == Vector2.left && rb.velocity.x > 0 || movementDirection == Vector2.right && rb.velocity.x < 0)
@@ -85,7 +85,6 @@ public class Raft : MonoBehaviour
         else if (collision.CompareTag("Raft Brake"))
         {
             brake = true;
-            movementDirectionSnapshot = rb.velocity;
         }
         else if (collision.CompareTag("Button Trigger"))
         {
