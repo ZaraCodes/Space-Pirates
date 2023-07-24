@@ -31,13 +31,16 @@ public class FloorTransition : MonoBehaviour
                 {
                     if (!TriggerEnabled) return;
 
-                    if (GameManager.Instance.Nova.TransitionTrigger != null)
+                    if (GameManager.Instance.Nova.TransitionTrigger != null && GameManager.Instance.Nova.TransitionTrigger != this)
                     {
                         GameManager.Instance.Nova.TransitionTrigger.TriggerEnabled = true;
                     }
                     GameManager.Instance.Nova.TransitionTrigger = this;
                     TriggerEnabled = false;
-                    GameManager.Instance.Nova.BeginFall();
+                    
+                    if (!(direction == TransitionDirection.North && GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity.y < 0) && 
+                        !(direction == TransitionDirection.South && GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity.y > 0))
+                        GameManager.Instance.Nova.BeginFall();
                 }
             }
             else GameManager.Instance.Nova.SwitchFloor(groundFloor);
@@ -51,6 +54,13 @@ public class FloorTransition : MonoBehaviour
             switch (direction)
             {
                 case TransitionDirection.North:
+                    if (GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity.y < 0)
+                    {
+                        //if (GameManager.Instance.Nova.TransitionTrigger == null || (GameManager.Instance.Nova.TransitionTrigger != null && GameManager.Instance.Nova.TransitionTrigger != this))
+                        //{
+                        GameManager.Instance.Nova.StopFall(true);
+                        //}
+                    }
                     break;
                 case TransitionDirection.NorthEast:
                     break;

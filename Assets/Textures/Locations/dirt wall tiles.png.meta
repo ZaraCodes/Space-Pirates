@@ -101,6 +101,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -140,7 +152,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91e832186ce392e49a25edcc03e07bd7
+      spriteID: ce20eeb1dc7e8c945a0485d643d2ffb2
       internalID: -2045583482
       vertices: []
       indices: 
@@ -161,8 +173,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f01a7fe2c7e53b44c934738e6d5954e4
+      spriteID: 06da461945309fd4181eeb438d6f835d
       internalID: 1058237749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt wall tiles_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54f298d9e8fd44345915871bbdc95727
+      internalID: 1510909762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dirt wall tiles_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0453c372810dbe24c91ae2b1e71fca40
+      internalID: -595969786
       vertices: []
       indices: 
       edges: []
@@ -183,10 +237,6 @@ TextureImporter:
       dirt wall tiles_2: 1058237749
       dirt wall tiles_3: 1510909762
       dirt wall tiles_4: -595969786
-      dirt wall tiles_5: 1541463683
-      dirt wall tiles_6: -38152727
-      dirt wall tiles_7: -1894131519
-      dirt wall tiles_8: 1874701016
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
