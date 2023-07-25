@@ -41,6 +41,14 @@ public class Raft : MonoBehaviour
 
     public void SetMove(bool move) => this.move = move;
 
+    public void ResetRaft()
+    {
+        accelerationTimer = 0;
+        move = false;
+        StopMovement();
+        interactableTrigger.gameObject.SetActive(true);
+    }
+
     #endregion
     #region Unity Stuff
     private void FixedUpdate()
@@ -105,6 +113,14 @@ public class Raft : MonoBehaviour
                 player.MovableObject = null;
             }
         }
+        //else if (collision.CompareTag("Button Trigger"))
+        //{
+        //    var box = collision.GetComponentInParent<MovableBox>();
+        //    if (box != null)
+        //    {
+        //        box.MovableObject = null;
+        //    }
+        //}
     }
 
     private void Start()

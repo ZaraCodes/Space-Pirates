@@ -10,6 +10,7 @@ public class MovableBox : MonoBehaviour
 
     private Rigidbody2D novaRigidbody;
     [SerializeField] private Rigidbody2D boxRigidbody;
+    public Rigidbody2D BoxRigidbody { get { return boxRigidbody; } }
     [SerializeField] private SpriteRenderer boxSprite;
 
     private Vector2 moveVector;
@@ -37,8 +38,6 @@ public class MovableBox : MonoBehaviour
                 if (horizontal) GameManager.Instance.Nova.MovementConstraint = new(1, 0);
                 else GameManager.Instance.Nova.MovementConstraint = new(0, 1);
             }
-            // while interacting with the box, nova should only move along the same axis as the box
-            // novaRigidbody.velocity = boxRigidbody.velocity;
         }
     }
 
