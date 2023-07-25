@@ -124,6 +124,14 @@ MonoBehaviour:
     m_Localized: Interagieren
     m_Metadata:
       m_Items: []
+  - m_Id: 12457014908264448
+    m_Localized: Raumstation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12457076455481344
+    m_Localized: Inselplanet
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

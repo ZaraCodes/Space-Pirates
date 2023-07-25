@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2 Floors Test.unity
     guid: 0e93a2e03439f0249b9b4966c9f0ba90
+  - enabled: 1
+    path: Assets/Scenes/Island Planet.unity
+    guid: b0ea4dfb29930c84891514af9d9ff5c5
+  - enabled: 1
+    path: Assets/Scenes/Space Station.unity
+    guid: 277d48bde8c15184d9e3a9e45ba0d59a
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: a55dcbcb8a84c1a4294764317471ff0b, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: e2058f7e407d7f84ab913afdb467665c, type: 2}

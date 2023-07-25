@@ -45,6 +45,7 @@ public class Raft : MonoBehaviour
     {
         accelerationTimer = 0;
         move = false;
+        brake = false;
         StopMovement();
         interactableTrigger.gameObject.SetActive(true);
     }
