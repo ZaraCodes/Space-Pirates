@@ -8,17 +8,17 @@ public class RaftStarter : ActivatableObject
     [SerializeField] private Raft raft;
     [SerializeField] private BoxCollider2D entry;
     [SerializeField] private MovableBox movableBox;
+    private bool doPlayerReset;
     private Vector3 startPositionRaft;
     private Vector3 startPositionBox;
     #endregion
 
     #region Methods
-
-    private void Start()
+    public void SetPlayerReset(bool value)
     {
-        startPositionRaft = raft.transform.position;
-        startPositionBox = movableBox.transform.position;
+        doPlayerReset = value;
     }
+
     protected override void Toggle()
     {
         if (State)
@@ -35,8 +35,19 @@ public class RaftStarter : ActivatableObject
                 movableBox.transform.position = startPositionBox;
                 movableBox.BoxRigidbody.velocity = new();
                 movableBox.MovableObject = null;
+                if (doPlayerReset && !GameManager.Instance.Nova.IsOnGround()) GameManager.Instance.Nova.Respawn();
             }
         }
     }
+    #endregion
+
+    #region Unity Stuff
+    private void Start()
+    {
+        startPositionRaft = raft.transform.position;
+        startPositionBox = movableBox.transform.position;
+        doPlayerReset = true;
+    }
+
     #endregion
 }

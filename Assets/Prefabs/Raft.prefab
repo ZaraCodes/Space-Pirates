@@ -101,7 +101,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 2.5}
+  m_Size: {x: 3.875, y: 2.375}
   m_EdgeRadius: 0
 --- !u!1 &5004904448065065349
 GameObject:
@@ -315,13 +315,14 @@ MonoBehaviour:
   move: 0
   brake: 0
   accelerationTime: 3
-  movementAxisY: 0
+  movementDirection: {x: 0, y: 0}
   NorthCollision: {fileID: 5004904449364118422}
   SouthCollision: {fileID: 5004904449712392986}
   EastCollision: {fileID: 5004904449619130702}
   WestCollision: {fileID: 5004904448065065347}
   rb: {fileID: 5004904448845774735}
   interactableTrigger: {fileID: 5004904447905073215}
+  barriersToDisableOnArrival: []
 --- !u!1 &5004904449364118424
 GameObject:
   m_ObjectHideFlags: 0

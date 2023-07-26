@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 using UnityEngine.XR;
 
 /// <summary>This class is the character controller for Nova, who is controlled in Locations</summary>
@@ -19,6 +20,8 @@ public class NovaMovement : MonoBehaviour
 
     /// <summary>The max speed at which Nove moves</summary>
     [SerializeField] private float movementSpeed;
+
+    /// <summary>The max speed at which Nove moves</summary>
     public float MovementSpeed { get { return movementSpeed; } }
 
     [SerializeField] private InteractionPrompt interactionPrompt;
@@ -38,6 +41,8 @@ public class NovaMovement : MonoBehaviour
 
     public bool CutsceneMovement { get; set; }
 
+    public Vector3 RespawnPosition { get; set; }
+
     /// <summary>Reference to Nova's rigidbody2D</summary>
     [Header("References"), SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -51,6 +56,10 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private GameObject buttonTrigger;
 
     [HideInInspector] public Rigidbody2D MovableObject;
+
+    [SerializeField] private CollisionManager collisionManager;
+
+    [SerializeField] private Tilemap groundTilemap;
 
     [Header("Prefabs"), SerializeField] private GameObject chargedBulletPrefab;
     [SerializeField] private GameObject smallBulletPrefab;
@@ -180,8 +189,15 @@ public class NovaMovement : MonoBehaviour
     {
         if (groundFloor)
         {
-            spriteRenderer.color = Color.white;
-            SetColliderLayers(3, 7, 8, 6);
+            if (!IsOnGround())
+            {
+                Respawn();
+            }
+            else
+            {
+                spriteRenderer.color = Color.white;
+                SetColliderLayers(3, 7, 8, 6);
+            }
         }
         else
         {
@@ -206,6 +222,8 @@ public class NovaMovement : MonoBehaviour
         fallingSpeed = 8f;
         fallTimer = fallTime;
         jumpDirection = moveInput;
+
+        if (collisionManager != null) collisionManager.DisableCollisions();
     }
 
     public void StopFall(bool topLanding = false)
@@ -219,6 +237,8 @@ public class NovaMovement : MonoBehaviour
         }
         else
         {
+            if (collisionManager != null) collisionManager.EnableCollisions();
+
             if (TransitionTrigger != null)
             {
                 TransitionTrigger.TriggerEnabled = true;
@@ -239,6 +259,42 @@ public class NovaMovement : MonoBehaviour
     public void ToggleZeroG(bool zeroG)
     {
         ZeroGMovement = zeroG;
+    }
+
+    public bool IsOnGround()
+    {
+        if (groundTilemap != null && !groundTilemap.HasTile(new Vector3Int((int)transform.position.x, (int)transform.position.y))) return false;
+        else return true;
+    }
+
+    public void Respawn()
+    {
+        transform.position = RespawnPosition;
+    }
+
+    public void ShowInteractionPrompt(InteractableTrigger interactableTrigger)
+    {
+        //if (collision.gameObject.TryGetComponent(out InteractableTrigger interactableTrigger))
+        //{
+
+        //print((collision.transform.position - transform.position).magnitude);
+        //if ((collision.transform.position - transform.position).magnitude > 3f) return;
+
+        if (!interactableTriggers.Contains(interactableTrigger))
+        {
+            interactableTriggers.Add(interactableTrigger);
+            performedInteraction = interactableTriggers[0];
+            //performedInteraction = interactableTrigger;
+
+            if (interactionPrompt == null)
+            {
+                var go = Instantiate(interacttionPromptPrefab);
+                interactionPrompt = go.GetComponent<InteractionPrompt>();
+                interactionPrompt.transform.SetParent(mainCanvas.transform, false);
+            }
+            interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings, performedInteraction.gameObject.transform);
+        }
+        //}
     }
     #endregion
 
@@ -301,15 +357,15 @@ public class NovaMovement : MonoBehaviour
             }
             else if (!CutsceneMovement)
                 rb.velocity = movementSpeed * Time.fixedDeltaTime * (DoFall ? jumpDirection * 0.8f : moveInput);
-            
+
             if (MovableObject != null) rb.velocity += MovableObject.velocity;
 
             if (DoFall)
             {
-                //fallingSpeed += Time.fixedDeltaTime;
-
                 if (fallTimer <= 0)
                 {
+                    if (collisionManager != null) collisionManager.EnableCollisions();
+
                     StopFall();
                     if (switchFloor) SwitchFloor(true);
                     else switchFloor = true;
@@ -320,6 +376,10 @@ public class NovaMovement : MonoBehaviour
                     fallingSpeed -= Time.fixedDeltaTime * 25f;
                     rb.velocity += new Vector2(0, fallingSpeed);
                 }
+            }
+            else if (MovableObject == null)
+            {
+                RespawnPosition = transform.position;
             }
         }
         else
@@ -345,24 +405,8 @@ public class NovaMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out InteractableTrigger interactableTrigger))
-        {
-            if (!interactableTriggers.Contains(interactableTrigger))
-            {
-                interactableTriggers.Add(interactableTrigger);
-                performedInteraction = interactableTriggers[0];
-
-                if (interactionPrompt == null)
-                {
-                    var go = Instantiate(interacttionPromptPrefab);
-                    interactionPrompt = go.GetComponent<InteractionPrompt>();
-                    interactionPrompt.transform.SetParent(mainCanvas.transform, false);
-                }
-                interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings, performedInteraction.gameObject.transform);
-            }
-        }
         // movable box 1st floor
-        else if (collision.gameObject.CompareTag("1st Floor") && fallTimer > fallTime / 4f)
+        if (collision.gameObject.CompareTag("1st Floor") && fallTimer > fallTime / 4f)
         {
             StopFall();
             firstFloorMovableBox = collision.gameObject.GetComponent<BoxCollider2D>();

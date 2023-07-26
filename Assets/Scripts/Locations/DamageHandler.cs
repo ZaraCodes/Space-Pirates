@@ -8,8 +8,7 @@ public class DamageHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var damageSource = collision.gameObject.GetComponent<DamageSource>();
-        if (damageSource != null)
+        if (collision.gameObject.TryGetComponent<DamageSource>(out var damageSource))
         {
             if (damageSource.Origin != self)
             {

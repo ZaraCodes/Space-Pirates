@@ -6,6 +6,7 @@ using UnityEngine.Localization;
 
 public class InteractableTrigger : MonoBehaviour
 {
+    #region Fields
     [SerializeField] private LocalizedString interactText;
     public LocalizedString InteractText { get { return interactText; } }
 
@@ -15,7 +16,9 @@ public class InteractableTrigger : MonoBehaviour
     public UnityEvent OnInteractStop;
 
     public bool interact;
+    #endregion
 
+    #region Methods
     public void Interact()
     {
         if (interactMode == EInteractMode.Press)
@@ -43,4 +46,16 @@ public class InteractableTrigger : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
+
+    #region Unity Stuff
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Debug.Log(collision.name);
+        if (collision.name == "Button Trigger Nova")
+        {
+            GameManager.Instance.Nova.ShowInteractionPrompt(this);
+        }
+    }
+    #endregion
 }
