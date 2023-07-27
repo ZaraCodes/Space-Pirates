@@ -355,6 +355,19 @@ MonoBehaviour:
       please don''t hurt me >.<'
     m_Metadata:
       m_Items: []
+  - m_Id: 7533090240045056
+    m_Localized: "Oh, there is a yellow sticker...\n||\nIt says:\n\"Nice here. But
+      have you ever been to Baden-W\xFCrttemberg?\"\n||\n.....\n||\nI don't undestand."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7541139189112832
+    m_Localized: Hellooo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7553056045637632
+    m_Localized: Ship Seller
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

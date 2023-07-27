@@ -43,7 +43,7 @@ public class TextboxTrigger : MonoBehaviour
             {
                 dialog = dialogSequence.SummaryDialog;
             }
-            else return;
+            else if (!dialogSequence.Repeat) return;
         }
         else ProgressionManager.Instance.ViewedDialogs.Add(dialogSequence.ID);
 

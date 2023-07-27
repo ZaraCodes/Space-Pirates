@@ -228,6 +228,124 @@ MonoBehaviour:
       bitte tu mir nicht weh >.<'
     m_Metadata:
       m_Items: []
+  - m_Id: 7533090240045056
+    m_Localized: "Oh, hier ist ein gelber Aufkleber....\n||\nDa steht:\n\"Nett hier.
+      Aber waren Sie schon mal in Baden-W\xFCrttemberg\"\n||\n.....\n||\nDas verstehe
+      ich nicht."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7541139189112832
+    m_Localized: Hallooo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544382401126400
+    m_Localized: "Guten Tag, was kann ich f\xFCr dich tun?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7545149778403328
+    m_Localized: "\xDCberall in der Stadt h\xE4ngen \"Katze vermisst\"-Plakate. Wei\xDFt
+      du, was es damit auf sich hat?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7545672770363392
+    m_Localized: "Ja nun, vor kurzem wurden alle Katzen aus der Stadt entf\xFChrt...
+      Wirklich tragisch."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7547053828841472
+    m_Localized: Ist es Captain Meow?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7547624715558912
+    m_Localized: Captain Meow? Was willst du mit ihr?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7548146247901184
+    m_Localized: 'Sie hat meine Katze gestohlen. '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7548289034592256
+    m_Localized: 'Oh, das ist ja furchtbar. Dabei kann ich dir leider nicht helfen.
+
+      ||
+
+      Ich
+      habe keine Ahnung, wo Captain Meow ist.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7548740945682432
+    m_Localized: Ich glaube dir nicht.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7549516149530624
+    m_Localized: Was?!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7549622546440192
+    m_Localized: "Ich glaube dir nicht, dass du keine Ahnung hast, wo Captain Meow
+      ist.\n||\nSie ist eine Weltraumpiratin, und du ein Raumschiffh\xE4ndler. Ihr
+      m\xFCsst euch kennen!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7550184604147712
+    m_Localized: "Ich ... ich wei\xDF nicht, was du meinst."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7550386903818240
+    m_Localized: "LETZTE CHANCE!\n||\nDu sagst mir jetzt, wo Captain Meow ist, oder
+      du wirst es bereuen!\n||\n*guckt ganz b\xF6se*"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7551031723532288
+    m_Localized: "Ich... \xE4h...\n||\nHier! Das ist die Raumschiffregistrierung
+      von Captain Meows Raumschiff. "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7552242132557824
+    m_Localized: Geht doch. Danke.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7552365432512512
+    m_Localized: "Und bitte sei vorsichtig.\n||\nCaptain Meow ist sehr gef\xE4hrlich. "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7552636665569280
+    m_Localized: "Ich wei\xDF."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7553056045637632
+    m_Localized: "Raumschiff Verk\xE4ufer"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7559422613233664
+    m_Localized: Rayyyyyy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7559808648585216
+    m_Localized: Jaaaaa?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7559886977212416
+    m_Localized: "Hier in der Stadt wurden anscheinend auch alle Katzen gestohlen.
+      Captain Meow ist wirklich... auf gro\xDFer Mission."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7560686696767488
+    m_Localized: Oh je, das ist ja furchtbar.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7560978733572096
+    m_Localized: "Aber ich habe einen Raumschiffh\xE4ndler gefunden, den ich... \xFCberzeugen
+      musste.\n||\nIch wei\xDF jetzt aber, welchen Raumschifftyp sie sich hier besorgt
+      hat. Daraus k\xF6nnen wir ableiten, wo sie hin ist!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7566063484116992
+    m_Localized: 'Oh, das wird uns sicher weiterhelfen!
+
+      Danke :3'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

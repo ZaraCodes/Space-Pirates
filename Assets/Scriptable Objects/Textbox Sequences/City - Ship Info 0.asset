@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3aac54705bfd34db7ab111ab6e5d6c, type: 3}
+  m_Name: City - Ship Info 0
+  m_EditorClassIdentifier: 
+  ID: Ship Info
+  Contents:
+  - {fileID: 11400000, guid: 26e99ca4cbcdfb949ae92be45f4c9bb5, type: 2}
+  - {fileID: 11400000, guid: ee49a7bb6d080a8409773d1d0c3b5937, type: 2}
+  - {fileID: 11400000, guid: 8f07e4b5bdac7bb499b5cf0aab33ed45, type: 2}
+  - {fileID: 11400000, guid: 5c85d9e53eab1d342906b4b8740db6af, type: 2}
+  - {fileID: 11400000, guid: f013033e1852ee14fb9b4615ad73c25c, type: 2}
+  - {fileID: 11400000, guid: d4a851f8558f6254db05d41ab09ec301, type: 2}
+  Repeat: 0
+  SummaryDialog: {fileID: 0}

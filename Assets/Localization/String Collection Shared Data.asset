@@ -131,6 +131,10 @@ MonoBehaviour:
     m_Key: Island Planet
     m_Metadata:
       m_Items: []
+  - m_Id: 13079202338283520
+    m_Key: Examine
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
