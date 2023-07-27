@@ -140,6 +140,10 @@ MonoBehaviour:
     m_Localized: Examine
     m_Metadata:
       m_Items: []
+  - m_Id: 13143603401564160
+    m_Localized: City
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -8,6 +8,7 @@ public class BackToTitleButton : MonoBehaviour
     public void GoBackToTitle()
     {
         Time.timeScale = 1f;
+        ProgressionManager.Instance.ResetProgress();
         GameManager.Instance.IsPauseMenuOpen = false;
         GameManager.Instance.IsDialogOverlayOpen = false;
         ChargedBullet.playDestroySoundStatic = false;

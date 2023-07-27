@@ -39,4 +39,10 @@ public class ProgressionManager
     {
         //todo
     }
+
+    public void ResetProgress()
+    {
+        flags.Clear();
+        ViewedDialogs.Clear();
+    }
 }
