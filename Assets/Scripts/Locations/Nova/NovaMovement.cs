@@ -90,7 +90,7 @@ public class NovaMovement : MonoBehaviour
     /// <param name="ctx"></param>
     private void ReadMovementInput(InputAction.CallbackContext ctx)
     {
-        GameManager.Instance.ChangeInputScheme(ctx);
+        GameManager.Instance.UpdateInputScheme(ctx);
 
         if (!ZeroGMovement)
             moveInput = ctx.ReadValue<Vector2>() * MovementConstraint;
@@ -100,7 +100,7 @@ public class NovaMovement : MonoBehaviour
     /// <param name="ctx"></param>
     private void DoRangedAttack(InputAction.CallbackContext ctx)
     {
-        GameManager.Instance.ChangeInputScheme(ctx);
+        GameManager.Instance.UpdateInputScheme(ctx);
 
         if (GameManager.Instance.IsPlaying)
         {
@@ -139,7 +139,7 @@ public class NovaMovement : MonoBehaviour
 
     private void SetAttackDirection(InputAction.CallbackContext ctx)
     {
-        GameManager.Instance.ChangeInputScheme(ctx);
+        GameManager.Instance.UpdateInputScheme(ctx);
 
         if (GameManager.Instance.IsPlaying)
         {
@@ -157,7 +157,7 @@ public class NovaMovement : MonoBehaviour
 
     private void DoInteract(InputAction.CallbackContext ctx)
     {
-        GameManager.Instance.ChangeInputScheme(ctx);
+        GameManager.Instance.UpdateInputScheme(ctx);
 
         if (GameManager.Instance.IsPlaying)
         {

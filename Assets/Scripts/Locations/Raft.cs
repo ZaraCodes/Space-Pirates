@@ -33,6 +33,7 @@ public class Raft : MonoBehaviour
     private void StopMovement()
     {
         rb.bodyType = RigidbodyType2D.Static;
+        brake = false;
         foreach (var collider in barriersToDisableOnArrival)
         {
             collider.enabled = false;
@@ -57,12 +58,13 @@ public class Raft : MonoBehaviour
         if (accelerationTimer > 0)
         {
             accelerationTimer -= Time.fixedDeltaTime;
-            rb.AddForce(new Vector3(movementDirection.x, movementDirection.y) * 0.7f, ForceMode2D.Force);
+            rb.velocity += new Vector2(movementDirection.x, movementDirection.y) * 0.02f;
+            //rb.AddForce(new Vector3(movementDirection.x, movementDirection.y), ForceMode2D.Impulse);
         }
 
         if (move)
         {
-            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.bodyType = RigidbodyType2D.Kinematic;
             EnableCollisions(true);
             move = false;
             accelerationTimer = accelerationTime;
@@ -70,7 +72,7 @@ public class Raft : MonoBehaviour
         }
         if (brake)
         {
-            var decelerationVector = -movementDirection * 3;
+            var decelerationVector = -movementDirection * .15f;
 ;
             move = false;
             accelerationTimer = 0;
@@ -78,7 +80,7 @@ public class Raft : MonoBehaviour
                 StopMovement();
             else if (movementDirection == Vector2.down && rb.velocity.y > 0 || movementDirection == Vector2.up && rb.velocity.y < 0)
                 StopMovement();
-            rb.AddForce(decelerationVector);
+            rb.velocity += decelerationVector;
         }
     }
 

@@ -75,7 +75,7 @@ public class GameManager
         CurrentInputScheme = EInputScheme.MouseKeyboard;
     }
 
-    public void ChangeInputScheme(InputAction.CallbackContext ctx)
+    public void UpdateInputScheme(InputAction.CallbackContext ctx)
     {
         if (DidInputSchemeChange(ctx))
         {

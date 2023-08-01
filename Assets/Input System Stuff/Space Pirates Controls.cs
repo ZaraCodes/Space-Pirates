@@ -44,6 +44,24 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Land"",
+                    ""type"": ""Button"",
+                    ""id"": ""1bfe91a7-4cff-40c4-a4b2-2acd77c73394"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit Orbit"",
+                    ""type"": ""Button"",
+                    ""id"": ""a8ec919a-2814-4cd4-acdc-7d28f0468ddf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +106,50 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse + Keyboard"",
                     ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a235fe3b-1207-4930-95c6-c63ff4cb95b1"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Land"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64249dbf-0ad8-4847-9a06-e9506a449ed4"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse + Keyboard"",
+                    ""action"": ""Land"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d2eb6ca-f3ca-45ba-b887-8994c9e37798"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Exit Orbit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86256b0a-af2c-424a-b64d-fc14ab4e941f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse + Keyboard"",
+                    ""action"": ""Exit Orbit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -425,6 +487,8 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         m_SpaceShip = asset.FindActionMap("SpaceShip", throwIfNotFound: true);
         m_SpaceShip_Accelerate = m_SpaceShip.FindAction("Accelerate", throwIfNotFound: true);
         m_SpaceShip_Rotate = m_SpaceShip.FindAction("Rotate", throwIfNotFound: true);
+        m_SpaceShip_Land = m_SpaceShip.FindAction("Land", throwIfNotFound: true);
+        m_SpaceShip_ExitOrbit = m_SpaceShip.FindAction("Exit Orbit", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_UIBack = m_UI.FindAction("UI Back", throwIfNotFound: true);
@@ -500,12 +564,16 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
     private List<ISpaceShipActions> m_SpaceShipActionsCallbackInterfaces = new List<ISpaceShipActions>();
     private readonly InputAction m_SpaceShip_Accelerate;
     private readonly InputAction m_SpaceShip_Rotate;
+    private readonly InputAction m_SpaceShip_Land;
+    private readonly InputAction m_SpaceShip_ExitOrbit;
     public struct SpaceShipActions
     {
         private @SpacePiratesControls m_Wrapper;
         public SpaceShipActions(@SpacePiratesControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Accelerate => m_Wrapper.m_SpaceShip_Accelerate;
         public InputAction @Rotate => m_Wrapper.m_SpaceShip_Rotate;
+        public InputAction @Land => m_Wrapper.m_SpaceShip_Land;
+        public InputAction @ExitOrbit => m_Wrapper.m_SpaceShip_ExitOrbit;
         public InputActionMap Get() { return m_Wrapper.m_SpaceShip; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -521,6 +589,12 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
+            @Land.started += instance.OnLand;
+            @Land.performed += instance.OnLand;
+            @Land.canceled += instance.OnLand;
+            @ExitOrbit.started += instance.OnExitOrbit;
+            @ExitOrbit.performed += instance.OnExitOrbit;
+            @ExitOrbit.canceled += instance.OnExitOrbit;
         }
 
         private void UnregisterCallbacks(ISpaceShipActions instance)
@@ -531,6 +605,12 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
+            @Land.started -= instance.OnLand;
+            @Land.performed -= instance.OnLand;
+            @Land.canceled -= instance.OnLand;
+            @ExitOrbit.started -= instance.OnExitOrbit;
+            @ExitOrbit.performed -= instance.OnExitOrbit;
+            @ExitOrbit.canceled -= instance.OnExitOrbit;
         }
 
         public void RemoveCallbacks(ISpaceShipActions instance)
@@ -710,6 +790,8 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
     {
         void OnAccelerate(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnLand(InputAction.CallbackContext context);
+        void OnExitOrbit(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
