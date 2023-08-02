@@ -42,6 +42,8 @@ public class GameManager
     /// <summary>Reference to the dialog overlay of the current scene</summary>
     public DialogOverlay DialogOverlay { get; set; }
 
+    public PauseMenuHandler PauseMenuHandler { get; set; }
+
     public NovaMovement Nova { get; set; }
 
 

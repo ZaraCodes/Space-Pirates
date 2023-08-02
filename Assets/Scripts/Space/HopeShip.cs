@@ -51,7 +51,7 @@ public class HopeShip : MonoBehaviour
 
         if (ctx.action.WasPressedThisFrame())
         {
-            thrusterParticles.Play();
+            if (currentPlanet == null) thrusterParticles.Play();
             accelerate = true;
         }
         else if (ctx.action.WasReleasedThisFrame())
@@ -165,6 +165,8 @@ public class HopeShip : MonoBehaviour
             orbiting = false;
             HidePlanetPrompts();
             currentPlanet = null;
+
+            if (accelerate) thrusterParticles.Play();
         }
     }
 
@@ -204,9 +206,7 @@ public class HopeShip : MonoBehaviour
 
             velocity += force;
             if (accelerate)
-            {
-                ParticleSystem particleSystem = GetComponent<ParticleSystem>();
-                
+            {                
                 //particleSystem.main.emitterVelocity.Set(velocity.x, velocity.y, 0);
                 velocity += new Vector2(shipTransform.up.x, shipTransform.up.y) * Time.deltaTime;
             }
@@ -214,12 +214,6 @@ public class HopeShip : MonoBehaviour
             shipTransform.position += new Vector3(velocity.x, velocity.y) * Time.deltaTime;
         }
     }
-
-    //private void LateUpdate()
-    //{
-    //    // Sets the camera position at the position of the ship
-    //    cameraTransform.position = new Vector3(shipTransform.position.x, shipTransform.position.y, cameraTransform.position.z);
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

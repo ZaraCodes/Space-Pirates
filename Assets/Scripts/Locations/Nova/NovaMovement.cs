@@ -13,7 +13,9 @@ public class NovaMovement : MonoBehaviour
     private SpacePiratesControls controls;
 
     /// <summary>Caches the movement input for physics calculation</summary>
-    private Vector2 moveInput;
+    public Vector2 MoveInput { get; set; }
+
+    
 
     /// <summary>The time it takes to charge a bouncy shot</summary>
     [SerializeField] private float chargeAttackTime;
@@ -83,6 +85,9 @@ public class NovaMovement : MonoBehaviour
 
     private BoxCollider2D firstFloorMovableBox;
 
+    public bool Fading;
+
+    public Vector2 RbVelBuffer { get; set; }
     #endregion
 
     #region Methods
@@ -93,7 +98,7 @@ public class NovaMovement : MonoBehaviour
         GameManager.Instance.UpdateInputScheme(ctx);
 
         if (!ZeroGMovement)
-            moveInput = ctx.ReadValue<Vector2>() * MovementConstraint;
+            MoveInput = ctx.ReadValue<Vector2>() * MovementConstraint;
     }
 
     /// <summary>Does a ranged attack depending on how long the button has been pressed</summary>
@@ -134,7 +139,7 @@ public class NovaMovement : MonoBehaviour
 
         bulletGO.transform.parent = bulletContainer;
 
-        if (ZeroGMovement) moveInput = attackDirection.normalized;
+        if (ZeroGMovement) MoveInput = attackDirection.normalized;
     }
 
     private void SetAttackDirection(InputAction.CallbackContext ctx)
@@ -221,7 +226,7 @@ public class NovaMovement : MonoBehaviour
         // yPosAtBeginningOfFall = transform.position.y;
         fallingSpeed = 8f;
         fallTimer = fallTime;
-        jumpDirection = moveInput;
+        jumpDirection = MoveInput;
 
         if (collisionManager != null) collisionManager.DisableCollisions();
     }
@@ -330,6 +335,7 @@ public class NovaMovement : MonoBehaviour
         sortingOffset = 0;
         switchFloor = true;
 
+        Fading = false;
         MovementConstraint = new(1, 1);
     }
 
@@ -349,14 +355,14 @@ public class NovaMovement : MonoBehaviour
             if (ZeroGMovement)
             {
                 rb.velocity *= .99f;
-                if (moveInput != Vector2.zero)
+                if (MoveInput != Vector2.zero)
                 {
-                    rb.AddForce(-moveInput);
-                    moveInput = Vector2.zero;
+                    rb.AddForce(-MoveInput);
+                    MoveInput = Vector2.zero;
                 }
             }
-            else if (!CutsceneMovement)
-                rb.velocity = movementSpeed * Time.fixedDeltaTime * (DoFall ? jumpDirection * 0.8f : moveInput);
+            else if (!CutsceneMovement && !Fading)
+                rb.velocity = movementSpeed * Time.fixedDeltaTime * (DoFall ? jumpDirection * 0.8f : MoveInput);
 
             if (MovableObject != null) rb.velocity += MovableObject.velocity;
 

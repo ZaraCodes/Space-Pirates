@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -15,6 +16,10 @@ public class PauseMenuHandler : MonoBehaviour
 {
     private SpacePiratesControls controls;
 
+    [SerializeField] private Image blackFade;
+    [SerializeField] private float fadeTime;
+    private float fadeTimer;
+
     [Header("Essential Prefabs"), SerializeField] private GameObject pauseMenuPrefab;
     [SerializeField] private GameObject settingsMenuPrefab;
     // [SerializeField] private GameObject dialogsPrefab;
@@ -26,6 +31,36 @@ public class PauseMenuHandler : MonoBehaviour
     private GameObject pauseMenuGO;
     private GameObject settingsMenuGO;
     private Button resumeButton;
+
+    public IEnumerator FadeIn(UnityEvent callback)
+    {
+        GameManager.Instance.Nova.RbVelBuffer = GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity;
+        blackFade.gameObject.SetActive(true);
+        fadeTimer = fadeTime;
+        while (fadeTimer > 0)
+        {
+            fadeTimer -= Time.deltaTime;
+            blackFade.color = new(0, 0, 0, 1 - fadeTimer / fadeTime);
+            yield return null;
+        }
+        callback?.Invoke();
+    }
+
+    public IEnumerator FadeOut(UnityEvent callback)
+    {
+        fadeTimer = fadeTime;
+        while (fadeTimer > 0)
+        {
+            fadeTimer -= Time.deltaTime;
+            if (fadeTimer < 0) fadeTimer = 0;
+            blackFade.color = new(0, 0, 0, fadeTimer / fadeTime);
+            yield return null;
+        }
+        blackFade.gameObject.SetActive(false);
+        GameManager.Instance.Nova.Fading = false;
+        GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity = GameManager.Instance.Nova.RbVelBuffer;
+        callback?.Invoke();
+    }
 
     private void TogglePauseMenu(InputAction.CallbackContext ctx)
     {
@@ -120,6 +155,8 @@ public class PauseMenuHandler : MonoBehaviour
 
         DialogOverlay dialogOverlay = dialogOverlayGO.GetComponent<DialogOverlay>();
         GameManager.Instance.DialogOverlay = dialogOverlay;
+
+        GameManager.Instance.PauseMenuHandler = this;
     }
 
     private void OnEnable()

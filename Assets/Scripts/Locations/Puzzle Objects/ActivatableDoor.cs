@@ -44,18 +44,28 @@ public class ActivatableDoor : ActivatableObject
     {
         if (connectedDoor == null) return;
 
-        playerTransform.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, playerTransform.position.z);
-        ChargedBullet.playDestroySoundStatic = false;
-
-        OnDoorUsed?.Invoke();
-
-        foreach (Transform t in BulletsParent)
+        GameManager.Instance.Nova.Fading = true;
+        UnityEvent onFadeInDone = new();
+        onFadeInDone.AddListener(() =>
         {
-            if (t.TryGetComponent<ChargedBullet>(out var bullet))
+            playerTransform.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, playerTransform.position.z);
+            ChargedBullet.playDestroySoundStatic = false;
+
+            OnDoorUsed?.Invoke();
+
+            foreach (Transform t in BulletsParent)
             {
-                Destroy(bullet.gameObject);
+                if (t.TryGetComponent<ChargedBullet>(out var bullet))
+                {
+                    Destroy(bullet.gameObject);
+                }
             }
-        }
+            StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeOut(null));
+
+            onFadeInDone.RemoveAllListeners();
+        });
+        StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeIn(onFadeInDone));
+
     }
     #endregion
 
@@ -72,7 +82,7 @@ public class ActivatableDoor : ActivatableObject
             var rb = collision.transform.parent.GetComponent<Rigidbody2D>();
             var angle = Vector2.Angle(rb.velocity, transform.right);
 
-            if (rb.velocity.sqrMagnitude > 0 && angle < 45) TeleportPlayer(collision.transform.parent);
+            if (rb.velocity.sqrMagnitude > 0 && angle < 45 && !GameManager.Instance.Nova.Fading) TeleportPlayer(collision.transform.parent);
         }
     }
 
