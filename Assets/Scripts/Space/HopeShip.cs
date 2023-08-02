@@ -22,15 +22,19 @@ public class HopeShip : MonoBehaviour
 
     private Transform shipTransform;
 
-    public float OrbitTime;
+    private float orbitTime;
 
-    public bool Orbiting;
+    private bool orbiting;
 
     private GravityObject currentPlanet;
 
-    public Vector3 OrbitCenter { get; set; }
+    public Vector3 OrbitCenter { get; private set; }
 
-    public float OrbitDistance;
+    private float orbitDistance;
+
+    private float orbitDirection;
+
+    [SerializeField] private ParticleSystem thrusterParticles;
 
     [SerializeField] private InteractionPrompt landPrompt;
     [SerializeField] private InteractionPrompt exitOrbitPrompt;
@@ -47,10 +51,12 @@ public class HopeShip : MonoBehaviour
 
         if (ctx.action.WasPressedThisFrame())
         {
+            thrusterParticles.Play();
             accelerate = true;
         }
         else if (ctx.action.WasReleasedThisFrame())
         {
+            thrusterParticles.Stop();
             accelerate = false;
         }
     }
@@ -76,8 +82,8 @@ public class HopeShip : MonoBehaviour
     public void MoveInOrbit()
     {
         Vector3 oldPos = shipTransform.position;
-        OrbitTime += Time.fixedDeltaTime / 2;
-        shipTransform.position = OrbitCenter + new Vector3(Mathf.Sin(OrbitTime), Mathf.Cos(OrbitTime)) * OrbitDistance;
+        orbitTime += Time.fixedDeltaTime / currentPlanet.OrbitSpeed * orbitDirection;
+        shipTransform.position = OrbitCenter + new Vector3(Mathf.Sin(orbitTime), Mathf.Cos(orbitTime)) * orbitDistance;
 
         velocity = -(oldPos - shipTransform.position) / Time.fixedDeltaTime;
 
@@ -97,27 +103,35 @@ public class HopeShip : MonoBehaviour
 
     public void InitiateOrbit(Vector3 center)
     {
+        thrusterParticles.Stop();
+
         OrbitCenter = center;
-        rb.velocity = Vector2.zero;
 
-        OrbitDistance = currentPlanet.OrbitDistance;
+        orbitDistance = currentPlanet.OrbitDistance;
 
-        Vector3 minDistanceToShip = OrbitCenter + new Vector3(Mathf.Sin(0), Mathf.Cos(0)) * OrbitDistance;
+        Vector3 minDistanceToShip = OrbitCenter + new Vector3(Mathf.Sin(0), Mathf.Cos(0)) * orbitDistance;
         Vector3 shipPos = new(shipTransform.position.x, shipTransform.position.y);
 
         for (float i = 0; i < Mathf.PI * 2; i += Time.fixedDeltaTime)
         {
-            Vector3 newMinDistanceToShip = OrbitCenter + new Vector3(Mathf.Sin(i), Mathf.Cos(i)) * OrbitDistance;
+            Vector3 newMinDistanceToShip = OrbitCenter + new Vector3(Mathf.Sin(i), Mathf.Cos(i)) * orbitDistance;
             if ((newMinDistanceToShip - shipPos).magnitude < (minDistanceToShip - shipPos).magnitude)
             {
                 minDistanceToShip = newMinDistanceToShip;
-                OrbitTime = i;
+                orbitTime = i;
             }
         }
         shipTransform.position = minDistanceToShip;
 
+        Vector3 directionA = minDistanceToShip - OrbitCenter + new Vector3(Mathf.Sin(orbitTime + Time.fixedDeltaTime), Mathf.Cos(orbitTime + Time.fixedDeltaTime)) * orbitDistance;
+        Vector3 directionB = minDistanceToShip - OrbitCenter + new Vector3(Mathf.Sin(orbitTime - Time.fixedDeltaTime), Mathf.Cos(orbitTime - Time.fixedDeltaTime)) * orbitDistance;
+
+        if (Vector3.Angle(velocity, directionA) < Vector3.Angle(velocity, directionB)) orbitDirection = 1;
+        else orbitDirection = -1;
+
+        rb.velocity = Vector2.zero;
         OrbitCenter = center;
-        Orbiting = true;
+        orbiting = true;
         ShowPlanetPrompts();
     }
 
@@ -136,7 +150,10 @@ public class HopeShip : MonoBehaviour
     public void Land(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
-        SceneManager.LoadScene(currentPlanet.SceneIndexToLoad);
+        if (ctx.action.WasPerformedThisFrame() && currentPlanet != null)
+        {
+            SceneManager.LoadScene(currentPlanet.SceneIndexToLoad);
+        }
     }
 
     public void ExitOrbit(InputAction.CallbackContext ctx)
@@ -145,7 +162,7 @@ public class HopeShip : MonoBehaviour
 
         if (ctx.action.WasPerformedThisFrame())
         {
-            Orbiting = false;
+            orbiting = false;
             HidePlanetPrompts();
             currentPlanet = null;
         }
@@ -177,7 +194,7 @@ public class HopeShip : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Orbiting)
+        if (orbiting)
         {
             MoveInOrbit();
         }
@@ -188,6 +205,9 @@ public class HopeShip : MonoBehaviour
             velocity += force;
             if (accelerate)
             {
+                ParticleSystem particleSystem = GetComponent<ParticleSystem>();
+                
+                //particleSystem.main.emitterVelocity.Set(velocity.x, velocity.y, 0);
                 velocity += new Vector2(shipTransform.up.x, shipTransform.up.y) * Time.fixedDeltaTime;
             }
             rb.velocity = velocity;

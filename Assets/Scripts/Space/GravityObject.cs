@@ -10,6 +10,8 @@ public class GravityObject : MonoBehaviour
 
     [field: SerializeField] public float OrbitDistance { get; set; }
 
+    [field: SerializeField] public float OrbitSpeed { get; private set; }
+
     public int SceneIndexToLoad { get { return sceneIndexToLoad; } }
     public float Mass { get { return mass; } }
 }
