@@ -82,10 +82,10 @@ public class HopeShip : MonoBehaviour
     public void MoveInOrbit()
     {
         Vector3 oldPos = shipTransform.position;
-        orbitTime += Time.fixedDeltaTime / currentPlanet.OrbitSpeed * orbitDirection;
+        orbitTime += Time.deltaTime / currentPlanet.OrbitSpeed * orbitDirection;
         shipTransform.position = OrbitCenter + new Vector3(Mathf.Sin(orbitTime), Mathf.Cos(orbitTime)) * orbitDistance;
 
-        velocity = -(oldPos - shipTransform.position) / Time.fixedDeltaTime;
+        velocity = -(oldPos - shipTransform.position) / Time.deltaTime;
 
         //Vector2 p = new Vector2(OrbitCenter.x, OrbitCenter.y);
         //Vector2 s = new Vector2(shipTransform.position.x, shipTransform.position.y);
@@ -192,7 +192,7 @@ public class HopeShip : MonoBehaviour
         shipTransform = transform;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (orbiting)
         {
@@ -200,7 +200,7 @@ public class HopeShip : MonoBehaviour
         }
         else
         {
-            var force = gravityReceiver.CalculateForce() * Time.fixedDeltaTime;
+            var force = gravityReceiver.CalculateForce() * Time.deltaTime;
 
             velocity += force;
             if (accelerate)
@@ -208,17 +208,18 @@ public class HopeShip : MonoBehaviour
                 ParticleSystem particleSystem = GetComponent<ParticleSystem>();
                 
                 //particleSystem.main.emitterVelocity.Set(velocity.x, velocity.y, 0);
-                velocity += new Vector2(shipTransform.up.x, shipTransform.up.y) * Time.fixedDeltaTime;
+                velocity += new Vector2(shipTransform.up.x, shipTransform.up.y) * Time.deltaTime;
             }
-            rb.velocity = velocity;
+            // rb.velocity = velocity;
+            shipTransform.position += new Vector3(velocity.x, velocity.y) * Time.deltaTime;
         }
     }
 
-    private void LateUpdate()
-    {
-        // Sets the camera position at the position of the ship
-        cameraTransform.position = new Vector3(shipTransform.position.x, shipTransform.position.y, cameraTransform.position.z);
-    }
+    //private void LateUpdate()
+    //{
+    //    // Sets the camera position at the position of the ship
+    //    cameraTransform.position = new Vector3(shipTransform.position.x, shipTransform.position.y, cameraTransform.position.z);
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
