@@ -59,4 +59,11 @@ public class GravityVisualizer : MonoBehaviour
     {
         SpawnGravityVisualizer();
     }
+
+    private void Start()
+    {
+        GameManager.Instance.PauseMenuHandler.BlackFade.color = Color.black;
+
+        StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeOut(null));
+    }
 }

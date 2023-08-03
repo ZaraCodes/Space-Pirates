@@ -147,6 +147,10 @@ MonoBehaviour:
     m_Key: Exit Orbit Prompt
     m_Metadata:
       m_Items: []
+  - m_Id: 15764323264733184
+    m_Key: Liftoff
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -148,6 +148,10 @@ MonoBehaviour:
     m_Localized: Orbit verlassen
     m_Metadata:
       m_Items: []
+  - m_Id: 15764323264733184
+    m_Localized: Abheben
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

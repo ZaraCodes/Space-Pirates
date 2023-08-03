@@ -37,7 +37,10 @@ public class PauseMenuHandler : MonoBehaviour
 
     public IEnumerator FadeIn(UnityEvent callback)
     {
-        GameManager.Instance.Nova.RbVelBuffer = GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity;
+        if (GameManager.Instance.Nova != null)
+        {
+            GameManager.Instance.Nova.RbVelBuffer = GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity;
+        }
         blackFade.gameObject.SetActive(true);
         fadeTimer = FadeTime;
         while (fadeTimer > 0)
@@ -60,8 +63,12 @@ public class PauseMenuHandler : MonoBehaviour
             yield return null;
         }
         blackFade.gameObject.SetActive(false);
-        GameManager.Instance.Nova.Fading = false;
-        GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity = GameManager.Instance.Nova.RbVelBuffer;
+
+        if (GameManager.Instance.Nova != null)
+        {
+            GameManager.Instance.Nova.Fading = false;
+            GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity = GameManager.Instance.Nova.RbVelBuffer;
+        }
         callback?.Invoke();
     }
 

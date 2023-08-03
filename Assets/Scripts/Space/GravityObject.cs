@@ -8,6 +8,9 @@ public class GravityObject : MonoBehaviour
 
     [SerializeField] private int sceneIndexToLoad;
 
+    [SerializeField] private ELastVisitedLocation location;
+    public ELastVisitedLocation Location { get { return location; } }
+
     [field: SerializeField] public float OrbitDistance { get; set; }
 
     [field: SerializeField] public float OrbitSpeed { get; private set; }

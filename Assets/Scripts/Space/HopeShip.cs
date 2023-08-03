@@ -48,6 +48,11 @@ public class HopeShip : MonoBehaviour
     [SerializeField] private LocalizedString landText;
     [SerializeField] private LocalizedString exitOrbitText;
 
+    [SerializeField] private Transform spaceStationSpawn;
+    [SerializeField] private Transform islandSpawn;
+    [SerializeField] private Transform moonSpawn;
+    [SerializeField] private Transform citySpawn;
+
     #region Methods
 
     /// <summary>This method toggles the acceleration of the ship depending on the input</summary>
@@ -77,6 +82,8 @@ public class HopeShip : MonoBehaviour
         }
     }
 
+    /// <summary>Coroutine that slowly fades in the thruster audio</summary>
+    /// <returns></returns>
     private IEnumerator FadeThrusterSourceIn()
     {
         thrusterSource.volume = 0f;
@@ -88,6 +95,8 @@ public class HopeShip : MonoBehaviour
         }
     }
 
+    /// <summary>Reads the input for the space ship orientation direction</summary>
+    /// <param name="ctx"></param>
     private void ReadShipDirection(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
@@ -98,6 +107,7 @@ public class HopeShip : MonoBehaviour
         }
     }
 
+    /// <summary>Moves the space ship along the orbit line of a planet</summary>
     public void MoveInOrbit()
     {
         Vector3 oldPos = shipTransform.position;
@@ -107,6 +117,8 @@ public class HopeShip : MonoBehaviour
         velocity = -(oldPos - shipTransform.position) / Time.deltaTime;
     }
 
+    /// <summary>Sets up the space ship for movement along the orbit line of a planet</summary>
+    /// <param name="center"></param>
     public void InitiateOrbit(Vector3 center)
     {
         thrusterParticles.Stop();
@@ -132,6 +144,7 @@ public class HopeShip : MonoBehaviour
         }
         shipTransform.position = minDistanceToShip;
 
+        // decides which direction the space ship will travel along on the orbit line
         Vector3 directionA = minDistanceToShip - OrbitCenter + new Vector3(Mathf.Sin(orbitTime + Time.fixedDeltaTime), Mathf.Cos(orbitTime + Time.fixedDeltaTime)) * orbitDistance;
         Vector3 directionB = minDistanceToShip - OrbitCenter + new Vector3(Mathf.Sin(orbitTime - Time.fixedDeltaTime), Mathf.Cos(orbitTime - Time.fixedDeltaTime)) * orbitDistance;
 
@@ -144,27 +157,34 @@ public class HopeShip : MonoBehaviour
         ShowPlanetPrompts();
     }
 
+    /// <summary>Shows the control prompts for landing and exiting the orbit while in an orbit</summary>
     public void ShowPlanetPrompts()
     {
         landPrompt.EnablePrompt(landText, controls.SpaceShip.Land.bindings);
         exitOrbitPrompt.EnablePrompt(exitOrbitText, controls.SpaceShip.ExitOrbit.bindings);
     }
 
+    /// <summary>Hides the orbit control prompts</summary>
     public void HidePlanetPrompts()
     {
         landPrompt.Hide();
         exitOrbitPrompt.Hide();
     }
 
+    /// <summary>Changes the scene depending on the planet</summary>
+    /// <param name="ctx"></param>
     public void Land(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
         if (ctx.action.WasPerformedThisFrame() && currentPlanet != null)
         {
+            ProgressionManager.Instance.LastVisitedLocation = currentPlanet.Location;
             SceneManager.LoadScene(currentPlanet.SceneIndexToLoad);
         }
     }
 
+    /// <summary>Removes the space ship from the orbit around a planet</summary>
+    /// <param name="ctx"></param>
     public void ExitOrbit(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
@@ -182,7 +202,6 @@ public class HopeShip : MonoBehaviour
             }
         }
     }
-
     #endregion
 
     #region Unity Stuff
@@ -204,6 +223,23 @@ public class HopeShip : MonoBehaviour
         accelerate = false;
         maxThrusterVolume = thrusterSource.volume;
         shipTransform = transform;
+
+        switch (ProgressionManager.Instance.LastVisitedLocation)
+        {
+            case ELastVisitedLocation.SpaceStation:
+                shipTransform.position = spaceStationSpawn.position;
+                break;
+            case ELastVisitedLocation.Island:
+                shipTransform.position = islandSpawn.position;
+                break;
+            case ELastVisitedLocation.City:
+                shipTransform.position = citySpawn.position;
+                break;
+            case ELastVisitedLocation.Moon:
+                shipTransform.position = moonSpawn.position;
+                break;
+            default: break;
+        }
     }
 
     private void Update()
@@ -226,7 +262,7 @@ public class HopeShip : MonoBehaviour
 
             velocity += force;
             if (accelerate)
-            {                
+            {
                 velocity += new Vector2(shipTransform.up.x, shipTransform.up.y) * Time.deltaTime;
             }
             shipTransform.position += new Vector3(velocity.x, velocity.y) * Time.deltaTime;

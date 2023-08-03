@@ -230,7 +230,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7533090240045056
     m_Localized: "Oh, hier ist ein gelber Aufkleber....\n||\nDa steht:\n\"Nett hier.
-      Aber waren Sie schon mal in Baden-W\xFCrttemberg\"\n||\n.....\n||\nDas verstehe
+      Aber waren Sie schon mal in Baden-W\xFCrttemberg?\"\n||\n.....\n||\nDas verstehe
       ich nicht."
     m_Metadata:
       m_Items: []

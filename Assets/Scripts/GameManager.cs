@@ -22,7 +22,8 @@ public class GameManager
         {
             if (IsSettingsMenuOpen ||
                 IsPauseMenuOpen ||
-                IsDialogOverlayOpen
+                IsDialogOverlayOpen ||
+                IsSceneIntroPlaying
                 ) 
                 return false;
             return true;
@@ -35,6 +36,8 @@ public class GameManager
     public bool IsPauseMenuOpen { get; set; }
 
     public bool IsDialogOverlayOpen { get; set; }
+
+    public bool IsSceneIntroPlaying { get; set; }
 
     /// <summary>Reference to the gameplay dialog box of the current scene</summary>
     public GameplayDialogBox GameplayDialog { get; set; }

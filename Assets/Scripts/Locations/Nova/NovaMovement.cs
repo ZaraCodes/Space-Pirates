@@ -15,8 +15,6 @@ public class NovaMovement : MonoBehaviour
     /// <summary>Caches the movement input for physics calculation</summary>
     public Vector2 MoveInput { get; set; }
 
-    
-
     /// <summary>The time it takes to charge a bouncy shot</summary>
     [SerializeField] private float chargeAttackTime;
 
@@ -296,6 +294,7 @@ public class NovaMovement : MonoBehaviour
                 var go = Instantiate(interacttionPromptPrefab);
                 interactionPrompt = go.GetComponent<InteractionPrompt>();
                 interactionPrompt.transform.SetParent(mainCanvas.transform, false);
+                interactionPrompt.transform.SetAsFirstSibling();
             }
             interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings, performedInteraction.gameObject.transform);
         }
