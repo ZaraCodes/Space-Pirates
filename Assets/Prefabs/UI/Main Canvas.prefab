@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackFade: {fileID: 46039927949094839}
-  fadeTime: 0.2
+  <FadeTime>k__BackingField: 0.2
   pauseMenuPrefab: {fileID: 6281331653007961748, guid: 4c6f70214f4c2f64dab96b8a6184aae3, type: 3}
   settingsMenuPrefab: {fileID: 6368866873259857783, guid: 087a6dbc85ba6e54aa93594ea5afb214, type: 3}
   gameplayDialogBoxPrefab: {fileID: 5547386541882447664, guid: 872631b644ddc3849ab7044350d2810d, type: 3}

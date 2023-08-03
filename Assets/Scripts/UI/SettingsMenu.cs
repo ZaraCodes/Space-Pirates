@@ -127,7 +127,6 @@ public class SettingsMenu : MonoBehaviour
     {
         GameManager.Instance.IsSettingsMenuOpen = false;
 
-        print($"{ctx.control.displayName} \"{ctx.control.device.displayName}\"");
         parentMenu.SetActive(true);
         gameObject.SetActive(false);
         returnButtonToSelect.Select();

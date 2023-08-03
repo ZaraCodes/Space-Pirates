@@ -17,7 +17,10 @@ public class PauseMenuHandler : MonoBehaviour
     private SpacePiratesControls controls;
 
     [SerializeField] private Image blackFade;
-    [SerializeField] private float fadeTime;
+
+    public Image BlackFade { get { return blackFade; } }
+
+    [field: SerializeField] public float FadeTime { get; set; }
     private float fadeTimer;
 
     [Header("Essential Prefabs"), SerializeField] private GameObject pauseMenuPrefab;
@@ -36,11 +39,11 @@ public class PauseMenuHandler : MonoBehaviour
     {
         GameManager.Instance.Nova.RbVelBuffer = GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity;
         blackFade.gameObject.SetActive(true);
-        fadeTimer = fadeTime;
+        fadeTimer = FadeTime;
         while (fadeTimer > 0)
         {
             fadeTimer -= Time.deltaTime;
-            blackFade.color = new(0, 0, 0, 1 - fadeTimer / fadeTime);
+            blackFade.color = new(0, 0, 0, 1 - fadeTimer / FadeTime);
             yield return null;
         }
         callback?.Invoke();
@@ -48,12 +51,12 @@ public class PauseMenuHandler : MonoBehaviour
 
     public IEnumerator FadeOut(UnityEvent callback)
     {
-        fadeTimer = fadeTime;
+        fadeTimer = FadeTime;
         while (fadeTimer > 0)
         {
             fadeTimer -= Time.deltaTime;
             if (fadeTimer < 0) fadeTimer = 0;
-            blackFade.color = new(0, 0, 0, fadeTimer / fadeTime);
+            blackFade.color = new(0, 0, 0, fadeTimer / FadeTime);
             yield return null;
         }
         blackFade.gameObject.SetActive(false);

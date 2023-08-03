@@ -13,8 +13,15 @@ public class HopeShip : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Camera cam;
     [SerializeField] private GravityReceiver gravityReceiver;
+    [SerializeField] private AudioSource thrusterSource;
 
-    private Transform cameraTransform;
+    private Coroutine thrusterFadeCoroutine;
+
+    private float maxThrusterVolume;
+
+    private Vector2 lookDirection;
+
+    private Vector2 shipInput;
 
     private Vector2 velocity;
 
@@ -41,7 +48,7 @@ public class HopeShip : MonoBehaviour
     [SerializeField] private LocalizedString landText;
     [SerializeField] private LocalizedString exitOrbitText;
 
-    #region vPMethods
+    #region Methods
 
     /// <summary>This method toggles the acceleration of the ship depending on the input</summary>
     /// <param name="ctx"></param>
@@ -51,31 +58,43 @@ public class HopeShip : MonoBehaviour
 
         if (ctx.action.WasPressedThisFrame())
         {
-            if (currentPlanet == null) thrusterParticles.Play();
+            if (currentPlanet == null)
+            {
+                if (thrusterFadeCoroutine != null)
+                    StopCoroutine(thrusterFadeCoroutine);
+                thrusterFadeCoroutine = StartCoroutine(FadeThrusterSourceIn());
+                thrusterParticles.Play();
+            }
             accelerate = true;
         }
         else if (ctx.action.WasReleasedThisFrame())
         {
+            if (thrusterFadeCoroutine != null)
+                StopCoroutine(thrusterFadeCoroutine);
+            thrusterSource.Stop();
             thrusterParticles.Stop();
             accelerate = false;
         }
     }
 
-    private void RotateShip(InputAction.CallbackContext ctx)
+    private IEnumerator FadeThrusterSourceIn()
+    {
+        thrusterSource.volume = 0f;
+        thrusterSource.Play();
+        while (thrusterSource.volume < maxThrusterVolume)
+        {
+            yield return null;
+            thrusterSource.volume += maxThrusterVolume / .4f * Time.deltaTime;
+        }
+    }
+
+    private void ReadShipDirection(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
 
         if (GameManager.Instance.IsPlaying)
         {
-            Vector2 direction = ctx.ReadValue<Vector2>();
-            if (ctx.control.device.displayName.Contains("Mouse"))
-            {
-                Vector3 screenPos = cam.WorldToScreenPoint(shipTransform.position);
-                direction = new Vector3(direction.x, direction.y) - screenPos;
-
-            }
-            if (direction != Vector2.zero)
-                shipTransform.up = direction;
+            shipInput = ctx.ReadValue<Vector2>();
         }
     }
 
@@ -86,24 +105,14 @@ public class HopeShip : MonoBehaviour
         shipTransform.position = OrbitCenter + new Vector3(Mathf.Sin(orbitTime), Mathf.Cos(orbitTime)) * orbitDistance;
 
         velocity = -(oldPos - shipTransform.position) / Time.deltaTime;
-
-        //Vector2 p = new Vector2(OrbitCenter.x, OrbitCenter.y);
-        //Vector2 s = new Vector2(shipTransform.position.x, shipTransform.position.y);
-
-        //Vector2 d = s - p;
-        //Vector2 qL = new Vector2(d.y, -d.x).normalized;
-        //Vector2 vP = Vector2.Dot(velocity, qL) * qL;
-
-        //Vector2 a = -(Vector2.Dot(vP, vP) / Mathf.Sqrt(d.magnitude)) * d.normalized;
-        //velocity += a;
-        //rb.velocity = velocity;
-
-        //Debug.Log($"p-s:{p - s} d:{d} qL:{qL} vP:{vP} a:{a}");
     }
 
     public void InitiateOrbit(Vector3 center)
     {
         thrusterParticles.Stop();
+        if (thrusterFadeCoroutine != null)
+            StopCoroutine(thrusterFadeCoroutine);
+        thrusterSource.Stop();
 
         OrbitCenter = center;
 
@@ -166,7 +175,11 @@ public class HopeShip : MonoBehaviour
             HidePlanetPrompts();
             currentPlanet = null;
 
-            if (accelerate) thrusterParticles.Play();
+            if (accelerate)
+            {
+                thrusterFadeCoroutine = StartCoroutine(FadeThrusterSourceIn());
+                thrusterParticles.Play();
+            }
         }
     }
 
@@ -180,22 +193,29 @@ public class HopeShip : MonoBehaviour
 
         controls.SpaceShip.Accelerate.started += ctx => ToggleAcceleration(ctx);
         controls.SpaceShip.Accelerate.canceled += ctx => ToggleAcceleration(ctx);
-        controls.SpaceShip.Rotate.performed += ctx => RotateShip(ctx);
+        controls.SpaceShip.Rotate.performed += ctx => ReadShipDirection(ctx);
         controls.SpaceShip.Land.performed += ctx => Land(ctx);
         controls.SpaceShip.ExitOrbit.performed += ctx => ExitOrbit(ctx);
-
-        cameraTransform = cam.transform;
     }
 
     private void Start()
     {
         velocity = new Vector2(4, -3);
         accelerate = false;
+        maxThrusterVolume = thrusterSource.volume;
         shipTransform = transform;
     }
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentInputScheme == EInputScheme.MouseKeyboard)
+        {
+            Vector3 shipPos = cam.WorldToScreenPoint(shipTransform.position);
+            lookDirection = new Vector3(shipInput.x, shipInput.y) - shipPos;
+        }
+        if (lookDirection != Vector2.zero)
+            shipTransform.up = lookDirection;
+
         if (orbiting)
         {
             MoveInOrbit();
@@ -207,10 +227,8 @@ public class HopeShip : MonoBehaviour
             velocity += force;
             if (accelerate)
             {                
-                //particleSystem.main.emitterVelocity.Set(velocity.x, velocity.y, 0);
                 velocity += new Vector2(shipTransform.up.x, shipTransform.up.y) * Time.deltaTime;
             }
-            // rb.velocity = velocity;
             shipTransform.position += new Vector3(velocity.x, velocity.y) * Time.deltaTime;
         }
     }

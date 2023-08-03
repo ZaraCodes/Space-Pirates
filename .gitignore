@@ -70,3 +70,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+**/Cactusdude - 11pm_data/
+*.aup
+Assets/Audio/Music/Cactusdude - 11pm.aup.meta
+Assets/Audio/Music/Cactusdude - 11pm_data.meta
