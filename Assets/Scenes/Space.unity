@@ -1238,6 +1238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e93ccd029e9e794792424635a42994a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accelerationForce: 2
   rb: {fileID: 820247306}
   cam: {fileID: 1879747744}
   gravityReceiver: {fileID: 820247308}

@@ -5,4 +5,5 @@ public enum EProgressionFlag
     RepairKit2,
     ShopkeeperCutsceneFinished,
     ShipSellerHint,
+    IslandHint,
 }

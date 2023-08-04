@@ -22,6 +22,7 @@ public class DialogMessage : MonoBehaviour
         set { characterPortrait = value; }
     }
     [SerializeField] private GameObject portraitFrame;
+
     public GameObject PortraitFrame { get { return portraitFrame; } }
     public float TextSpeedMultiplier { get; set; }
 

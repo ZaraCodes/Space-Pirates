@@ -346,6 +346,19 @@ MonoBehaviour:
       Danke :3'
     m_Metadata:
       m_Items: []
+  - m_Id: 10439719319085056
+    m_Localized: Das hier ist ein Platzhalter Dialog.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10439843894108160
+    m_Localized: Wohl wahr.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10473461236473856
+    m_Localized: "Das Schiff ist kaputt! So k\xF6nnen wir nicht abheben, um Captain
+      Meow zu verfolgen..."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

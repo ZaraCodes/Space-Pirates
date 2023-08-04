@@ -48,24 +48,33 @@ public class ActivatableDoor : ActivatableObject
         UnityEvent onFadeInDone = new();
         onFadeInDone.AddListener(() =>
         {
-            playerTransform.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, playerTransform.position.z);
-            ChargedBullet.playDestroySoundStatic = false;
-
-            OnDoorUsed?.Invoke();
-
-            foreach (Transform t in BulletsParent)
-            {
-                if (t.TryGetComponent<ChargedBullet>(out var bullet))
-                {
-                    Destroy(bullet.gameObject);
-                }
-            }
-            StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeOut(null));
-
-            onFadeInDone.RemoveAllListeners();
+            StartCoroutine(TeleportPlayer(playerTransform, onFadeInDone));
         });
         StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeIn(onFadeInDone));
 
+    }
+
+    private IEnumerator TeleportPlayer(Transform playerTransform, UnityEvent onFadeInDone)
+    {
+        var delay = .2f;
+        //yield return new WaitForSeconds(delay);
+
+        playerTransform.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, playerTransform.position.z);
+        ChargedBullet.playDestroySoundStatic = false;
+
+        OnDoorUsed?.Invoke();
+
+        foreach (Transform t in BulletsParent)
+        {
+            if (t.TryGetComponent<ChargedBullet>(out var bullet))
+            {
+                Destroy(bullet.gameObject);
+            }
+        }
+        yield return new WaitForSeconds(delay);
+        StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeOut(null));
+
+        onFadeInDone.RemoveAllListeners();
     }
     #endregion
 

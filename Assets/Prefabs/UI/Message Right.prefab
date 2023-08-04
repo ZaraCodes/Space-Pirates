@@ -361,6 +361,7 @@ MonoBehaviour:
   messageContent: {fileID: 4409855815129270438}
   characterPortrait: {fileID: 4409855813948739423}
   portraitFrame: {fileID: 4409855815437484133}
+  textAudioClip: {fileID: 8300000, guid: 790a3c741f7c97e4fa49b9360e7ce2ac, type: 3}
 --- !u!1 &8776649923148037327
 GameObject:
   m_ObjectHideFlags: 0

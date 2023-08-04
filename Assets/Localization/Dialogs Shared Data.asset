@@ -271,6 +271,18 @@ MonoBehaviour:
     m_Key: Ship Info 0 - 05
     m_Metadata:
       m_Items: []
+  - m_Id: 10439719319085056
+    m_Key: Placeholder 0 - 00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10439843894108160
+    m_Key: Placeholder 0 - 01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10473461236473856
+    m_Key: Ship 0 - 00
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -11,6 +11,8 @@ public class HopeShip : MonoBehaviour
 {
     private SpacePiratesControls controls;
 
+    [SerializeField] private float accelerationForce;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Camera cam;
     [SerializeField] private GravityReceiver gravityReceiver;
@@ -270,7 +272,7 @@ public class HopeShip : MonoBehaviour
         if (lookDirection != Vector2.zero)
             shipTransform.up = lookDirection;
 
-        if (GameManager.Instance.IsPlaying)
+        if (GameManager.Instance.IsPlaying && !GameManager.Instance.PauseMenuHandler.LoadingScreen.gameObject.activeInHierarchy)
         {
             if (orbiting)
             {
@@ -283,7 +285,7 @@ public class HopeShip : MonoBehaviour
                 velocity += force;
                 if (accelerate)
                 {
-                    velocity += new Vector2(shipTransform.up.x, shipTransform.up.y) * Time.deltaTime;
+                    velocity += accelerationForce * Time.deltaTime * new Vector2(shipTransform.up.x, shipTransform.up.y);
                 }
                 shipTransform.position += new Vector3(velocity.x, velocity.y) * Time.deltaTime;
             }

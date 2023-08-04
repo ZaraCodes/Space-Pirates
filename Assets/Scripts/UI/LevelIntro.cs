@@ -17,6 +17,8 @@ public class LevelIntro : MonoBehaviour
     #region Methods
     private IEnumerator Intro()
     {
+        GameManager.Instance.PauseMenuHandler.LoadingScreen.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(3f);
         musicSource.Play();
 
@@ -24,6 +26,7 @@ public class LevelIntro : MonoBehaviour
         onFadeOutFinished.AddListener(() => GameManager.Instance.PauseMenuHandler.FadeTime = originalFadeTime);
 
         GameManager.Instance.IsSceneIntroPlaying = false;
+        GameManager.Instance.PauseMenuHandler.LoadingScreen.gameObject.SetActive(false);
         StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeOut(onFadeOutFinished));
 
         yield return new WaitForSeconds(.5f);

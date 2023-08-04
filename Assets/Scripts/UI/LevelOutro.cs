@@ -9,6 +9,8 @@ public class LevelOutro : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource liftoffSource;
 
+    [SerializeField] private ELastVisitedLocation location;
+
     [SerializeField] private float musicFadeTime;
     #endregion
 
@@ -24,7 +26,6 @@ public class LevelOutro : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        var timer = musicFadeTime;
         var maxMusicVolume = musicSource.volume;
         GameManager.Instance.PauseMenuHandler.FadeTime = musicFadeTime;
         
@@ -34,9 +35,10 @@ public class LevelOutro : MonoBehaviour
             musicSource.volume -= maxMusicVolume / musicFadeTime * Time.deltaTime;
             yield return null;
         }
+        GameManager.Instance.PauseMenuHandler.LoadingScreen.gameObject.SetActive(true);
         yield return new WaitForSeconds(8f);
         GameManager.Instance.IsSceneIntroPlaying = false;
-
+        ProgressionManager.Instance.LastVisitedLocation = location;
         SceneManager.LoadScene(1);
     }
     #endregion

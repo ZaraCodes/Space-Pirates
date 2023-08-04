@@ -55,6 +55,7 @@ MonoBehaviour:
   messageContent: {fileID: 1937585580641471324}
   characterPortrait: {fileID: 1937585581147395420}
   portraitFrame: {fileID: 1937585581112693450}
+  textAudioClip: {fileID: 8300000, guid: 790a3c741f7c97e4fa49b9360e7ce2ac, type: 3}
 --- !u!1 &1937585580641471326
 GameObject:
   m_ObjectHideFlags: 0

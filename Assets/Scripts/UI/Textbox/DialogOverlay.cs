@@ -32,6 +32,8 @@ public class DialogOverlay : MonoBehaviour
     private bool avatarDisplayedInLastBox;
 
     [Header("References"), SerializeField] private GameObject scrollField;
+    [SerializeField] private AudioSource clickSource;
+
     [Header("Prefabs"), SerializeField] private GameObject leftMessagePrefab;
     [SerializeField] private GameObject rightMessagePrefab;
     public UnityEvent OnDialogFinished;
@@ -173,6 +175,7 @@ public class DialogOverlay : MonoBehaviour
         {
             if (ctx.action.WasPerformedThisFrame())
             {
+                clickSource.Play();
                 if (currentDialogMessage.InvisibleText.Length > 0)
                     currentDialogMessage.TextSpeedMultiplier = 0;
                 else 

@@ -368,6 +368,19 @@ MonoBehaviour:
     m_Localized: Ship Seller
     m_Metadata:
       m_Items: []
+  - m_Id: 10439719319085056
+    m_Localized: This is a placeholder dialog.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10439843894108160
+    m_Localized: Indeed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10473461236473856
+    m_Localized: The ship is still broken! We can't depart from here like this to
+      find Captain Meow...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
