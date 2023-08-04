@@ -16,6 +16,7 @@ public class NewGameButton : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.IsSceneIntroPlaying = false;
         GetComponent<Button>().Select();
     }
 }

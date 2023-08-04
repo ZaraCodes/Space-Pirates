@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization;
 using UnityEngine.SceneManagement;
@@ -176,10 +177,27 @@ public class HopeShip : MonoBehaviour
     public void Land(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
-        if (ctx.action.WasPerformedThisFrame() && currentPlanet != null)
+        if (ctx.action.WasPerformedThisFrame() && currentPlanet != null && !GameManager.Instance.IsFading)
         {
             ProgressionManager.Instance.LastVisitedLocation = currentPlanet.Location;
-            SceneManager.LoadScene(currentPlanet.SceneIndexToLoad);
+
+            UnityEvent unityEvent = new();
+            unityEvent.AddListener(() => StartCoroutine(LoadPlanetAsync()));
+
+            StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeIn(unityEvent));
+        }
+    }
+
+    /// <summary>
+    /// Loads a planet async
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator LoadPlanetAsync()
+    {
+        var asyncOperation = SceneManager.LoadSceneAsync(currentPlanet.SceneIndexToLoad);
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
         }
     }
 
@@ -189,7 +207,7 @@ public class HopeShip : MonoBehaviour
     {
         GameManager.Instance.UpdateInputScheme(ctx);
 
-        if (ctx.action.WasPerformedThisFrame())
+        if (ctx.action.WasPerformedThisFrame() && !GameManager.Instance.IsFading)
         {
             orbiting = false;
             HidePlanetPrompts();
@@ -252,20 +270,23 @@ public class HopeShip : MonoBehaviour
         if (lookDirection != Vector2.zero)
             shipTransform.up = lookDirection;
 
-        if (orbiting)
+        if (GameManager.Instance.IsPlaying)
         {
-            MoveInOrbit();
-        }
-        else
-        {
-            var force = gravityReceiver.CalculateForce() * Time.deltaTime;
-
-            velocity += force;
-            if (accelerate)
+            if (orbiting)
             {
-                velocity += new Vector2(shipTransform.up.x, shipTransform.up.y) * Time.deltaTime;
+                MoveInOrbit();
             }
-            shipTransform.position += new Vector3(velocity.x, velocity.y) * Time.deltaTime;
+            else
+            {
+                var force = gravityReceiver.CalculateForce() * Time.deltaTime;
+
+                velocity += force;
+                if (accelerate)
+                {
+                    velocity += new Vector2(shipTransform.up.x, shipTransform.up.y) * Time.deltaTime;
+                }
+                shipTransform.position += new Vector3(velocity.x, velocity.y) * Time.deltaTime;
+            }
         }
     }
 

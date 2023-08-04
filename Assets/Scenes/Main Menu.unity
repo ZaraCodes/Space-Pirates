@@ -646,7 +646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3142272070279708441, guid: f1498dfe88927bc4e9c141e70a1a96fc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 144
+      value: 216
       objectReference: {fileID: 0}
     - target: {fileID: 3142272070279708441, guid: f1498dfe88927bc4e9c141e70a1a96fc, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3154,11 +3154,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3142272070279708438, guid: f1498dfe88927bc4e9c141e70a1a96fc, type: 3}
       propertyPath: m_Name
-      value: Space Station Button
+      value: Space
       objectReference: {fileID: 0}
     - target: {fileID: 3142272070279708438, guid: f1498dfe88927bc4e9c141e70a1a96fc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3142272070279708440, guid: f1498dfe88927bc4e9c141e70a1a96fc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3186,7 +3186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3142272070279708440, guid: f1498dfe88927bc4e9c141e70a1a96fc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Space Station
+      value: Space
       objectReference: {fileID: 0}
     - target: {fileID: 3142272070279708440, guid: f1498dfe88927bc4e9c141e70a1a96fc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -3282,7 +3282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3142272070786991157, guid: f1498dfe88927bc4e9c141e70a1a96fc, type: 3}
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
-      value: 12457014908264448
+      value: 3305187142901760
       objectReference: {fileID: 0}
     - target: {fileID: 3142272070786991157, guid: f1498dfe88927bc4e9c141e70a1a96fc, type: 3}
       propertyPath: m_StringReference.m_TableReference.m_TableCollectionName

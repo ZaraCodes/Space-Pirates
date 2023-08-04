@@ -151,6 +151,10 @@ MonoBehaviour:
     m_Key: Liftoff
     m_Metadata:
       m_Items: []
+  - m_Id: 15935629272653824
+    m_Key: Loading
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

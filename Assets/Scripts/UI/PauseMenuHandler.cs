@@ -23,13 +23,13 @@ public class PauseMenuHandler : MonoBehaviour
     [field: SerializeField] public float FadeTime { get; set; }
     private float fadeTimer;
 
+    [field: SerializeField] public LoadingScreen LoadingScreen { get; set; }
+
     [Header("Essential Prefabs"), SerializeField] private GameObject pauseMenuPrefab;
     [SerializeField] private GameObject settingsMenuPrefab;
     // [SerializeField] private GameObject dialogsPrefab;
     [SerializeField] private GameObject gameplayDialogBoxPrefab;
     [SerializeField] private GameObject dialogOverlayPrefab;
-
-    //private static bool dialogsInstantiated = false;
 
     private GameObject pauseMenuGO;
     private GameObject settingsMenuGO;
@@ -37,6 +37,7 @@ public class PauseMenuHandler : MonoBehaviour
 
     public IEnumerator FadeIn(UnityEvent callback)
     {
+        GameManager.Instance.IsFading = true;
         if (GameManager.Instance.Nova != null)
         {
             GameManager.Instance.Nova.RbVelBuffer = GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity;
@@ -49,11 +50,13 @@ public class PauseMenuHandler : MonoBehaviour
             blackFade.color = new(0, 0, 0, 1 - fadeTimer / FadeTime);
             yield return null;
         }
+        GameManager.Instance.IsFading = false;
         callback?.Invoke();
     }
 
     public IEnumerator FadeOut(UnityEvent callback)
     {
+        GameManager.Instance.IsFading = true;
         fadeTimer = FadeTime;
         while (fadeTimer > 0)
         {
@@ -69,6 +72,7 @@ public class PauseMenuHandler : MonoBehaviour
             GameManager.Instance.Nova.Fading = false;
             GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity = GameManager.Instance.Nova.RbVelBuffer;
         }
+        GameManager.Instance.IsFading = false;
         callback?.Invoke();
     }
 

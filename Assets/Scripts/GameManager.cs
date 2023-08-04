@@ -39,6 +39,8 @@ public class GameManager
 
     public bool IsSceneIntroPlaying { get; set; }
 
+    public bool IsFading { get; set; }
+
     /// <summary>Reference to the gameplay dialog box of the current scene</summary>
     public GameplayDialogBox GameplayDialog { get; set; }
 
