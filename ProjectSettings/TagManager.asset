@@ -12,6 +12,7 @@ TagManager:
   - 1st Floor
   - Planet Surface
   - Orbit Trigger
+  - Sun Trigger
   layers:
   - Default
   - TransparentFX

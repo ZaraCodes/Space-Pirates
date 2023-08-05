@@ -7,6 +7,7 @@ using UnityEngine.Localization;
 public class InteractableTrigger : MonoBehaviour
 {
     #region Fields
+    [SerializeField] private bool showText = true;
     [SerializeField] private LocalizedString interactText;
     public LocalizedString InteractText { get { return interactText; } }
 
@@ -52,7 +53,7 @@ public class InteractableTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.name);
-        if (collision.name == "Button Trigger Nova")
+        if (collision.name == "Button Trigger Nova" && showText)
         {
             GameManager.Instance.Nova.ShowInteractionPrompt(this);
         }

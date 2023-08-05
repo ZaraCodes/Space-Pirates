@@ -80,7 +80,7 @@ public class Raft : MonoBehaviour
                 StopMovement();
             else if (movementDirection == Vector2.down && rb.velocity.y > 0 || movementDirection == Vector2.up && rb.velocity.y < 0)
                 StopMovement();
-            rb.velocity += decelerationVector;
+            if (rb.bodyType != RigidbodyType2D.Static) rb.velocity += decelerationVector;
         }
     }
 

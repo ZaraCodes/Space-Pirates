@@ -56,6 +56,10 @@ public class HopeShip : MonoBehaviour
     [SerializeField] private Transform moonSpawn;
     [SerializeField] private Transform citySpawn;
 
+    private bool emergencyMode;
+
+    private float fadeBufferTime;
+
     #region Methods
 
     /// <summary>This method toggles the acceleration of the ship depending on the input</summary>
@@ -222,6 +226,21 @@ public class HopeShip : MonoBehaviour
             }
         }
     }
+
+    private IEnumerator RespawnShipAfterSunImpact()
+    {
+        shipTransform.position = ProgressionManager.Instance.LastVisitedLocation switch
+        {
+            ELastVisitedLocation.Island => islandSpawn.position,
+            ELastVisitedLocation.City => citySpawn.position,
+            ELastVisitedLocation.Moon => moonSpawn.position,
+            _ => spaceStationSpawn.position,
+        };
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.PauseMenuHandler.FadeTime = fadeBufferTime;
+
+        StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeOut(null));
+    }
     #endregion
 
     #region Unity Stuff
@@ -272,11 +291,15 @@ public class HopeShip : MonoBehaviour
         if (lookDirection != Vector2.zero)
             shipTransform.up = lookDirection;
 
-        if (GameManager.Instance.IsPlaying && !GameManager.Instance.PauseMenuHandler.LoadingScreen.gameObject.activeInHierarchy)
+        if (GameManager.Instance.IsPlaying && !GameManager.Instance.PauseMenuHandler.LoadingScreen.gameObject.activeInHierarchy && !GameManager.Instance.IsFading)
         {
             if (orbiting)
             {
                 MoveInOrbit();
+            }
+            else if (emergencyMode)
+            {
+                shipTransform.position += new Vector3(velocity.x, velocity.y) * Time.deltaTime / 2f;
             }
             else
             {
@@ -298,6 +321,30 @@ public class HopeShip : MonoBehaviour
         {
             currentPlanet = collision.transform.parent.GetComponent<GravityObject>();
             InitiateOrbit(collision.transform.parent.position);
+        }
+        else if (collision.CompareTag("Planet Surface"))
+        {
+            emergencyMode = true;
+        }
+        else if (collision.CompareTag("Sun Trigger"))
+        {
+            fadeBufferTime = GameManager.Instance.PauseMenuHandler.FadeTime;
+            GameManager.Instance.PauseMenuHandler.FadeTime = 2f;
+
+            UnityEvent onFadeInFinished = new();
+            onFadeInFinished.AddListener(() =>
+            {
+                StartCoroutine(RespawnShipAfterSunImpact());
+            });
+            StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeIn(onFadeInFinished));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Planet Surface"))
+        {
+            emergencyMode = false;
         }
     }
 
