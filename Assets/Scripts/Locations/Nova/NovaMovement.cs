@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
-using UnityEngine.XR;
 
 /// <summary>This class is the character controller for Nova, who is controlled in Locations</summary>
 public class NovaMovement : MonoBehaviour
@@ -46,6 +45,8 @@ public class NovaMovement : MonoBehaviour
     /// <summary>Reference to Nova's rigidbody2D</summary>
     [Header("References"), SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer animationSprites;
+    [SerializeField] private Animator animator;
     [SerializeField] private Transform ballSpawnPosition;
     [SerializeField] private Camera mainCamera;
     private Transform bulletContainer;
@@ -343,7 +344,8 @@ public class NovaMovement : MonoBehaviour
         if (GameManager.Instance.IsPlaying)
         {
             if (chargeAttackTimer >= 0) chargeAttackTimer -= Time.deltaTime;
-            spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y) + sortingOffset;
+            spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y) + sortingOffset - 1;
+            animationSprites.sortingOrder = -Mathf.RoundToInt(transform.position.y) + sortingOffset;
         }
     }
 
@@ -361,9 +363,18 @@ public class NovaMovement : MonoBehaviour
                 }
             }
             else if (!CutsceneMovement && !Fading)
+            {
                 rb.velocity = movementSpeed * Time.fixedDeltaTime * (DoFall ? jumpDirection * 0.8f : MoveInput);
+                animator.SetFloat("velocityX", rb.velocity.x);
+                animator.SetFloat("velocityY", rb.velocity.y);
+            }
 
-            if (MovableObject != null) rb.velocity += MovableObject.velocity;
+            if (MovableObject != null)
+            {
+                rb.velocity += MovableObject.velocity;
+                animator.SetFloat("velocityX", rb.velocity.x - MovableObject.velocity.x);
+                animator.SetFloat("velocityY", rb.velocity.y - MovableObject.velocity.y);
+            }
 
             if (DoFall)
             {
