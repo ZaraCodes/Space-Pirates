@@ -6,6 +6,7 @@ public class PressurePlate : ToggleObject
 {
     [SerializeField] private int objectCount;
     [SerializeField] private List<GameObject> buttonTriggers;
+
     #region Unity Stuff
     private void Start()
     {

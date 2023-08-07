@@ -19,11 +19,13 @@ public class ToggleObject : MonoBehaviour
             if (state)
             {
                 spriteRenderer.color = ActiveColor;
+                spriteRenderer.sprite = ActiveSprite;
                 SwitchToggleEvent?.Invoke(state);
             }
             else
             {
                 spriteRenderer.color = InactiveColor;
+                spriteRenderer.sprite = InactiveSprite;
                 SwitchToggleEvent?.Invoke(state);
             }
             //Todo: Play sound
@@ -33,6 +35,9 @@ public class ToggleObject : MonoBehaviour
     [field: SerializeField] public SpriteRenderer spriteRenderer { get; private set; }
     [field: SerializeField] public Color ActiveColor { get; private set; }
     [field: SerializeField] public Color InactiveColor { get; private set; }
+
+    [SerializeField] private Sprite ActiveSprite;
+    [SerializeField] private Sprite InactiveSprite;
 
     [Header("Audio Assets")]
     [SerializeField] private AudioClip enableClip;

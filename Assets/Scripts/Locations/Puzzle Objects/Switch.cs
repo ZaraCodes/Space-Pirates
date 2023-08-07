@@ -5,6 +5,7 @@ using UnityEngine;
 public class Switch : ToggleObject
 {
     [Header("Switch Attributes"), SerializeField] private float activationTime = -1;
+    [SerializeField] private bool disableOnActivate;
 
     private float timer;
     #region Methods
@@ -28,10 +29,14 @@ public class Switch : ToggleObject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Toggle();
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (!(State && disableOnActivate))
         {
-            Destroy(collision.gameObject);
+            Toggle();
+
+            if (collision.gameObject.CompareTag("Bullet"))
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 

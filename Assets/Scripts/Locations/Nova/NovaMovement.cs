@@ -47,6 +47,7 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private SpriteRenderer animationSprites;
     [SerializeField] private Animator animator;
+    public Animator Animator { get { return animator; } }
     [SerializeField] private Transform ballSpawnPosition;
     [SerializeField] private Camera mainCamera;
     private Transform bulletContainer;

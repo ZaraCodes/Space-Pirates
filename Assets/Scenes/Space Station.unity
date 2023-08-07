@@ -80663,6 +80663,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1960451892}
     m_Modifications:
+    - target: {fileID: 6202717540401902474, guid: ccb7e05fe27d4624abcc3554b55ba170, type: 3}
+      propertyPath: disableOnActivate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6202717540401902475, guid: ccb7e05fe27d4624abcc3554b55ba170, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -82350,11 +82354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6202717540401902475, guid: ccb7e05fe27d4624abcc3554b55ba170, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.700001
+      value: 7.95
       objectReference: {fileID: 0}
     - target: {fileID: 6202717540401902475, guid: ccb7e05fe27d4624abcc3554b55ba170, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5999985
+      value: -4.852
       objectReference: {fileID: 0}
     - target: {fileID: 6202717540401902475, guid: ccb7e05fe27d4624abcc3554b55ba170, type: 3}
       propertyPath: m_LocalPosition.z
@@ -82814,6 +82818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c76ca7d0c3781439f4f668ecccaf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showText: 1
   interactText:
     m_TableReference:
       m_TableCollectionName: GUID:e835a47ffdb87cc4dace8dd38f583c40
@@ -83989,6 +83994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c76ca7d0c3781439f4f668ecccaf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showText: 1
   interactText:
     m_TableReference:
       m_TableCollectionName: GUID:e835a47ffdb87cc4dace8dd38f583c40
@@ -85004,6 +85010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c76ca7d0c3781439f4f668ecccaf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showText: 1
   interactText:
     m_TableReference:
       m_TableCollectionName: GUID:e835a47ffdb87cc4dace8dd38f583c40
@@ -85472,6 +85479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c76ca7d0c3781439f4f668ecccaf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showText: 1
   interactText:
     m_TableReference:
       m_TableCollectionName: GUID:e835a47ffdb87cc4dace8dd38f583c40
@@ -86744,6 +86752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c76ca7d0c3781439f4f668ecccaf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showText: 1
   interactText:
     m_TableReference:
       m_TableCollectionName: GUID:e835a47ffdb87cc4dace8dd38f583c40
