@@ -283,6 +283,14 @@ MonoBehaviour:
     m_Key: Ship 0 - 00
     m_Metadata:
       m_Items: []
+  - m_Id: 11521536303611904
+    m_Key: Space - Boundary 0 - 00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11522246260867072
+    m_Key: Space - Boundary 0 - 01
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

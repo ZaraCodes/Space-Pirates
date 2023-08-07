@@ -381,6 +381,22 @@ MonoBehaviour:
       find Captain Meow...
     m_Metadata:
       m_Items: []
+  - m_Id: 11521536303611904
+    m_Localized: 'Oh wait wait wait there are asteroids in the area ahead!
+
+      ||
+
+      We
+      should turn back.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11522246260867072
+    m_Localized: 'You''re right...
+
+      I doubt that Captain Meow will be that
+      way.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

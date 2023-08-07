@@ -359,6 +359,24 @@ MonoBehaviour:
       Meow zu verfolgen..."
     m_Metadata:
       m_Items: []
+  - m_Id: 11521536303611904
+    m_Localized: 'Oh warte warte warte!
+
+      In der Richtung befinden sich Asteroiden!
+
+      ||
+
+      Wir
+      sollten umkehren.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11522246260867072
+    m_Localized: 'Du hast Recht...
+
+      Ich glaube nicht, dass Captain Meow sich
+      in dieser Richtung befindet.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

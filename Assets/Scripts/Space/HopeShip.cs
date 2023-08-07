@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -27,6 +26,8 @@ public class HopeShip : MonoBehaviour
     private Vector2 shipInput;
 
     private Vector2 velocity;
+
+    public Vector2 Velocity { get { return velocity; } set { velocity = value; } }
 
     private bool accelerate;
 
