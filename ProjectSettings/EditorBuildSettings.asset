@@ -12,12 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Space.unity
     guid: 6f0e3226ffd08b548813ce9681e42caf
   - enabled: 1
-    path: Assets/Scenes/LocationTest.unity
-    guid: 2ff08ee444b130a469bbf94472fe88b2
-  - enabled: 1
-    path: Assets/Scenes/2 Floors Test.unity
-    guid: 0e93a2e03439f0249b9b4966c9f0ba90
-  - enabled: 1
     path: Assets/Scenes/Island Planet.unity
     guid: b0ea4dfb29930c84891514af9d9ff5c5
   - enabled: 1

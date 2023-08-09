@@ -7531,7 +7531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 700
-  sceneIndexToLoad: 6
+  sceneIndexToLoad: 4
   location: 3
   <OrbitDistance>k__BackingField: 8.88
   <OrbitSpeed>k__BackingField: 1
@@ -8682,7 +8682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 0
-  sceneIndexToLoad: 5
+  sceneIndexToLoad: 3
   location: 1
   <OrbitDistance>k__BackingField: 4
   <OrbitSpeed>k__BackingField: 1
@@ -8958,7 +8958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 800
-  sceneIndexToLoad: 4
+  sceneIndexToLoad: 2
   location: 2
   <OrbitDistance>k__BackingField: 15
   <OrbitSpeed>k__BackingField: 2

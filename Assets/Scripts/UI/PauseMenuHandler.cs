@@ -27,7 +27,6 @@ public class PauseMenuHandler : MonoBehaviour
 
     [Header("Essential Prefabs"), SerializeField] private GameObject pauseMenuPrefab;
     [SerializeField] private GameObject settingsMenuPrefab;
-    // [SerializeField] private GameObject dialogsPrefab;
     [SerializeField] private GameObject gameplayDialogBoxPrefab;
     [SerializeField] private GameObject dialogOverlayPrefab;
 

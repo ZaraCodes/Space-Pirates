@@ -39,6 +39,8 @@ public class CutsceneMovement : MonoBehaviour
         }
         else
         {
+            GameManager.Instance.Nova.Animator.SetFloat("velocityX", 0);
+            GameManager.Instance.Nova.Animator.SetFloat("velocityY", 0);
             GameManager.Instance.Nova.CutsceneMovement = false;
             GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             OnMovementFinished?.Invoke();

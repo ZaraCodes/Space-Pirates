@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProgressionManager
 {
@@ -47,7 +49,18 @@ public class ProgressionManager
 
     public void SaveProgress()
     {
-        //todo
+        SaveData saveData = new SaveData()
+        {
+            Flags = Flags,
+            LastVisitedLocation = LastVisitedLocation,
+            ViewedDialogs = ViewedDialogs,
+            InOrbit = SceneManager.GetActiveScene().buildIndex != 1
+        };
+
+        var saveDataPath = $"{Application.persistentDataPath}\\Data\\Saves";
+        ReaderWriter.CreateFolderIfNotExists(saveDataPath);
+        var jsonSave = JsonUtility.ToJson(saveData, true);
+        File.WriteAllText($"{saveDataPath}\\save.json", jsonSave);
     }
 
     public void ResetProgress()

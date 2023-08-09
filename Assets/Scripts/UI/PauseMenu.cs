@@ -8,4 +8,9 @@ public class PauseMenu : MonoBehaviour
     public Button ResumeButton;
     public Button SaveButton;
     public Button SettingsButton;
+
+    public void OnSaveButtonClick()
+    {
+        ProgressionManager.Instance.SaveProgress();
+    }
 }
