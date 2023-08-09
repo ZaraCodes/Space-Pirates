@@ -73,6 +73,8 @@ public class NovaMovement : MonoBehaviour
 
     private Vector2 attackDirection;
 
+    private Vector2 initialAttackDirectionInput;
+
     private List<InteractableTrigger> interactableTriggers;
 
     private InteractableTrigger performedInteraction;
@@ -111,6 +113,7 @@ public class NovaMovement : MonoBehaviour
         {
             if (ctx.action.WasReleasedThisFrame())
             {
+                animator.SetTrigger("shooting");
                 chargeAudioSource.Stop();
 
                 if (attackDirection == Vector2.zero) attackDirection = Vector2.right;
@@ -120,6 +123,7 @@ public class NovaMovement : MonoBehaviour
             }
             else if (ctx.action.WasPerformedThisFrame())
             {
+                animator.SetTrigger("charging");
                 chargeAttackTimer = chargeAttackTime;
                 chargeAudioSource.PlayDelayed(.15f);
             }
@@ -133,7 +137,7 @@ public class NovaMovement : MonoBehaviour
 
         bulletGO.transform.position = ballSpawnPosition.position;
         bulletGO.layer = ballSpawnPosition.gameObject.layer;
-        //chargedBulletGO.tag = tag;
+
         bullet.Rb.velocity = attackDirection.normalized * bullet.MovementSpeed;
         bullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
 
@@ -148,15 +152,9 @@ public class NovaMovement : MonoBehaviour
 
         if (GameManager.Instance.IsPlaying)
         {
-            Vector2 direction = ctx.ReadValue<Vector2>();
-            if (ctx.control.device.displayName.Contains("Mouse"))
-            {
-                Vector3 screenPos = mainCamera.WorldToScreenPoint(transform.position);
-                direction = new Vector3(direction.x, direction.y) - screenPos;
-
-            }
-            if (direction != Vector2.zero)
-                attackDirection = direction;
+            initialAttackDirectionInput = ctx.ReadValue<Vector2>();
+            if (initialAttackDirectionInput == Vector2.zero) initialAttackDirectionInput = Vector2.down;
+            if (GameManager.Instance.CurrentInputScheme == EInputScheme.Gamepad) attackDirection = initialAttackDirectionInput;
         }
     }
 
@@ -354,6 +352,15 @@ public class NovaMovement : MonoBehaviour
     {
         if (GameManager.Instance.IsPlaying)
         {
+            if (GameManager.Instance.CurrentInputScheme == EInputScheme.MouseKeyboard)
+            {
+                Vector3 screenPos = mainCamera.WorldToScreenPoint(transform.position);
+                attackDirection = (new Vector3(initialAttackDirectionInput.x, initialAttackDirectionInput.y) - screenPos).normalized;
+            }
+
+            animator.SetFloat("attackDirX", attackDirection.x);
+            animator.SetFloat("attackDirY", attackDirection.y);
+
             if (ZeroGMovement)
             {
                 rb.velocity *= .99f;
@@ -366,15 +373,19 @@ public class NovaMovement : MonoBehaviour
             else if (!CutsceneMovement && !Fading)
             {
                 rb.velocity = movementSpeed * Time.fixedDeltaTime * (DoFall ? jumpDirection * 0.8f : MoveInput);
-                animator.SetFloat("velocityX", rb.velocity.x);
-                animator.SetFloat("velocityY", rb.velocity.y);
+
+                var normalizedVelocity = rb.velocity.normalized;
+                animator.SetFloat("velocityX", normalizedVelocity.x);
+                animator.SetFloat("velocityY", normalizedVelocity.y);
             }
 
             if (MovableObject != null)
             {
                 rb.velocity += MovableObject.velocity;
-                animator.SetFloat("velocityX", rb.velocity.x - MovableObject.velocity.x);
-                animator.SetFloat("velocityY", rb.velocity.y - MovableObject.velocity.y);
+
+                var normalizedVelocity = rb.velocity.normalized - MovableObject.velocity;
+                animator.SetFloat("velocityX", normalizedVelocity.x);
+                animator.SetFloat("velocityY", normalizedVelocity.y);
             }
 
             if (DoFall)

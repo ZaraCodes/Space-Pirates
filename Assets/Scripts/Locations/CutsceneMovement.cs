@@ -54,7 +54,7 @@ public class CutsceneMovement : MonoBehaviour
         {
             GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity = new Vector3(GameManager.Instance.Nova.MovementSpeed * Time.fixedDeltaTime, 0);
             GameManager.Instance.Nova.Animator.SetFloat("velocityY", 0);
-            GameManager.Instance.Nova.Animator.SetFloat("velocityX", GameManager.Instance.Nova.MovementSpeed * Time.fixedDeltaTime);
+            GameManager.Instance.Nova.Animator.SetFloat("velocityX", 1);
         }
         else if (diffA <= 0 && diffB > 0)
         {
@@ -65,7 +65,7 @@ public class CutsceneMovement : MonoBehaviour
         {
             GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity = new Vector3(-GameManager.Instance.Nova.MovementSpeed * Time.fixedDeltaTime, 0);
             GameManager.Instance.Nova.Animator.SetFloat("velocityY", 0);
-            GameManager.Instance.Nova.Animator.SetFloat("velocityX", -GameManager.Instance.Nova.MovementSpeed * Time.fixedDeltaTime);
+            GameManager.Instance.Nova.Animator.SetFloat("velocityX", -1);
         }
         else if (diffA > 0 && diffB <= 0)
         {
@@ -81,7 +81,7 @@ public class CutsceneMovement : MonoBehaviour
         if (diffA > 0 && diffB > 0)
         {
             GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity = new Vector3(0, GameManager.Instance.Nova.MovementSpeed * Time.fixedDeltaTime);
-            GameManager.Instance.Nova.Animator.SetFloat("velocityY", GameManager.Instance.Nova.MovementSpeed * Time.fixedDeltaTime);
+            GameManager.Instance.Nova.Animator.SetFloat("velocityY", 1);
             GameManager.Instance.Nova.Animator.SetFloat("velocityX", 0);
         }
         else if (diffA <= 0 && diffB > 0)
@@ -93,7 +93,7 @@ public class CutsceneMovement : MonoBehaviour
         else if (diffA <= 0 && diffB <= 0)
         {
             GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -GameManager.Instance.Nova.MovementSpeed * Time.fixedDeltaTime);
-            GameManager.Instance.Nova.Animator.SetFloat("velocityY", -GameManager.Instance.Nova.MovementSpeed * Time.fixedDeltaTime);
+            GameManager.Instance.Nova.Animator.SetFloat("velocityY", -1);
             GameManager.Instance.Nova.Animator.SetFloat("velocityX", 0);
         }
         else if (diffA > 0 && diffB <= 0)
