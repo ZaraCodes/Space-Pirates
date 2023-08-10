@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -33,6 +34,7 @@ public class DialogOverlay : MonoBehaviour
 
     [Header("References"), SerializeField] private GameObject scrollField;
     [SerializeField] private AudioSource clickSource;
+    [SerializeField] private TextMeshProUGUI buttonPrompt;
 
     [Header("Prefabs"), SerializeField] private GameObject leftMessagePrefab;
     [SerializeField] private GameObject rightMessagePrefab;
@@ -166,7 +168,7 @@ public class DialogOverlay : MonoBehaviour
 
     private void FillCurrentBox()
     {
-        currentDialogMessage.FillContent(ref timer);
+        currentDialogMessage.FillContent(ref timer, buttonPrompt, controls);
     }
 
     private void OnProceedDialog(InputAction.CallbackContext ctx)
@@ -178,8 +180,11 @@ public class DialogOverlay : MonoBehaviour
                 clickSource.Play();
                 if (currentDialogMessage.InvisibleText.Length > 0)
                     currentDialogMessage.TextSpeedMultiplier = 0;
-                else 
+                else
+                {
+                    buttonPrompt.gameObject.SetActive(false);
                     LoadNextBox();
+                }
             }
         }
     }
@@ -190,6 +195,27 @@ public class DialogOverlay : MonoBehaviour
         {
             Destroy(message.gameObject);
         }
+    }
+
+    public void UpdateIcon(EInputScheme scheme)
+    {
+        string buttonName = InputIconStringSetter.GetIconStringFromBinding(controls.UI.ProceedDialog.bindings);
+
+        //Todo: test for availability of button sprite
+        //bool noMatchFound = true;
+        //foreach (var buttonIcon in buttonIcons.spriteInfoList)
+        //{
+        //    if (buttonIcon.name == buttonName)
+        //    {
+        //        noMatchFound = false;
+        //    }
+        //}
+        //if (noMatchFound)
+        //{
+        //    interactText.text = $"[] {promptText.GetLocalizedString()}";
+        //}
+        //else
+        buttonPrompt.text = $"<sprite name=\"{buttonName}\">";
     }
     #endregion
 
@@ -213,11 +239,13 @@ public class DialogOverlay : MonoBehaviour
 
     private void OnEnable()
     {
+        GameManager.Instance.OnInputSchemeChanged += newScheme => UpdateIcon(newScheme);
         controls.Enable();
     }
 
     private void OnDisable()
     {
+        GameManager.Instance.OnInputSchemeChanged -= newScheme => UpdateIcon(newScheme);
         controls.Disable();
     }
     #endregion

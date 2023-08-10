@@ -54,6 +54,10 @@ public class LevelIntro : MonoBehaviour
 
             StartCoroutine(Intro());
         }
+        else
+        {
+            musicSource.Play();
+        }
     }
     #endregion
 }

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <sprite name="a_green">interact
+  m_text: <sprite name="Gamepad_buttonSouth"> interact
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 475bf4f09519b4046807a4adad9ad2a0, type: 2}
   m_sharedMaterial: {fileID: 5678720364887612515, guid: 475bf4f09519b4046807a4adad9ad2a0, type: 2}

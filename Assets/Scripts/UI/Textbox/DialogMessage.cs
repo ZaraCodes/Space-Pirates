@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UI;
@@ -58,7 +59,7 @@ public class DialogMessage : MonoBehaviour
         SetMessageText();
     }
 
-    public void FillContent(ref float timer)
+    public void FillContent(ref float timer, TextMeshProUGUI buttonPrompt, SpacePiratesControls controls)
     {
         while (timer <= 0 && InvisibleText.Length > 0)
         {
@@ -70,6 +71,11 @@ public class DialogMessage : MonoBehaviour
         if (InvisibleText.Length != 0 && timer > 0)
         {
             timer -= Time.deltaTime;
+        }
+        else if (InvisibleText.Length == 0)
+        {
+            buttonPrompt.gameObject.SetActive(true);
+            buttonPrompt.text = $"<sprite name=\"{InputIconStringSetter.GetIconStringFromBinding(controls.UI.ProceedDialog.bindings)}\">";
         }
     }
 

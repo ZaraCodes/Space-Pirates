@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Localization;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
@@ -17,6 +16,8 @@ public class GameplayDialogBox : MonoBehaviour
 
     [Header("References"), SerializeField] private TextMeshProUGUI content;
     [SerializeField] private Image characterPortrait;
+    [SerializeField] private TextMeshProUGUI buttonPrompt;
+
     private TextboxSequence textboxSequence;
     private SpacePiratesControls controls;
     private string[] sectionStrings;
@@ -75,6 +76,8 @@ public class GameplayDialogBox : MonoBehaviour
         {
             currentSectionIndex++;
         }
+        HideButtonPrompt();
+
         invisibleText = sectionStrings[currentSectionIndex];
         characterPortrait.sprite = textboxSequence.Contents[currentSequenceIndex].Speaker.Portrait;
         content.text = string.Empty;
@@ -91,6 +94,38 @@ public class GameplayDialogBox : MonoBehaviour
             if (invisibleText.Length > 0) textCompletionMultiplier = 0;
             else LoadNextBox();
         }
+    }
+
+    private void ShowButtonPrompt()
+    {
+        buttonPrompt.gameObject.SetActive(true);
+        buttonPrompt.text = $"<sprite name=\"{InputIconStringSetter.GetIconStringFromBinding(controls.UI.ProceedDialog.bindings)}\">";
+    }
+
+    private void HideButtonPrompt()
+    {
+        buttonPrompt.gameObject.SetActive(false);
+    }
+
+    public void UpdateIcon(EInputScheme scheme)
+    {
+        string buttonName = InputIconStringSetter.GetIconStringFromBinding(controls.UI.ProceedDialog.bindings);
+
+        //Todo: test for availability of button sprite
+        //bool noMatchFound = true;
+        //foreach (var buttonIcon in buttonIcons.spriteInfoList)
+        //{
+        //    if (buttonIcon.name == buttonName)
+        //    {
+        //        noMatchFound = false;
+        //    }
+        //}
+        //if (noMatchFound)
+        //{
+        //    interactText.text = $"[] {promptText.GetLocalizedString()}";
+        //}
+        //else
+        buttonPrompt.text = $"<sprite name=\"{buttonName}\">";
     }
     #endregion
 
@@ -118,10 +153,15 @@ public class GameplayDialogBox : MonoBehaviour
             if (invisibleText.Length != 0 && timer > 0)
             {
                 timer -= Time.deltaTime;
-                if (pauseTimer != pauseTimeBetweenBoxes) pauseTimer = pauseTimeBetweenBoxes;
+                if (pauseTimer != pauseTimeBetweenBoxes)
+                {
+                    pauseTimer = pauseTimeBetweenBoxes;
+                }
             }
             else if (pauseTimer > 0)
             {
+                if (!buttonPrompt.gameObject.activeInHierarchy) ShowButtonPrompt();
+
                 pauseTimer -= Time.deltaTime;
                 if (pauseTimer <= 0)
                 {
@@ -134,18 +174,20 @@ public class GameplayDialogBox : MonoBehaviour
 
     private void Awake()
     {
-        controls = new SpacePiratesControls();
+        controls = new();
 
         controls.UI.ProceedDialog.performed += ctx => OnUINext(ctx);
     }
 
     private void OnEnable()
     {
+        GameManager.Instance.OnInputSchemeChanged += newScheme => UpdateIcon(newScheme);
         controls.Enable();
     }
 
     private void OnDisable()
     {
+        GameManager.Instance.OnInputSchemeChanged -= newScheme => UpdateIcon(newScheme);
         controls.Disable();
     }
     #endregion
