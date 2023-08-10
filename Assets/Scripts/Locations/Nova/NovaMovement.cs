@@ -342,7 +342,11 @@ public class NovaMovement : MonoBehaviour
     {
         if (GameManager.Instance.IsPlaying)
         {
-            if (chargeAttackTimer >= 0) chargeAttackTimer -= Time.deltaTime;
+            if (chargeAttackTimer >= 0)
+            {
+                chargeAttackTimer -= Time.deltaTime;
+                animator.SetFloat("chargeTimer", chargeAttackTimer);
+            }
             spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y) + sortingOffset - 1;
             animationSprites.sortingOrder = -Mathf.RoundToInt(transform.position.y) + sortingOffset;
         }
