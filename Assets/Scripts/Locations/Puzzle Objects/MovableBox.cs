@@ -23,6 +23,8 @@ public class MovableBox : MonoBehaviour
     {
         if (novaRigidbody != null || GameObject.Find("Nova").TryGetComponent(out novaRigidbody))
         {
+            GameManager.Instance.Nova.Animator.SetBool("moveBox", true);
+
             if (horizontal)
             {
                 moveVector = new Vector2(novaRigidbody.velocity.x, 0);
@@ -64,6 +66,7 @@ public class MovableBox : MonoBehaviour
             boxRigidbody.gravityScale = 0f;
         }
         GameManager.Instance.Nova.MovementConstraint = new(1, 1);
+        GameManager.Instance.Nova.Animator.SetBool("moveBox", false);
     }
     #endregion
 
@@ -85,11 +88,11 @@ public class MovableBox : MonoBehaviour
                 boxRigidbody.velocity = MovableObject.velocity;
         }
 
-        if (transform.parent != null)
+        if (transform.parent != null && transform.parent.name == "Nova")
         {
-            // boxRigidbody.MovePosition(transform.TransformPoint(distanceToPlayer));
-            //transform.localPosition = distanceToPlayer;
-            //Debug.Log(distanceToPlayer);
+            var distanceToPlayer = GameManager.Instance.Nova.transform.position - transform.position;
+            GameManager.Instance.Nova.Animator.SetFloat("boxDiffX", distanceToPlayer.x);
+            GameManager.Instance.Nova.Animator.SetFloat("boxDiffY", distanceToPlayer.y);
         }
     }
     #endregion
