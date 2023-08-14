@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
-using UnityEngine.Localization;
 using UnityEngine.UI;
 
 public class DialogMessage : MonoBehaviour
