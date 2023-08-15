@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 
 public class GravityVisualizer : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class GravityVisualizer : MonoBehaviour
     [SerializeField] private GameObject dotsContainer;
 
     [SerializeField] private int limit;
+
+    [SerializeField] private bool cacheDots;
 
     public IEnumerator SpawnGravityVisualizer()
     {
@@ -78,11 +81,13 @@ public class GravityVisualizer : MonoBehaviour
 
         if (instance == null)
         {
-            instance = gameObject;
-            
-            CreateHiderObject();
-            DontDestroyOnLoad(instance);
+            if (cacheDots)
+            {
+                instance = gameObject;
 
+                CreateHiderObject();
+                DontDestroyOnLoad(instance);
+            }
             GameManager.Instance.PauseMenuHandler.LoadingScreen.gameObject.SetActive(true);
             GameManager.Instance.PauseMenuHandler.BlackFade.color = Color.black;
             StartCoroutine(SpawnGravityVisualizer());

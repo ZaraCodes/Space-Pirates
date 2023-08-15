@@ -417,6 +417,60 @@ MonoBehaviour:
     m_Localized: Suspicious...
     m_Metadata:
       m_Items: []
+  - m_Id: 14134219551907840
+    m_Localized: MYAAA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14137574764421120
+    m_Localized: Meow meow!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14138044195119104
+    m_Localized: 'Oh my god Luna is your bowl empty again?
+
+      ||
+
+      .....
+
+      ||
+
+      What
+      do you meeeeaan maybe you shouldn''t spill everything. >:('
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14155429216100352
+    m_Localized: Murrrr....
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14391123750526976
+    m_Localized: Meow.... okay, here we go...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14398595408175104
+    m_Localized: 'Haiii Nova~
+
+      It''s me from the cockpit. :3'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14408313396633600
+    m_Localized: Haiii Rayy :3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14409009353302016
+    m_Localized: 'Okay, so, can you please come to me?
+
+      I think we might have
+      a problem.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14420734232338432
+    m_Localized: Nya
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14505893942108160
+    m_Localized: Captain Meow
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

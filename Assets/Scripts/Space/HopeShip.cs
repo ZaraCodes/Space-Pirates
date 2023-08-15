@@ -17,6 +17,8 @@ public class HopeShip : MonoBehaviour
     [SerializeField] private GravityReceiver gravityReceiver;
     [SerializeField] private AudioSource thrusterSource;
 
+    [SerializeField] private bool introShip;
+
     private Coroutine thrusterFadeCoroutine;
 
     private float maxThrusterVolume;
@@ -261,7 +263,7 @@ public class HopeShip : MonoBehaviour
     {
         velocity = new Vector2(4, -3);
         accelerate = false;
-        maxThrusterVolume = thrusterSource.volume;
+        if (thrusterSource != null) maxThrusterVolume = thrusterSource.volume;
         shipTransform = transform;
 
         switch (ProgressionManager.Instance.LastVisitedLocation)
