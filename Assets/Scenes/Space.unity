@@ -1828,6 +1828,7 @@ MonoBehaviour:
   calcucaleDots: 1
   dotsContainer: {fileID: 1539385784}
   limit: 750
+  cacheDots: 1
 --- !u!114 &1073981015
 MonoBehaviour:
   m_ObjectHideFlags: 0

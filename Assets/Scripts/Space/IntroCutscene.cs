@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 
 public class IntroCutscene : MonoBehaviour
 {
@@ -39,8 +42,19 @@ public class IntroCutscene : MonoBehaviour
     /// <summary>Reference to the dialog with Captain Meow</summary>
     [SerializeField] private TextboxTrigger captainMeowDialog;
 
-    /// <summary>Reference to the dialog after the cat got teleport</summary>
-    [SerializeField] private TextboxTrigger postTeleportDialog;
+    /// <summary>Reference to the dialog after the cat got teleported</summary>
+    [SerializeField] private TextboxTrigger explosionDialog;
+
+    /// <summary>Reference to the objects that play the explosion animation</summary>
+    [SerializeField] private GameObject explosionsAnimation;
+
+    /// <summary>Reference to the audio source that plays the explosion sound</summary>
+    [SerializeField] private AudioSource explosionSound;
+
+    /// <summary>
+    /// Reference to the dialog after the explosion
+    /// </summary>
+    [SerializeField] private TextboxTrigger landingDialog;
     #endregion
 
     #region Methods
@@ -69,9 +83,7 @@ public class IntroCutscene : MonoBehaviour
         StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeIn(onFadeInFinished));
     }
 
-    /// <summary>
-    /// Starts the second part of the intro cutscene where captain meow appears
-    /// </summary>
+    /// <summary>Starts the second part of the intro cutscene where captain meow appears</summary>
     public void StartMeowSection()
     {
         captainMeowAppeared = true;
@@ -123,17 +135,63 @@ public class IntroCutscene : MonoBehaviour
         StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeIn(onFadeInFinished));
     }
 
+    /// <summary>Starts displaying the cat teleporting animation</summary>
     public void ShowCatTeleportAnimation()
     {
         catTeleportAnimation.SetActive(true);
-        StartCoroutine(DelayPostTeleportDialog());
+        StartCoroutine(DelayExplosionDialog());
     }
 
-    private IEnumerator DelayPostTeleportDialog()
+    /// <summary>displays the explosion dialog after the cat animation</summary>
+    /// <returns></returns>
+    private IEnumerator DelayExplosionDialog()
     {
         yield return new WaitForSeconds(3.5f);
-        postTeleportDialog.LoadDialog();
         catTeleportAnimation.SetActive(false);
+        explosionDialog.LoadDialog();
+    }
+
+    /// <summary>Starts playing the explosion animation</summary>
+    public void PlayExplosion()
+    {
+        StartCoroutine(ShowExplosionAnimation());
+    }
+
+    /// <summary>Plays the explosion animation and shows the landing dialog after that</summary>
+    /// <returns></returns>
+    private IEnumerator ShowExplosionAnimation()
+    {
+        yield return new WaitForSeconds(.5f);
+        explosionsAnimation.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        explosionSound.Play();
+        yield return new WaitForSeconds(1f);
+        landingDialog.LoadDialog();
+    }
+
+    /// <summary>Loads the space station scene after the intro cutscene ended</summary>
+    public void GoToSpaceStation()
+    {
+        StartCoroutine(LoadSpaceStation());
+    }
+
+    /// <summary>Fades out the music and loads the space station scene right after</summary>
+    /// <returns></returns>
+    private IEnumerator LoadSpaceStation()
+    {
+        var limit = .4f;
+        var maxTime = 2f;
+        var timer = maxTime;
+
+        while (timer > 0f)
+        {
+            yield return null;
+            timer -= Time.deltaTime;
+            captainMeowMusic.volume = (timer / maxTime) * limit;
+        }
+        yield return null;
+        
+        SceneManager.LoadScene(3);
     }
     #endregion
 

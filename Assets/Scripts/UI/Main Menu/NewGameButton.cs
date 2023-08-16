@@ -14,6 +14,11 @@ public class NewGameButton : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
+    public void StartNewGame()
+    {
+        SceneManager.LoadScene(5);
+    }
+
     private void Start()
     {
         GameManager.Instance.IsSceneIntroPlaying = false;

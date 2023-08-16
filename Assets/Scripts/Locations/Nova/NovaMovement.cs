@@ -162,7 +162,7 @@ public class NovaMovement : MonoBehaviour
     {
         GameManager.Instance.UpdateInputScheme(ctx);
 
-        if (GameManager.Instance.IsPlaying)
+        if (GameManager.Instance.IsPlaying && !GameManager.Instance.IsFading)
         {
             if (ctx.action.WasPerformedThisFrame())
             {

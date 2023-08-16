@@ -466,6 +466,25 @@ MonoBehaviour:
     m_Localized: "Oh nein! Du bist die ber\xFCchtigte Captain Meow! D:"
     m_Metadata:
       m_Items: []
+  - m_Id: 14817896409702400
+    m_Localized: 'HAHAHAAAAA!!
+
+      Nehmt auch das hier.~'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14830533591801856
+    m_Localized: NEEIIN LUNAA!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14834280053186560
+    m_Localized: "Wir wurden schwer besch\xE4digt!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14835099016208384
+    m_Localized: "Das ist super schlecht! D:\n||\nWir m\xFCssen auf dieser Raumstation
+      notlanden."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
