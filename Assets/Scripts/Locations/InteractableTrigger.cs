@@ -53,7 +53,7 @@ public class InteractableTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.name);
-        if (collision.name == "Button Trigger Nova" && showText)
+        if (collision.name == "Button Trigger Nova" && showText && GameManager.Instance.IsPlaying)
         {
             GameManager.Instance.Nova.ShowInteractionPrompt(this);
         }

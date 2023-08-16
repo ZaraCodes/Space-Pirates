@@ -147,6 +147,9 @@ public class DialogOverlay : MonoBehaviour
         currentDialogMessage.transform.SetParent(scrollField.transform, false);
         currentDialogMessage.transform.position = new Vector3(currentDialogMessage.transform.position.x, 150);
 
+        //currentDialogMessage.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, scrolledDistance);
+        //Debug.Log(currentDialogMessage.transform.position);
+
         currentDialogMessage.CharacterPortrait.sprite = dialogSequence.Contents[currentSequenceIndex].Speaker.Portrait;
         
         timer = 1 / SettingsS.Instance.TextboxSpeed * dialogSequence.Contents[currentSequenceIndex].TextSpeedMultiplier;

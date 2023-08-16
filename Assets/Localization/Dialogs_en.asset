@@ -532,7 +532,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14835116389015552
-    m_Localized: 
+    m_Localized: 'It''s so horrible ;-;
+
+      ||
+
+      Luna - just - gone.'
     m_Metadata:
       m_Items: []
   - m_Id: 14835099016208384
@@ -542,6 +546,34 @@ MonoBehaviour:
 
       We have to emerency at this
       space station.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14884647239524352
+    m_Localized: 'Captain Meow didn''t give us any chance to fight back. :(
+
+      ||
+
+      And
+      now we can''t go after her.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14900333756129280
+    m_Localized: 'For sure! At least we''re not totally stranded! I will try everything
+      so we can go and find her.
+
+      ||
+
+      Surely I''ll find something on
+      this space station to repair our ship! :3'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14902541742612480
+    m_Localized: Thanks <3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14898700288630784
+    m_Localized: I am so sad and angry and hopeless. Do you think we can get Luna
+      back somehow?
     m_Metadata:
       m_Items: []
   references:

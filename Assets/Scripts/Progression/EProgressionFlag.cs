@@ -6,4 +6,5 @@ public enum EProgressionFlag
     ShopkeeperCutsceneFinished,
     ShipSellerHint,
     IslandHint,
+    IntroFinished,
 }

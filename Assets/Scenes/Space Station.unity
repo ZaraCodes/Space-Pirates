@@ -36975,6 +36975,8 @@ GameObject:
   m_Component:
   - component: {fileID: 175000484}
   - component: {fileID: 175000485}
+  - component: {fileID: 175000487}
+  - component: {fileID: 175000486}
   m_Layer: 0
   m_Name: Progression Loader
   m_TagString: Untagged
@@ -37016,6 +37018,51 @@ MonoBehaviour:
   SecretSwitch1: {fileID: 621297503}
   RepairKit0: {fileID: 1904713721}
   RepairKit1: {fileID: 1678038278}
+  landingDialog: {fileID: 175000487}
+--- !u!114 &175000486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175000483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4ad611192c9dd45a9431819e526383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 6
+--- !u!114 &175000487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175000483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd119a01c3dbd945a455907c25a9191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogSequence: {fileID: 11400000, guid: 82343821667915c4e9c54b8719696c19, type: 2}
+  gameplayDialog: 0
+  requirements: 
+  antiRequirements: 06000000
+  OnDialogFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 175000486}
+        m_TargetAssemblyTypeName: ProgressionSetter, Assembly-CSharp
+        m_MethodName: SetFlag
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &181976011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1344413370451628506, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}

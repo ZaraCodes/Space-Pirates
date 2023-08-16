@@ -11,12 +11,25 @@ public class SpaceStationProgressionSetter : MonoBehaviour
     [SerializeField] private Switch SecretSwitch1;
     [SerializeField] private GameObject RepairKit0;
     [SerializeField] private GameObject RepairKit1;
+    [SerializeField] private TextboxTrigger landingDialog;
 
     private void SetRepairKit(GameObject repairKit)
     {
         repairKit.transform.GetChild(0).gameObject.SetActive(false);
         repairKit.transform.GetChild(1).gameObject.SetActive(true);
         repairKit.GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    /// <summary>Starts the landing dialog</summary>
+    /// <returns></returns>
+    private IEnumerator StartLandingDialog()
+    {
+        yield return new WaitForSeconds(2f);
+        while (!GameManager.Instance.IsPlaying)
+        {
+            yield return null;
+        }
+        landingDialog.LoadDialog();
     }
 
     // Start is called before the first frame update    
@@ -43,6 +56,9 @@ public class SpaceStationProgressionSetter : MonoBehaviour
         if (ProgressionManager.Instance.Flags.Contains(EProgressionFlag.RepairKit2))
         {
             SetRepairKit(RepairKit1);
+        }
+        if (!ProgressionManager.Instance.Flags.Contains(EProgressionFlag.IntroFinished)) {
+            StartCoroutine(StartLandingDialog());
         }
     }
 }

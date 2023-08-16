@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3aac54705bfd34db7ab111ab6e5d6c, type: 3}
+  m_Name: Space Station - Landing
+  m_EditorClassIdentifier: 
+  ID: Space Station - Landing
+  Contents:
+  - {fileID: 11400000, guid: 6ef19a36a1e1c704687468967f742340, type: 2}
+  - {fileID: 11400000, guid: ecfaec3a6c26b1149bb06c33f8b65a4d, type: 2}
+  - {fileID: 11400000, guid: d437718e3e952dd43af1fa1e69725a78, type: 2}
+  - {fileID: 11400000, guid: d682bb0248a0b904ab6ac17606a832b8, type: 2}
+  - {fileID: 11400000, guid: a469d26a84f2fe94793dfcfec1685ef7, type: 2}
+  Repeat: 0
+  SummaryDialog: {fileID: 0}

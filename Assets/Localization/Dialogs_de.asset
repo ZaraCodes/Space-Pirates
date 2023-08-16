@@ -485,6 +485,35 @@ MonoBehaviour:
       notlanden."
     m_Metadata:
       m_Items: []
+  - m_Id: 14835116389015552
+    m_Localized: 'Es ist so grauenvoll ;-;
+
+      ||
+
+      Luna - einfach so - weg.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14884647239524352
+    m_Localized: "Captain Meow hat uns keine M\xF6glichkeit zur Wehr gelassen. :(\n||\nUnd
+      jetzt k\xF6nnen wir nicht hinterher."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14902541742612480
+    m_Localized: Danke <3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14900333756129280
+    m_Localized: "Ganz sicher! Wenigstens sind wir hier nicht komplett gestrandet!
+      Ich werde alles versuchen, damit wir nach ihr suchen k\xF6nnen.\n||\nZiemlich
+      sicher werde ich auf dieser Raumstation finden, um unser Schiff zu reparieren!
+      :3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14898700288630784
+    m_Localized: "Ich bin so traurig und sauer und hoffnungslos. Glaubst du, wir
+      bekommen Luna irgendwie wieder zur\xFCck?"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

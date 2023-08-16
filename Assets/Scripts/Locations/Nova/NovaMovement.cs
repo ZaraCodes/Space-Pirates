@@ -461,7 +461,7 @@ public class NovaMovement : MonoBehaviour
                     performedInteraction = null;
                 }
             }
-            interactionPrompt.Hide();
+            interactionPrompt?.Hide();
         }
         else if (collision.gameObject.CompareTag("1st Floor") && firstFloorMovableBox != null)
         {
