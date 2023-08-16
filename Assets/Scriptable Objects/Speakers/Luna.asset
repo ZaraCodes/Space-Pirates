@@ -9,24 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8cba82e83f728e4c977125e74b3a644, type: 3}
-  m_Name: Intro - Pre Meow 0 - 03
+  m_Script: {fileID: 11500000, guid: 5a3009acc55996a4cb92746e5f616ee9, type: 3}
+  m_Name: Luna
   m_EditorClassIdentifier: 
-  Speaker: {fileID: 11400000, guid: b8e5809a7932f2843b28768fa2b85967, type: 2}
-  SequenceText:
+  SpeakerName:
     m_TableReference:
       m_TableCollectionName: GUID:588362e9c03acac4f96b2e720eb55ef6
     m_TableEntryReference:
-      m_KeyId: 14155429216100352
+      m_KeyId: 14757881510469632
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  TextSpeedMultiplier: 1
-  positionedLeft: 1
-  OnContentFinished:
-    m_PersistentCalls:
-      m_Calls: []
+  TextColor: {r: 0.4, g: 0.8392157, b: 0.7647059, a: 1}
+  NameColor: {r: 0.4, g: 0.8392157, b: 0.7647059, a: 1}
+  Portrait: {fileID: 1099992009, guid: e4f3dd770da37ee47aa9db9c3202281d, type: 3}
   references:
     version: 2
     RefIds: []

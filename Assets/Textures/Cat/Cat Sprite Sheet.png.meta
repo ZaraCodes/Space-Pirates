@@ -1313,6 +1313,195 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Cat Portrait
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 242
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7c06af8514ed1f45a784a5738eb7635
+      internalID: 1099992009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat Teleport 0
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 304
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15362a7eb21aff84c9c311cc6e57bdfd
+      internalID: 385934300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat Teleport 1
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 290
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 185e6c54ad5c8ca4797a34bd4843e1be
+      internalID: -1291589560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat Teleport 2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 276
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69aaf5ff74fba9947a530e41e0cd7e3c
+      internalID: 1454408884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat Teleport 3
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 262
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dc672c6a67844c4982fe08743b05e45
+      internalID: -530821581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat Teleport 4
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 248
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0125e1ea807561543ab7dc9aa421c90a
+      internalID: 1213461333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat Teleport 5
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 234
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3d359bbe2efc8c429e1bd781deb1f22
+      internalID: -1453625410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat Teleport 6
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 220
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab7a82e6c683fd042892c4a5b971d891
+      internalID: 1412867503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat Teleport 7
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 206
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4e8d7a9a87dbe64dae81d8f7def9697
+      internalID: 244616565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1324,6 +1513,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Cat Portrait: 1099992009
       Cat Sprite Sheet_0: 1236581288
       Cat Sprite Sheet_1: -1493282767
       Cat Sprite Sheet_10: 895202386
@@ -1381,6 +1571,14 @@ TextureImporter:
       Cat Sprite Sheet_7: 717046072
       Cat Sprite Sheet_8: 1134079596
       Cat Sprite Sheet_9: -97706868
+      Cat Teleport 0: 385934300
+      Cat Teleport 1: -1291589560
+      Cat Teleport 2: 1454408884
+      Cat Teleport 3: -530821581
+      Cat Teleport 4: 1213461333
+      Cat Teleport 5: -1453625410
+      Cat Teleport 6: 1412867503
+      Cat Teleport 7: 244616565
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

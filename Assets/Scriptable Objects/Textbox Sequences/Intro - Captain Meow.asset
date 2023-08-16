@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3aac54705bfd34db7ab111ab6e5d6c, type: 3}
+  m_Name: Intro - Captain Meow
+  m_EditorClassIdentifier: 
+  ID: 
+  Contents:
+  - {fileID: 11400000, guid: 57a4296bc5d1c2742814ca5c0be8b07a, type: 2}
+  - {fileID: 11400000, guid: d16ea390c4b4aa34c95398d45c213159, type: 2}
+  - {fileID: 11400000, guid: 59e97e33fb3d84348b609c11ba1fcde5, type: 2}
+  - {fileID: 11400000, guid: 0ba0ddd2415eb8941a8f1c336c9df627, type: 2}
+  - {fileID: 11400000, guid: 1763419a11646ff4185b318860d1a463, type: 2}
+  Repeat: 1
+  SummaryDialog: {fileID: 0}

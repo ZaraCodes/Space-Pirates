@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8cba82e83f728e4c977125e74b3a644, type: 3}
   m_Name: Intro - Pre Meow 0 - 00
   m_EditorClassIdentifier: 
-  Speaker: {fileID: 11400000, guid: f95dc39ab5ba217429612d7c3e2a8446, type: 2}
+  Speaker: {fileID: 11400000, guid: b8e5809a7932f2843b28768fa2b85967, type: 2}
   SequenceText:
     m_TableReference:
       m_TableCollectionName: GUID:588362e9c03acac4f96b2e720eb55ef6

@@ -471,6 +471,52 @@ MonoBehaviour:
     m_Localized: Captain Meow
     m_Metadata:
       m_Items: []
+  - m_Id: 14725475076251648
+    m_Localized: Do you see this ship following us now?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14757881510469632
+    m_Localized: Luna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14765879477772288
+    m_Localized: It follows us for a bit already... I'm a bit worried.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14767730503819264
+    m_Localized: 'Hmmm... yeah...
+
+      ||
+
+      Wait a sec.
+
+      ||
+
+      Could
+      that be...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14768145148518400
+    m_Localized: 'HAHAAA!!! >:)
+
+      ||
+
+      I finally caught up to you!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14769127165108224
+    m_Localized: 'Oh nyo! You''re the infamous Captain Meow! D:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14769140909842432
+    m_Localized: 'Smart.~
+
+      ||
+
+      Don''t worry about me though - I''m just
+      here to free your cat! And every other cat in the UNIVERSE!'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
