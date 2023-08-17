@@ -1499,6 +1499,7 @@ MonoBehaviour:
   explosionDialog: {fileID: 248884196}
   explosionsAnimation: {fileID: 1880166524}
   explosionSound: {fileID: 1747795846}
+  gravityVisualizer: {fileID: 206508395}
   landingDialog: {fileID: 283997887}
 --- !u!61 &1147796633
 BoxCollider2D:

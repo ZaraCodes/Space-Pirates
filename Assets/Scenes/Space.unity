@@ -3083,7 +3083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 300
-  sceneIndexToLoad: 0
+  sceneIndexToLoad: 6
   location: 4
   <OrbitDistance>k__BackingField: 4
   <OrbitSpeed>k__BackingField: 1

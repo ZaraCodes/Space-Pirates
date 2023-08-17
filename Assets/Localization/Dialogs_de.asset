@@ -514,6 +514,75 @@ MonoBehaviour:
       bekommen Luna irgendwie wieder zur\xFCck?"
     m_Metadata:
       m_Items: []
+  - m_Id: 15221304287404032
+    m_Localized: "Was... was ist das f\xFCr ein Ort?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221381840084992
+    m_Localized: Oh. DU?? Wie hast du den Weg hier her gefunden?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221453915004928
+    m_Localized: Ich gebe nie auf.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221664259350528
+    m_Localized: "Du scheinst wirklich hartn\xE4ckig zu sein..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221749403721728
+    m_Localized: "Oh ja.\n||\nDu hast meine Katze.\n||\nIch will sie zur\xFCck!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221790755364864
+    m_Localized: ".... uh\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221774120755200
+    m_Localized: "Du kannst es gerne versuchen, aber gegen mich hast du keine Chance!\n||\nWenn
+      du mir in die Quere kommst, werde ich dich heftiger zerst\xF6ren als dein Schiff!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221805166993408
+    m_Localized: "Ich habe aber ein Angebot f\xFCr dich und deine Freundin.\n||\nSchlie\xDFt
+      euch mir auf meiner Mission an, die Katzen des Universums zu befreien, und
+      ihr k\xF6nnt eure Katze wieder haben!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15222966867566592
+    m_Localized: Was?!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15223097885040640
+    m_Localized: "Wir k\xF6nnten ein gutes Team sein, Nova.\n||\nZusammen k\xF6nnen
+      wir es schaffen, alle Katzen zu befreien, damit diese nicht mehr in Gefangenschaft
+      leben m\xFCssen.\n||\n..... damit sie frei sind."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15223536265306112
+    m_Localized: Das... ist ein ehrenweres Ziel.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15223661746298880
+    m_Localized: "Genau!\n||\nUnd mit dir und deiner Freundin k\xF6nnten wir das
+      und noch mehr erreichen!\n||\nWas sagst du?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15223985659813888
+    m_Localized: "Moment, ich muss Ray fragen.\n||\nRay, was sagst du?\n||\nSollen
+      wir uns anschlie\xDFen?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15275663591317504
+    m_Localized: 'Luna!
+
+      Warte bitte!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15275797653856256
+    m_Localized: Miau~
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

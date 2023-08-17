@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3aac54705bfd34db7ab111ab6e5d6c, type: 3}
+  m_Name: Moon - Ending
+  m_EditorClassIdentifier: 
+  ID: Moon - Ending
+  Contents:
+  - {fileID: 11400000, guid: bb8da944304069d4c87f651a3862b4e5, type: 2}
+  - {fileID: 11400000, guid: 082d15c0c34f6034e87dfa4290a7aff9, type: 2}
+  - {fileID: 11400000, guid: 87cda50c8d819904b9a89736b473f609, type: 2}
+  - {fileID: 11400000, guid: 790c3652000c4904da410e59850d217c, type: 2}
+  - {fileID: 11400000, guid: 7b2bf2bff79d8724491c2e0c69597d96, type: 2}
+  - {fileID: 11400000, guid: 4151a97ee59f3d448aab88b8e6ba2b84, type: 2}
+  - {fileID: 11400000, guid: 15e3a361db6a9e949b6727a49018aef9, type: 2}
+  - {fileID: 11400000, guid: 261d00a0cc442974f80cc9e85f0fcb29, type: 2}
+  - {fileID: 11400000, guid: 4a3d6505673e6c241961b4bcb83cc416, type: 2}
+  - {fileID: 11400000, guid: de3c20f19d599f6408fcd1422e6cf4f7, type: 2}
+  - {fileID: 11400000, guid: 668c77b03df25f34b9ad14cfbdfaa238, type: 2}
+  - {fileID: 11400000, guid: f5d8435ada246434a875738280eb9af6, type: 2}
+  - {fileID: 11400000, guid: 8c50ca223de4e904383e0aea328f50e2, type: 2}
+  Repeat: 1
+  SummaryDialog: {fileID: 0}

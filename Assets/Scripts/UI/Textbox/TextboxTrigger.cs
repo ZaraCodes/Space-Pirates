@@ -53,6 +53,11 @@ public class TextboxTrigger : MonoBehaviour
         }
         else
         {
+            if (GameManager.Instance.Nova != null)
+            {
+                GameManager.Instance.Nova.Animator.SetFloat("velocityX", 0);
+                GameManager.Instance.Nova.Animator.SetFloat("velocityY", 0);
+            }
             GameManager.Instance.DialogOverlay.LoadDialog(dialog, OnDialogFinished);
         }
     }

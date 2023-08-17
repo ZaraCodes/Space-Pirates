@@ -576,6 +576,118 @@ MonoBehaviour:
       back somehow?
     m_Metadata:
       m_Items: []
+  - m_Id: 15221304287404032
+    m_Localized: What... what is this place?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221381840084992
+    m_Localized: Oh.. YOU?? How did you find your way here?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221453915004928
+    m_Localized: I never give up.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221749403721728
+    m_Localized: 'Oh yeah.
+
+      ||
+
+      You have my cat.
+
+      ||
+
+      Give
+      her back to me!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221664259350528
+    m_Localized: You seem to be really stubborn...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221774120755200
+    m_Localized: 'You are welcome to try, but you have no chance against me!
+
+      ||
+
+      If
+      you get in my way, I will destroy you harder than your ship!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221790755364864
+    m_Localized: ".... uh\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15221805166993408
+    m_Localized: 'But I have an offer for you and your girlfriend!
+
+      ||
+
+      Join
+      me on my mission to save the cats of the universe, and you''ll have your cat
+      back!
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15222966867566592
+    m_Localized: What?!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15223097885040640
+    m_Localized: 'We could be a great team, Nova.
+
+      ||
+
+      Together we can
+      achieve to free the cats, so they don''t have to live in imprisonment anymore.
+
+      ||
+
+      .....
+      so that... they can be free.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15223536265306112
+    m_Localized: That's... an honorable goal.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15223661746298880
+    m_Localized: 'Exactly!
+
+      ||
+
+      And with you and your girlfriend, we
+      can do this and much more!
+
+      ||
+
+      What do you say?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15223985659813888
+    m_Localized: 'One moment please, I have to ask Ray.
+
+      ||
+
+      Ray, what
+      do you say?
+
+      ||
+
+      Should we join?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15275663591317504
+    m_Localized: 'Luna!
+
+      Please wait!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15275797653856256
+    m_Localized: Meow~
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

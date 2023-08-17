@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class GravityVisualizer : MonoBehaviour
 {
@@ -24,14 +25,8 @@ public class GravityVisualizer : MonoBehaviour
     {
         if (calcucaleDots)
         {
-            //float c1 = 0.04f;
-            //float c2 = 150f;
-            //float m = 150f;
-
             int stepSize = 5;
 
-            // Vector3[] verts = new Vector3[(limit * 2) / stepSize + 1];
-            // maybe later
             int loopBreakerCounter = 0;
             yield return null;
             for (int i = -limit + (int)transform.position.x; i <= limit + (int)transform.position.x; i += stepSize)
@@ -41,11 +36,7 @@ public class GravityVisualizer : MonoBehaviour
                     GameObject dot = Instantiate(gravityDot);
 
                     float posZ = gravityReceiver.CalculateForce(new(i, j)).magnitude * 40;
-
-                    // float result = 1 / (1 + Mathf.Exp(-c1 * (posZ - c2))) * m + 1 / (1 + Mathf.Exp(-c1 * (-posZ + c2))) * posZ;
-                    //float result = Mathf.Log(posZ * c1 + 1) * m;
                     float result = curve.Evaluate(posZ);
-
 
                     dot.transform.position = new(i, j, result);
                     dot.transform.SetParent(dotsContainer.transform);
@@ -77,6 +68,11 @@ public class GravityVisualizer : MonoBehaviour
 
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name == "Intro")
+        {
+            Destroy(instance);
+            instance = null;
+        }
         GameManager.Instance.PauseMenuHandler.BlackFade.gameObject.SetActive(true);
 
         if (instance == null)
