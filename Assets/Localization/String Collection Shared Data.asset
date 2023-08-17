@@ -155,6 +155,18 @@ MonoBehaviour:
     m_Key: Loading
     m_Metadata:
       m_Items: []
+  - m_Id: 20657595762188288
+    m_Key: Move Prompt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20679143743135744
+    m_Key: Aim Prompt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20679320310751232
+    m_Key: Shoot Prompt
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -160,6 +160,18 @@ MonoBehaviour:
     m_Localized: loading...
     m_Metadata:
       m_Items: []
+  - m_Id: 20657595762188288
+    m_Localized: Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20679143743135744
+    m_Localized: Aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20679320310751232
+    m_Localized: Shoot
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

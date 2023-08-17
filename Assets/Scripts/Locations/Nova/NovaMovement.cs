@@ -11,6 +11,9 @@ public class NovaMovement : MonoBehaviour
     /// <summary>Input System Class/// </summary>
     private SpacePiratesControls controls;
 
+    /// <summary>Readonly property to read the controls variable of nova</summary>
+    public SpacePiratesControls Controls { get { return controls; } }
+
     /// <summary>Caches the movement input for physics calculation</summary>
     public Vector2 MoveInput { get; set; }
 

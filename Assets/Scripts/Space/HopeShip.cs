@@ -291,6 +291,7 @@ public class HopeShip : MonoBehaviour
             Vector3 shipPos = cam.WorldToScreenPoint(shipTransform.position);
             lookDirection = new Vector3(shipInput.x, shipInput.y) - shipPos;
         }
+        else lookDirection = shipInput;
         if (lookDirection != Vector2.zero)
             shipTransform.up = lookDirection;
 
