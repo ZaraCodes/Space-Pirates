@@ -10,10 +10,8 @@ public class NovaMovement : MonoBehaviour
     #region Fields
     /// <summary>Input System Class/// </summary>
     private SpacePiratesControls controls;
-
     /// <summary>Readonly property to read the controls variable of nova</summary>
     public SpacePiratesControls Controls { get { return controls; } }
-
     /// <summary>Caches the movement input for physics calculation</summary>
     public Vector2 MoveInput { get; set; }
 
@@ -22,82 +20,104 @@ public class NovaMovement : MonoBehaviour
 
     /// <summary>The max speed at which Nove moves</summary>
     [SerializeField] private float movementSpeed;
-
     /// <summary>The max speed at which Nove moves</summary>
     public float MovementSpeed { get { return movementSpeed; } }
 
-    [SerializeField] private InteractionPrompt interactionPrompt;
+    /// <summary>Cache of the interaction prompt that is used for interactable objects</summary>
+    private InteractionPrompt interactionPrompt;
+    /// <summary>The time it takes for Nova to reach the lower floor from a jump</summary>
     [SerializeField] private float fallTime;
+    /// <summary>The time it takes for Nova to reach the lower floor from a jump</summary>
     public float FallTime { get { return fallTime; } }
+    /// <summary>Timer that counts down from the fall time during a fall</summary>
     private float fallTimer;
+    /// <summary>Timer that counts down from the fall time during a fall</summary>
     public float FallTimer { get { return fallTimer; } }
-
+    /// <summary>if true, nova will switch floors</summary>
     private bool switchFloor;
-
+    /// <summary>The direction nova will move in during a jump</summary>
     private Vector2 jumpDirection;
+    /// <summary>The last floor transition trigger Nova used</summary>
     public FloorTransition TransitionTrigger { get; set; }
-
+    /// <summary>Influences Nova's movement direction. This is primarily used for limiting their movement while interacting with a box</summary>
     public Vector2 MovementConstraint { get; set; }
-
+    /// <summary>Indicates if Nove is currently under the influence of 0G. If true, they will only be able to move by firing the weapon</summary>
     public bool ZeroGMovement { get; set; }
-
+    /// <summary>Indicates if Nova currently gets moved by a cutscene</summary>
     public bool CutsceneMovement { get; set; }
-
+    /// <summary>The respawn position in case Nova is in an invalid position (only used in the island scene)</summary>
     public Vector3 RespawnPosition { get; set; }
 
     /// <summary>Reference to Nova's rigidbody2D</summary>
     [Header("References"), SerializeField] private Rigidbody2D rb;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    /// <summary>Reference to Nova's Sprite Renderer</summary>
     [SerializeField] private SpriteRenderer animationSprites;
+    /// <summary>Reference to Nova's Animator</summary>
     [SerializeField] private Animator animator;
+    /// <summary>Grants reading access to Nova's Animator</summary>
     public Animator Animator { get { return animator; } }
+    /// <summary>Transform for spawning bullets</summary>
     [SerializeField] private Transform ballSpawnPosition;
+    /// <summary>Reference to the main camera</summary>
     [SerializeField] private Camera mainCamera;
+    /// <summary>Reference to the bullet container of the scene. When Nova goes through a door, all existing bullets that are a child of this object get deleted</summary>
     private Transform bulletContainer;
+    /// <summary>Reference to the Canvas of the current scene</summary>
     [SerializeField] private Canvas mainCanvas;
 
+    /// <summary>Reference to Nova's wall collider</summary>
     [SerializeField] private GameObject wallCollider;
+    /// <summary>Reference to Nova's damage collider</summary>
     [SerializeField] private GameObject damageCollider;
+    /// <summary>Reference to Nova's button trigger, which allows</summary>
     [SerializeField] private GameObject buttonTrigger;
 
+    /// <summary>Reference to the movable object Nova is currently standing on</summary>
     [HideInInspector] public Rigidbody2D MovableObject;
 
+    /// <summary>Reference to the collision manager that disables collisions of first floor barriers to make a smoother jump possible.</summary>
     [SerializeField] private CollisionManager collisionManager;
-
+    /// <summary>Reference to the ground tilemap. Used in the islands level to see if Nova is in an invalid tile</summary>
     [SerializeField] private Tilemap groundTilemap;
 
+    /// <summary>Prefab of a charged bullet that can bounce off of walls</summary>
     [Header("Prefabs"), SerializeField] private GameObject chargedBulletPrefab;
+    /// <summary>Prefab of a small bullet</summary>
     [SerializeField] private GameObject smallBulletPrefab;
+    /// <summary>Prefab of the interaction prompt that gets displayed for interactions</summary>
     [SerializeField] private GameObject interacttionPromptPrefab;
 
+    /// <summary>Reference to the charging audio source</summary>
     [Header("Audio Assets"), SerializeField] private AudioSource chargeAudioSource;
-
+    /// <summary>Timer that keeps track of the time the attack button has been held</summary>
     private float chargeAttackTimer;
-
+    /// <summary>The direction Nova will use to shoot a bullet</summary>
     private Vector2 attackDirection;
-
+    /// <summary>Input value the game gets to make calculation for the attack direction</summary>
     private Vector2 initialAttackDirectionInput;
 
+    /// <summary>List of interactable triggers Nova currently is in</summary>
     private List<InteractableTrigger> interactableTriggers;
-
+    /// <summary>The interaction that will be / currently gets performed</summary>
     private InteractableTrigger performedInteraction;
-
+    /// <summary>The current falling speed</summary>
     private float fallingSpeed;
-
+    /// <summary>Tracks if Nova is currently falling</summary>
     public bool DoFall { get; set; }
-
+    /// <summary>The sorting offset gets added on the normal sprite sorting index and is used when standing on top of movable chests</summary>
     private int sortingOffset;
-
+    /// <summary>Area of the current movable box Nova stands on top of</summary>
     private BoxCollider2D firstFloorMovableBox;
 
+    /// <summary>Tracks if the black fade currently is fading</summary>
     public bool Fading;
-
+    /// <summary>Cache of the rigidbody velocity</summary>
     public Vector2 RbVelBuffer { get; set; }
     #endregion
 
     #region Methods
     /// <summary>Caches the movement input for Nova</summary>
-    /// <param name="ctx"></param>
+    /// <param name="ctx">Callback context of the input action</param>
     private void ReadMovementInput(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
@@ -107,7 +127,7 @@ public class NovaMovement : MonoBehaviour
     }
 
     /// <summary>Does a ranged attack depending on how long the button has been pressed</summary>
-    /// <param name="ctx"></param>
+    /// <param name="ctx">Callback context of the input action</param>
     private void DoRangedAttack(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
@@ -133,6 +153,8 @@ public class NovaMovement : MonoBehaviour
         }
     }
 
+    /// <summary>Spawns a bullet and sets its velocity and floor</summary>
+    /// <param name="bulletPrefab">The prefab that gets used to spawn a specific type of bullet</param>
     private void SpawnBullet(GameObject bulletPrefab)
     {
         var bulletGO = Instantiate(bulletPrefab);
@@ -149,6 +171,8 @@ public class NovaMovement : MonoBehaviour
         if (ZeroGMovement) MoveInput = attackDirection.normalized;
     }
 
+    /// <summary>Sets the attack direction for nova</summary>
+    /// <param name="ctx">Callback context of the input action</param>
     private void SetAttackDirection(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
@@ -161,6 +185,8 @@ public class NovaMovement : MonoBehaviour
         }
     }
 
+    /// <summary>Performs an interaction</summary>
+    /// <param name="ctx">Callback context of the input action</param>
     private void DoInteract(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
@@ -191,6 +217,8 @@ public class NovaMovement : MonoBehaviour
         }
     }
 
+    /// <summary>Switches to the given floor. In case Nova jumps into an invalid tile, they respawn at their last valid position </summary>
+    /// <param name="groundFloor">true makes Nova switch to the ground floor, false to the top floor</param>
     public void SwitchFloor(bool groundFloor)
     {
         if (groundFloor)
@@ -201,17 +229,20 @@ public class NovaMovement : MonoBehaviour
             }
             else
             {
-                spriteRenderer.color = Color.white;
                 SetColliderLayers(3, 7, 8, 6);
             }
         }
         else
         {
-            spriteRenderer.color = Color.gray;
             SetColliderLayers(13, 10, 11, 12);
         }
     }
 
+    /// <summary>Sets the collision layers for the floor Nova is now in</summary>
+    /// <param name="wall">Layer ID for walls</param>
+    /// <param name="damage">Layer ID for damage objects</param>
+    /// <param name="button">Layer ID for button interactions</param>
+    /// <param name="bullets">Layer ID for bullets</param>
     private void SetColliderLayers(int wall, int damage, int button, int bullets)
     {
         wallCollider.layer = wall;
@@ -220,12 +251,13 @@ public class NovaMovement : MonoBehaviour
         ballSpawnPosition.gameObject.layer = bullets;
     }
 
+    /// <summary>Starts a jump</summary>
     public void BeginFall()
     {
         if (MovableObject != null) sortingOffset = 100;
-        //if (rb.velocity.y > 0) sortingOffset = 0;
+
         DoFall = true;
-        // yPosAtBeginningOfFall = transform.position.y;
+
         fallingSpeed = 8f;
         fallTimer = fallTime;
         jumpDirection = MoveInput;
@@ -233,6 +265,8 @@ public class NovaMovement : MonoBehaviour
         if (collisionManager != null) collisionManager.DisableCollisions();
     }
 
+    /// <summary>Stops a fall</summary>
+    /// <param name="topLanding">true if Nova lands in an area specified as a first floor, false if they land on the ground floor</param>
     public void StopFall(bool topLanding = false)
     {
         if (topLanding)
@@ -240,13 +274,12 @@ public class NovaMovement : MonoBehaviour
             switchFloor = false;
             var newFallTimer = fallTimer - fallTime / 4f;
             fallTimer = newFallTimer > 0 ? newFallTimer : fallTimer;
-            //Debug.Log(fallTimer);
         }
         else
         {
             if (collisionManager != null) collisionManager.EnableCollisions();
 
-            if (TransitionTrigger != null)
+            if (TransitionTrigger != null) // reenables the transition trigger that got used to jump off
             {
                 TransitionTrigger.TriggerEnabled = true;
                 TransitionTrigger = null;
@@ -263,35 +296,35 @@ public class NovaMovement : MonoBehaviour
         }
     }
 
+    /// <summary>Sets the 0G state</summary>
+    /// <param name="zeroG">True if Nova will use the 0G state, false if not</param>
     public void ToggleZeroG(bool zeroG)
     {
         ZeroGMovement = zeroG;
     }
-
+    
+    /// <summary>Tests if Nova is currently on valid ground</summary>
+    /// <returns>True if Nova stands on ground, false if not</returns>
     public bool IsOnGround()
     {
         if (groundTilemap != null && !groundTilemap.HasTile(new Vector3Int((int)transform.position.x, (int)transform.position.y))) return false;
         else return true;
     }
 
+    /// <summary>Resets Nova's position to the last valid recorded position</summary>
     public void Respawn()
     {
         transform.position = RespawnPosition;
     }
 
+    /// <summary>Shows the interaction prompt of the current available interaction</summary>
+    /// <param name="interactableTrigger">The interactable trigger that contains the information needed to display the prompt, including the text and position it should get displayed at</param>
     public void ShowInteractionPrompt(InteractableTrigger interactableTrigger)
     {
-        //if (collision.gameObject.TryGetComponent(out InteractableTrigger interactableTrigger))
-        //{
-
-        //print((collision.transform.position - transform.position).magnitude);
-        //if ((collision.transform.position - transform.position).magnitude > 3f) return;
-
         if (!interactableTriggers.Contains(interactableTrigger))
         {
             interactableTriggers.Add(interactableTrigger);
             performedInteraction = interactableTriggers[0];
-            //performedInteraction = interactableTrigger;
 
             if (interactionPrompt == null)
             {
@@ -302,7 +335,6 @@ public class NovaMovement : MonoBehaviour
             }
             interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings, performedInteraction.gameObject.transform);
         }
-        //}
     }
     #endregion
 
@@ -351,7 +383,6 @@ public class NovaMovement : MonoBehaviour
                 chargeAttackTimer -= Time.deltaTime;
                 animator.SetFloat("chargeTimer", chargeAttackTimer);
             }
-            //spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y * 16) + sortingOffset - 1;
             if (MovableObject != null && MovableObject.CompareTag("Movable Box"))
                 animationSprites.sortingOrder = MovableObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
             else
@@ -452,8 +483,6 @@ public class NovaMovement : MonoBehaviour
             StopFall();
             firstFloorMovableBox = collision.gameObject.GetComponent<BoxCollider2D>();
             MovableObject = firstFloorMovableBox.GetComponentInParent<Rigidbody2D>();
-
-            //sortingOffset = 3;
         }
     }
 
@@ -479,7 +508,8 @@ public class NovaMovement : MonoBehaviour
             MovableObject = null;
         }
     }
-    /// <summary>This helps make sure that I set up the character in new scenes correctly lol</summary>
+
+    /// <summary>This helps make sure that I set up the character in new scenes correctly. It executes if values in the inspector change.</summary>
     private void OnValidate()
     {
         if (gameObject.scene.name != null && gameObject.scene.name != gameObject.name)

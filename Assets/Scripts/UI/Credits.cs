@@ -18,7 +18,7 @@ public class Credits : MonoBehaviour
     /// <summary>The scrolling speed of the credits</summary>
     [SerializeField] private float scrollSpeed;
 
-    private Vector3 creditsStartPosition = Vector3.zero;
+    private bool scrolling;
     #endregion
 
     #region Methods
@@ -27,20 +27,35 @@ public class Credits : MonoBehaviour
     private IEnumerator ScrollCredits()
     {
         yield return new WaitForSeconds(waitDuration);
-
-        while (true)
+        scrolling = true;
+        while (scrolling)
         {
             yield return null;
             scrollObject.transform.position = new(scrollObject.transform.position.x, scrollObject.transform.position.y + Time.deltaTime * scrollSpeed);
         }
     }
+
+    /// <summary>
+    /// Resets the credits position
+    /// </summary>
+    public void ResetPosition()
+    {
+        scrollObject.transform.localPosition = Vector3.zero;
+    }
+
+    /// <summary>
+    /// Stops the credits movement 
+    /// </summary>
+    public void StopCredits()
+    {
+        scrolling = false;
+    }
+
     #endregion
 
     #region Unity Stuff
-    private void Start()
+    private void OnEnable()
     {
-        scrollObject.transform.localPosition = Vector3.zero;
-
         if (!showEndGameText) endingText.color = new Color(0, 0, 0, 0);
         StartCoroutine(ScrollCredits());
     }

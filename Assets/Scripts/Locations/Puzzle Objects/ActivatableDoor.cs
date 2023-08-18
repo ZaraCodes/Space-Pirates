@@ -4,25 +4,34 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// A door transports Nova from one door to another, kind of like a teleporter. When it gets used, it can invoke an event.
+/// </summary>
 public class ActivatableDoor : ActivatableObject
 {
     #region Fields
-    [Header("Door")]
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    /// <summary>Reference to the door's sprite renderer</summary>
+    [Header("Door"), SerializeField] private SpriteRenderer spriteRenderer;
+    /// <summary>Reference to the active sprite</summary>
     [SerializeField] private Sprite activeSprite;
+    /// <summary>Reference to the inactive sprite</summary>
     [SerializeField] private Sprite inactiveSprite;
+    /// <summary>Refernce to the box interaction trigger</summary>
     [SerializeField] private BoxCollider2D trigger;
+    /// <summary>Refernce to the box interaction trigger</summary>
     public BoxCollider2D Trigger { get { return trigger; } set {  trigger = value; } }
 
+    /// <summary>Unity Event that gets triggered when Nova uses a door</summary>
     public UnityEvent OnDoorUsed;
-
-    [Space]
+    
+    /// <summary>Parent Object of the flying bullets. They get removed if Nova uses a door</summary>
     [Header("Must Have References"), SerializeField] private Transform BulletsParent;
+    /// <summary>Reference to the connected door Nova will get teleported to</summary>
     [SerializeField] private ActivatableDoor connectedDoor;
-    // public ActivatableDoor ConnectedDoor { get { return connectedDoor; } set { connectedDoor = value; } }
     #endregion
 
     #region Methods
+    /// <summary>Toggles the door on or off</summary>
     protected override void Toggle()
     {
         if (invertState)
@@ -35,7 +44,6 @@ public class ActivatableDoor : ActivatableObject
             spriteRenderer.sprite = State ? activeSprite : inactiveSprite;
             trigger.enabled = State;
         }
-        // Debug.Log($"name: {name} State: {false}");
     }
 
     /// <summary>Teleports the player and removes all bullets</summary>
@@ -54,15 +62,18 @@ public class ActivatableDoor : ActivatableObject
 
     }
 
+    /// <summary>Coroutine that teleports Nova</summary>
+    /// <param name="playerTransform">Transform of Nova</param>
+    /// <param name="onFadeInDone">Unity Event that gets triggered once the black fade completely faded in</param>
+    /// <returns></returns>
     private IEnumerator TeleportPlayer(Transform playerTransform, UnityEvent onFadeInDone)
     {
         var delay = .2f;
-        //yield return new WaitForSeconds(delay);
 
         playerTransform.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, playerTransform.position.z);
         ChargedBullet.playDestroySoundStatic = false;
 
-        OnDoorUsed?.Invoke();
+        OnDoorUsed?.Invoke(); // triggers the door event, if there is one
 
         foreach (Transform t in BulletsParent)
         {
@@ -95,11 +106,11 @@ public class ActivatableDoor : ActivatableObject
         }
     }
 
+    /// <summary>This helps make sure that I set up the door in new scenes correctly. It executes if values in the inspector change.</summary>
     private void OnValidate()
     {
         if (gameObject.scene.name != null)
         {
-
             if (connectedDoor == null)
             {
                 Debug.LogWarning($"GameObject {name}: Connected door is null!");

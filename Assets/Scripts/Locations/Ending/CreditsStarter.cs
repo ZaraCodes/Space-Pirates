@@ -10,7 +10,9 @@ public class CreditsStarter : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject credits;
 
-    /// <summary>Reference to the scrolling background</summary>
+    /// <summary>
+    /// Reference to the scrolling background
+    /// </summary>
     [SerializeField] private GameObject scrollBackground;
 
     /// <summary>
@@ -18,7 +20,12 @@ public class CreditsStarter : MonoBehaviour
     /// </summary>
     public void BeginCredits()
     {
+        ProgressionManager.Instance.ResetProgress();
+
         UnityEvent onFadeInFinished = new();
+        var fadeTime = GameManager.Instance.PauseMenuHandler.FadeTime;
+        GameManager.Instance.PauseMenuHandler.FadeTime = 1f;
+
         onFadeInFinished.AddListener(() =>
         {
             GameManager.Instance.Nova.gameObject.SetActive(false);
@@ -29,6 +36,7 @@ public class CreditsStarter : MonoBehaviour
             onFadeOutFinished.AddListener(() =>
             {
                 credits.SetActive(true);
+                GameManager.Instance.PauseMenuHandler.FadeTime = fadeTime;
             });
             StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeOut(onFadeOutFinished));
         });

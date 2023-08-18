@@ -2546,9 +2546,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1449891710}
     m_Modifications:
+    - target: {fileID: 2123248625946519029, guid: b14008aaa8635a740857a7507787a8a3, type: 3}
+      propertyPath: meowMusic
+      value: 
+      objectReference: {fileID: 1130821267}
     - target: {fileID: 2123248626465934376, guid: b14008aaa8635a740857a7507787a8a3, type: 3}
       propertyPath: waitDuration
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2123248626465934377, guid: b14008aaa8635a740857a7507787a8a3, type: 3}
       propertyPath: m_Pivot.x

@@ -2,23 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// An activatable barrier that blocks Nova and Bullets from going through when it's inactive (closed)
+/// </summary>
 public class Barrier : ActivatableObject
 {
     #region Fields
-
-    [Header("Barrier")]
-    [SerializeField] private SpriteRenderer spriteBounds;
+    /// <summary>Reference to the barrier's sprite renderer</summary>
+    [Header("Barrier"), SerializeField] private SpriteRenderer spriteBounds;
+    /// <summary>The barrier's closed sprite </summary>
     [SerializeField] private SpriteRenderer spriteClosed;
+    /// <summary>The barrier's open sprite</summary>
     [SerializeField] private SpriteRenderer spriteOpen;
-    [Space]
-    [SerializeField] private BoxCollider2D playerCollider;
+    /// <summary>The barrier's collider for Nova</summary>
+    [Space, SerializeField] private BoxCollider2D playerCollider;
+    /// <summary>The barrier's collider for bullets</summary>
     [SerializeField] private BoxCollider2D ballCollider;
 
-
+    /// <summary>Bool that defines if the barrier has a horizontal orientation or a vertical one</summary>
     [SerializeField] private bool horizontal;
     #endregion
 
     #region Methods
+    /// <summary>Toggle the barrier on or off</summary>
     protected override void Toggle()
     {
         if ((!invertState && State) || (invertState && !State))
@@ -44,6 +50,7 @@ public class Barrier : ActivatableObject
         }
     }
     #endregion
+
     #region Unity Stuff
 
     private void Start()
