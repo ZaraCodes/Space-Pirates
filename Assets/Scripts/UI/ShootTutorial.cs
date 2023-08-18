@@ -9,10 +9,14 @@ public class ShootTutorial : MonoBehaviour
     [SerializeField] private InteractionPrompt aimPrompt;
     /// <summary>Reference to the shoot prompt</summary>
     [SerializeField] private InteractionPrompt shootPrompt;
+    /// <summary>Reference to the charge prompt</summary>
+    [SerializeField] private InteractionPrompt chargePrompt;
     /// <summary>the localized text for the aim prompt</summary>
     [SerializeField] private LocalizedString aimText;
     /// <summary>the localized text for the shoot prompt</summary>
     [SerializeField] private LocalizedString shootText;
+    /// <summary>the localized text for the charge prompt</summary>
+    [SerializeField] private LocalizedString chargeText;
 
     /// <summary>Cached reference to the controls for nova</summary>
     private SpacePiratesControls controls;
@@ -22,9 +26,12 @@ public class ShootTutorial : MonoBehaviour
     {
         if (!ProgressionManager.Instance.Flags.Contains(EProgressionFlag.RepairKit1))
         {
+            controls = GameManager.Instance.Nova.Controls;
+
             gameObject.SetActive(true);
             aimPrompt.EnablePrompt(aimText, controls.Nova.Aim.bindings);
             shootPrompt.EnablePrompt(shootText, controls.Nova.RangedAttack.bindings);
+            chargePrompt.EnablePrompt(chargeText, controls.Nova.RangedAttack.bindings);
         }
     }
 
@@ -33,11 +40,4 @@ public class ShootTutorial : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
-    #region Unity Stuff
-    private void Start()
-    {
-        controls = GameManager.Instance.Nova.Controls;
-    }
-    #endregion
 }

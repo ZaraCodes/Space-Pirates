@@ -167,6 +167,10 @@ MonoBehaviour:
     m_Key: Shoot Prompt
     m_Metadata:
       m_Items: []
+  - m_Id: 21009803171176448
+    m_Key: Charge Prompt
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

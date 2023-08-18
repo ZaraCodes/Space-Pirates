@@ -172,6 +172,10 @@ MonoBehaviour:
     m_Localized: Shoot
     m_Metadata:
       m_Items: []
+  - m_Id: 21009803171176448
+    m_Localized: (hold) Charge
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -370,6 +370,8 @@ public class NovaMovement : MonoBehaviour
 
             if (ZeroGMovement)
             {
+                animator.SetFloat("velocityX", 0f);
+                animator.SetFloat("velocityY", 0f);
                 rb.velocity *= .99f;
                 if (MoveInput != Vector2.zero)
                 {

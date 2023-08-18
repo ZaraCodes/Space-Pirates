@@ -464,7 +464,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14420734232338432
-    m_Localized: Nya
+    m_Localized: Okie.
     m_Metadata:
       m_Items: []
   - m_Id: 14505893942108160
@@ -505,7 +505,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14769127165108224
-    m_Localized: 'Oh nyo! You''re the infamous Captain Meow! D:'
+    m_Localized: 'Oh no! You''re the infamous Captain Meow! D:'
     m_Metadata:
       m_Items: []
   - m_Id: 14769140909842432
@@ -544,8 +544,8 @@ MonoBehaviour:
 
       ||
 
-      We have to emerency at this
-      space station.'
+      We have to emerency land
+      at this space station.'
     m_Metadata:
       m_Items: []
   - m_Id: 14884647239524352
