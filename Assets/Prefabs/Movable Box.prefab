@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 6104969952786479544}
   m_Layer: 3
   m_Name: Movable Box
-  m_TagString: Untagged
+  m_TagString: Movable Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c76ca7d0c3781439f4f668ecccaf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showText: 1
   interactText:
     m_TableReference:
       m_TableCollectionName: GUID:e835a47ffdb87cc4dace8dd38f583c40
@@ -530,6 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c76ca7d0c3781439f4f668ecccaf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showText: 1
   interactText:
     m_TableReference:
       m_TableCollectionName: GUID:e835a47ffdb87cc4dace8dd38f583c40

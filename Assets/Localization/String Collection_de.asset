@@ -172,6 +172,46 @@ MonoBehaviour:
     m_Localized: (halten) Aufladen
     m_Metadata:
       m_Items: []
+  - m_Id: 21090354783690752
+    m_Localized: Ende
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21090417886994432
+    m_Localized: Game Design, Programmierung, Story
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21094941464829952
+    m_Localized: ZaraStocher
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21095097375498240
+    m_Localized: Grafik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21099131264147456
+    m_Localized: Charakterportraits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21097043972956160
+    m_Localized: Charakter-Sprites (Nova)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21106807926792192
+    m_Localized: Externe Assets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21120255138045952
+    m_Localized: Musik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21122210841337856
+    m_Localized: Soundeffekte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21128060511297536
+    m_Localized: Besonderen Dank
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

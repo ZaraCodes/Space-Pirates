@@ -77,7 +77,7 @@ public class ChargedBullet : MonoBehaviour
     {
         if (GameManager.Instance.IsPlaying)
         {
-            spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y) + 1;
+            spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y * 16) + 1;
         }
     }
 

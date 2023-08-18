@@ -176,6 +176,46 @@ MonoBehaviour:
     m_Localized: (hold) Charge
     m_Metadata:
       m_Items: []
+  - m_Id: 21090354783690752
+    m_Localized: The End
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21090417886994432
+    m_Localized: Game Design, Programming, Story
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21094941464829952
+    m_Localized: ZaraStocher
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21095097375498240
+    m_Localized: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21099131264147456
+    m_Localized: Character Portraits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21097043972956160
+    m_Localized: Character Sprites (Nova)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21106807926792192
+    m_Localized: External Assets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21120255138045952
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21122210841337856
+    m_Localized: Sound Effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21128060511297536
+    m_Localized: Special Thanks
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -222,7 +222,8 @@ public class NovaMovement : MonoBehaviour
 
     public void BeginFall()
     {
-        if (rb.velocity.y > 0) sortingOffset = 0;
+        if (MovableObject != null) sortingOffset = 100;
+        //if (rb.velocity.y > 0) sortingOffset = 0;
         DoFall = true;
         // yPosAtBeginningOfFall = transform.position.y;
         fallingSpeed = 8f;
@@ -350,8 +351,11 @@ public class NovaMovement : MonoBehaviour
                 chargeAttackTimer -= Time.deltaTime;
                 animator.SetFloat("chargeTimer", chargeAttackTimer);
             }
-            spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y) + sortingOffset - 1;
-            animationSprites.sortingOrder = -Mathf.RoundToInt(transform.position.y) + sortingOffset;
+            //spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y * 16) + sortingOffset - 1;
+            if (MovableObject != null && MovableObject.CompareTag("Movable Box"))
+                animationSprites.sortingOrder = MovableObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
+            else
+                animationSprites.sortingOrder = -Mathf.RoundToInt(transform.position.y * 16) + sortingOffset;
         }
     }
 
@@ -449,7 +453,7 @@ public class NovaMovement : MonoBehaviour
             firstFloorMovableBox = collision.gameObject.GetComponent<BoxCollider2D>();
             MovableObject = firstFloorMovableBox.GetComponentInParent<Rigidbody2D>();
 
-            sortingOffset = 3;
+            //sortingOffset = 3;
         }
     }
 
@@ -471,8 +475,8 @@ public class NovaMovement : MonoBehaviour
         else if (collision.gameObject.CompareTag("1st Floor") && firstFloorMovableBox != null)
         {
             firstFloorMovableBox.enabled = false;
-            MovableObject = null;
             BeginFall();
+            MovableObject = null;
         }
     }
     /// <summary>This helps make sure that I set up the character in new scenes correctly lol</summary>

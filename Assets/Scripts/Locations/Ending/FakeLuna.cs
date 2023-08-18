@@ -24,6 +24,17 @@ public class FakeLuna : MonoBehaviour
     /// Reference to the captain meow confrontation dialog
     /// </summary>
     [SerializeField] private TextboxTrigger captainMeowDialog;
+
+    /// <summary>
+    /// Reference to the audio source that plays the music for captain meow
+    /// </summary>
+    [SerializeField] private AudioSource captainMeowMusic;
+
+    /// <summary>
+    /// Reference to the audio source that plays the music for the moon
+    /// </summary>
+    [SerializeField] private AudioSource moonMusic;
+
     #endregion
 
     #region Methods
@@ -42,9 +53,10 @@ public class FakeLuna : MonoBehaviour
     {
         animator.SetTrigger("Teleport");
         StartCoroutine(DelayCaptainMeowDialog());
+        StartCoroutine(CrossFadeMusic());
     }
 
-    /// <summary>Delays the final dialog until after the animation has finished</summary>
+    /// <summary>Coroutine that delays the final dialog until after the animation has finished</summary>
     /// <returns></returns>
     public IEnumerator DelayCaptainMeowDialog()
     {
@@ -53,6 +65,26 @@ public class FakeLuna : MonoBehaviour
         yield return new WaitForSeconds(2);
         GameManager.Instance.IsSceneIntroPlaying = false;
         captainMeowDialog.LoadDialog();
+    }
+
+    /// <summary>Coroutine that cross fades the music on the moon</summary>
+    /// <returns></returns>
+    private IEnumerator CrossFadeMusic()
+    {
+        captainMeowMusic.Play();
+        var limit = .4f;
+        var timer = 4f;
+        var maxTime = timer;
+
+        while (timer > 0)
+        {
+            yield return null;
+            timer -= Time.deltaTime;
+            captainMeowMusic.volume = (1 - (timer / maxTime)) * limit;
+            moonMusic.volume = (timer / maxTime) * limit;
+        }
+        yield return null;
+        moonMusic.Stop();
     }
     #endregion
 

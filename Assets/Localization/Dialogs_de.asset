@@ -583,6 +583,14 @@ MonoBehaviour:
     m_Localized: Miau~
     m_Metadata:
       m_Items: []
+  - m_Id: 15586612516855808
+    m_Localized: Bei der Entwicklung dieses Spiels sind keine Katzen zu Schaden gekommen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15588437429166080
+    m_Localized: "Danke f\xFCr's Spielen <3"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

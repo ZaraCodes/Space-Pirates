@@ -13,6 +13,7 @@ TagManager:
   - Planet Surface
   - Orbit Trigger
   - Sun Trigger
+  - Movable Box
   layers:
   - Default
   - TransparentFX

@@ -78007,10 +78007,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2767529181771509621, guid: 063aa3466098f9d46a53291b8afc8da9, type: 3}
-      propertyPath: playIntro
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2767529181771509621, guid: 063aa3466098f9d46a53291b8afc8da9, type: 3}
       propertyPath: musicSource
       value: 
       objectReference: {fileID: 172102100}

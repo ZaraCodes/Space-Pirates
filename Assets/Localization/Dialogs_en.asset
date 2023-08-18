@@ -688,6 +688,14 @@ MonoBehaviour:
     m_Localized: Meow~
     m_Metadata:
       m_Items: []
+  - m_Id: 15586612516855808
+    m_Localized: No cats were harmed in the development of this game.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15588437429166080
+    m_Localized: Thanks for playing <3
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

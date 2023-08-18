@@ -49,7 +49,7 @@ public class Barrier : ActivatableObject
     private void Start()
     {
         Toggle();
-        spriteClosed.sortingOrder = -Mathf.RoundToInt(spriteBounds.transform.position.y /*- 1*/- 1);
+        spriteClosed.sortingOrder = -Mathf.RoundToInt(spriteBounds.transform.position.y * 16) + 8;
     }
 
 #if UNITY_EDITOR

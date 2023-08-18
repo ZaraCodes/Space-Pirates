@@ -171,6 +171,46 @@ MonoBehaviour:
     m_Key: Charge Prompt
     m_Metadata:
       m_Items: []
+  - m_Id: 21090354783690752
+    m_Key: The End Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21090417886994432
+    m_Key: Credits - Game Design, Programming, Story
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21094941464829952
+    m_Key: Credits - ZaraStocher
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21095097375498240
+    m_Key: Credits - Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21097043972956160
+    m_Key: Credits - Character Animations (Nova)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21099131264147456
+    m_Key: Credits - Character Portraits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21106807926792192
+    m_Key: Credits - External Assets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21120255138045952
+    m_Key: Credits - Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21122210841337856
+    m_Key: Credits - Sound Effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21128060511297536
+    m_Key: Credits - Special Thanks
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

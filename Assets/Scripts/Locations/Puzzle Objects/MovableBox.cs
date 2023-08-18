@@ -75,7 +75,7 @@ public class MovableBox : MonoBehaviour
     {
         if (GameManager.Instance.IsPlaying)
         {
-            boxSprite.sortingOrder = -Mathf.RoundToInt(transform.position.y);
+            boxSprite.sortingOrder = -Mathf.RoundToInt(transform.position.y * 16 - 8);
         }
     }
 
