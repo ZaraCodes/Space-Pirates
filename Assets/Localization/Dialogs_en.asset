@@ -908,6 +908,47 @@ MonoBehaviour:
     m_Localized: Okie.
     m_Metadata:
       m_Items: []
+  - m_Id: 15953125975367680
+    m_Localized: 'Okay, we''re finally flying again.
+
+      ||
+
+      We should look
+      around in the solar system to find hints for Captain Meow''s whereabouts.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15953606000877568
+    m_Localized: Yeah.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15956048818053120
+    m_Localized: 'Okay, let''s see...
+
+      We''ve got one hint so far!
+
+      ||
+
+      This
+      isn''t enough for me to calculate where Captain Meow is... we need to continue
+      to search!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15957249810866176
+    m_Localized: 'Oh my god Nova!!
+
+      This is enough! I figured out where Captain
+      Meow is!
+
+      ||
+
+      Look on the map! She is located near the gas giant
+      to the the bottom right of the sun!
+
+      ||
+
+      Let''s check that out!'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

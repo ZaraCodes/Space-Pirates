@@ -21,6 +21,9 @@ public class TextboxTrigger : MonoBehaviour
 
     /// <summary>Unity Event that gets triggered when the dialog has finished</summary>
     [SerializeField] private UnityEvent OnDialogFinished;
+
+    /// <summary>Unity Event that gets triggered when the dialog starts</summary>
+    [SerializeField] private UnityEvent OnDialogStarted;
     #endregion
 
     #region Methods
@@ -54,6 +57,7 @@ public class TextboxTrigger : MonoBehaviour
         }
         else if (!dialogSequence.Repeat) ProgressionManager.Instance.ViewedDialogs.Add(dialogSequence.ID);
 
+        OnDialogStarted.Invoke();
         if (gameplayDialog)
         {
             GameManager.Instance.GameplayDialog.LoadDialog(dialog, OnDialogFinished);

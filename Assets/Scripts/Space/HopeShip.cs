@@ -210,12 +210,20 @@ public class HopeShip : MonoBehaviour
         GameManager.Instance.UpdateInputScheme(ctx);
         if (ctx.action.WasPerformedThisFrame() && currentPlanet != null && !GameManager.Instance.IsFading)
         {
-            ProgressionManager.Instance.LastVisitedLocation = currentPlanet.Location;
+            // If both hints have been found, the player is only allowed to land on the moon
+            if ((ProgressionManager.Instance.Flags.Contains(EProgressionFlag.IslandHint) &&
+                ProgressionManager.Instance.Flags.Contains(EProgressionFlag.ShipSellerHint) &&
+                currentPlanet.Location == ELastVisitedLocation.Moon)
+                ||
+                (!ProgressionManager.Instance.Flags.Contains(EProgressionFlag.IslandHint)))
+            {
+                ProgressionManager.Instance.LastVisitedLocation = currentPlanet.Location;
 
-            UnityEvent unityEvent = new();
-            unityEvent.AddListener(() => StartCoroutine(LoadPlanetAsync()));
+                UnityEvent unityEvent = new();
+                unityEvent.AddListener(() => StartCoroutine(LoadPlanetAsync()));
 
-            StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeIn(unityEvent));
+                StartCoroutine(GameManager.Instance.PauseMenuHandler.FadeIn(unityEvent));
+            }
         }
     }
 
@@ -363,7 +371,7 @@ public class HopeShip : MonoBehaviour
     {
         if (collision.CompareTag("Orbit Trigger") && currentPlanet == null)
         {
-            currentPlanet = collision.transform.parent.GetComponent<GravityObject>();
+            currentPlanet = collision.transform.parent.parent.GetComponent<GravityObject>();
             InitiateOrbit(collision.transform.parent.position);
         }
         else if (collision.CompareTag("Planet Surface"))
