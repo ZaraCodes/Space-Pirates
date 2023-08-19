@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Mini map that displays the positioning of the space objects and the space ship
+/// </summary>
 public class SpaceMiniMap : MonoBehaviour
 {
     /// <summary>Number that scales down the position of objects on the mini map</summary>
@@ -34,6 +37,9 @@ public class SpaceMiniMap : MonoBehaviour
     /// <summary>Reference to the hope ship on the mini map</summary>
     [SerializeField] private RectTransform hopeOnMap;
 
+    /// <summary>
+    /// Sets the positions of the space objects on the map
+    /// </summary>
     private void Start()
     {
         sunOnMap.localPosition = Vector3.zero;
@@ -43,6 +49,9 @@ public class SpaceMiniMap : MonoBehaviour
         stationOnMap.localPosition = (spaceStation.position - sun.position) / divisionFactorForMap;
     }
 
+    /// <summary>
+    /// Updates the position of the hope ship on the map
+    /// </summary>
     private void Update()
     {
         hopeOnMap.localPosition = Vector3.ClampMagnitude(hopeShip.position - sun.position, mapRadius) / divisionFactorForMap;

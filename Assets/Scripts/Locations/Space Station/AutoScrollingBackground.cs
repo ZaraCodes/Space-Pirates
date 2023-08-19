@@ -2,26 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The background uses four different layers to create a parallax effect that's best viewed with a ortographic camera angle
+/// </summary>
 public class AutoScrollingBackground : MonoBehaviour
 {
     #region Fields
+    /// <summary>Reference to the stars material (layer)</summary>
     [SerializeField] private Material starsMat;
+    /// <summary>Reference to the dust material (layer)</summary>
     [SerializeField] private Material dustMat;
+    /// <summary>Reference to the nebulae material (layer)</summary>
     [SerializeField] private Material nebulaeMat;
 
+    /// <summary>the animation offset for the layers</summary>
     private Vector2 offset;
-
-    #endregion
-
-    #region Methods
-
     #endregion
 
     #region Unity Stuff
+    /// <summary>Sets the offset vector</summary>
     private void Start()
     {
         offset = new();
     }
+    /// <summary>
+    /// Each frame the layers get moved
+    /// </summary>
     private void Update()
     {
         offset.x += Time.deltaTime * 0.001f;
@@ -33,6 +39,9 @@ public class AutoScrollingBackground : MonoBehaviour
         //starsMaterial.SetTextureOffset( starsMaterial.GetTextureOffset(starsMaterial.name)
     }
 
+    /// <summary>
+    /// Resets the offsets for the materials when the object gets destroyed
+    /// </summary>
     private void OnDestroy()
     {
         starsMat.SetTextureOffset("_MainTex", new());

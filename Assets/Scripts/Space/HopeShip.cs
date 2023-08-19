@@ -6,62 +6,84 @@ using UnityEngine.InputSystem;
 using UnityEngine.Localization;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// The space ship to fly around in space
+/// </summary>
 public class HopeShip : MonoBehaviour
 {
+    #region Fields
+    /// <summary>Reference to the controls</summary>
     private SpacePiratesControls controls;
 
+    /// <summary>The force with which the ship accelerates</summary>
     [SerializeField] private float accelerationForce;
 
+    /// <summary>Reference to the ship rigidbody</summary>
     [SerializeField] private Rigidbody2D rb;
+    /// <summary>Reference to the camera</summary>
     [SerializeField] private Camera cam;
+    /// <summary>Reference to the ship's gravity receiver</summary>
     [SerializeField] private GravityReceiver gravityReceiver;
+    /// <summary>Reference to the thruster audio source</summary>
     [SerializeField] private AudioSource thrusterSource;
-
+    /// <summary>if true, the ship cannot be controlled bc it's in the intro cutscene</summary>
     [SerializeField] private bool introShip;
 
+    /// <summary>Cache of the thruster audio fade coroutine</summary>
     private Coroutine thrusterFadeCoroutine;
-
+    /// <summary>the max volume of the thruster audio</summary>
     private float maxThrusterVolume;
-
+    /// <summary>The direction the ship faces in</summary>
     private Vector2 lookDirection;
-
+    /// <summary>The input the ship receives from the game</summary>
     private Vector2 shipInput;
-
+    /// <summary>The ship's current velocity</summary>
     private Vector2 velocity;
-
+    /// <summary>The ship's current velocity</summary>
     public Vector2 Velocity { get { return velocity; } set { velocity = value; } }
-
+    /// <summary>Does the ship currently accelerate</summary>
     private bool accelerate;
-
+    /// <summary>The transform component of the ship</summary>
     private Transform shipTransform;
-
+    /// <summary>The time the ship currently is orbit of a planet</summary>
     private float orbitTime;
-
+    /// <summary>Does the ship currently orbit around a planet</summary>
     private bool orbiting;
-
+    /// <summary>Reference to the planet the ship orbits around</summary>
     private GravityObject currentPlanet;
-
+    /// <summary>The center point of the orbit</summary>
     public Vector3 OrbitCenter { get; private set; }
-
+    /// <summary>The distance of orbit</summary>
     private float orbitDistance;
-
+    /// <summary>The direction the ship will orbit in (1, -1)</summary>
     private float orbitDirection;
 
+    /// <summary>The particle system that produces the ship thruster particles</summary>
     [SerializeField] private ParticleSystem thrusterParticles;
 
+    /// <summary>Reference to the prompt that shows the controls to land</summary>
     [SerializeField] private InteractionPrompt landPrompt;
+    /// <summary>Reference to the prompt that shows the controls to exit the orbit</summary>
     [SerializeField] private InteractionPrompt exitOrbitPrompt;
+    /// <summary>The text to display for the landing</summary>
     [SerializeField] private LocalizedString landText;
+    /// <summary>The text to display for exiting the orbit</summary>
     [SerializeField] private LocalizedString exitOrbitText;
 
+    /// <summary>Reference to the space station transform</summary>
     [SerializeField] private Transform spaceStationSpawn;
+    /// <summary>Reference to the island planet transform</summary>
     [SerializeField] private Transform islandSpawn;
+    /// <summary>Reference to the moon transform</summary>
     [SerializeField] private Transform moonSpawn;
+    /// <summary>Reference to the city planet spawn</summary>
     [SerializeField] private Transform citySpawn;
 
+    /// <summary>Emergency mode is when the ship flies into a planet. It then phases through the planet without accelerating while being inside of the planet and then continues normally on the other side</summary>
     private bool emergencyMode;
-
+    /// <summaryBuffer of the fade timer </summary>
     private float fadeBufferTime;
+    #endregion
 
     #region Methods
 
@@ -182,7 +204,7 @@ public class HopeShip : MonoBehaviour
     }
 
     /// <summary>Changes the scene depending on the planet</summary>
-    /// <param name="ctx"></param>
+    /// <param name="ctx">The callback context of the inout action</param>
     public void Land(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
@@ -198,7 +220,7 @@ public class HopeShip : MonoBehaviour
     }
 
     /// <summary>
-    /// Loads a planet async
+    /// Coroutine that loads a planet async
     /// </summary>
     /// <returns></returns>
     private IEnumerator LoadPlanetAsync()
@@ -211,7 +233,7 @@ public class HopeShip : MonoBehaviour
     }
 
     /// <summary>Removes the space ship from the orbit around a planet</summary>
-    /// <param name="ctx"></param>
+    /// <param name="ctx">The callback context of the inout action</param>
     public void ExitOrbit(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.UpdateInputScheme(ctx);
@@ -230,6 +252,10 @@ public class HopeShip : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine spawns the ship at the last visited location if the player decides to fly into the sun for some reason
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator RespawnShipAfterSunImpact()
     {
         shipTransform.position = ProgressionManager.Instance.LastVisitedLocation switch
@@ -247,7 +273,9 @@ public class HopeShip : MonoBehaviour
     #endregion
 
     #region Unity Stuff
-
+    /// <summary>
+    /// Initiates the input system
+    /// </summary>
     private void Awake()
     {
         controls = new();
@@ -259,6 +287,9 @@ public class HopeShip : MonoBehaviour
         controls.SpaceShip.ExitOrbit.performed += ctx => ExitOrbit(ctx);
     }
 
+    /// <summary>
+    /// Spawns the ship at the last visited location
+    /// </summary>
     private void Start()
     {
         velocity = new Vector2(4, -3);
@@ -280,10 +311,15 @@ public class HopeShip : MonoBehaviour
             case ELastVisitedLocation.Moon:
                 shipTransform.position = moonSpawn.position;
                 break;
-            default: break;
+            default:
+                shipTransform.position = spaceStationSpawn.position;
+                break;
         }
     }
 
+    /// <summary>
+    /// Moves the ship in space, rotates the ship
+    /// </summary>
     private void Update()
     {
         if (GameManager.Instance.CurrentInputScheme == EInputScheme.MouseKeyboard)
@@ -319,6 +355,10 @@ public class HopeShip : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Makes the ship go into orbit mode, start the emergency mode to fly through a planet, or respawns the ship if it flies into the sun
+    /// </summary>
+    /// <param name="collision">The collider of the other object</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Orbit Trigger") && currentPlanet == null)
@@ -344,6 +384,10 @@ public class HopeShip : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Exits the emergency mode if the ship exists a planet trigger
+    /// </summary>
+    /// <param name="collision">The collider of the other object</param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Planet Surface"))
@@ -352,11 +396,13 @@ public class HopeShip : MonoBehaviour
         }
     }
 
+    /// <summary>Enables the controls system</summary>
     private void OnEnable()
     {
         controls.Enable();
     }
 
+    /// <summary>Disables the controls system</summary>
     private void OnDisable()
     {
         controls.Disable();

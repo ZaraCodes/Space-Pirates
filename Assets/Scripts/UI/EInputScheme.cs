@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+/// <summary>
+/// Enum that contains the input schemes the game supports
+/// </summary>
 public enum EInputScheme
 {
     Gamepad = 0,

@@ -71,7 +71,7 @@ public class ActivatableDoor : ActivatableObject
         var delay = .2f;
 
         playerTransform.position = new Vector3(connectedDoor.transform.position.x, connectedDoor.transform.position.y + 0.5f, playerTransform.position.z);
-        ChargedBullet.playDestroySoundStatic = false;
+        ChargedBullet.PlayDestroySoundStatic = false;
 
         OnDoorUsed?.Invoke(); // triggers the door event, if there is one
 

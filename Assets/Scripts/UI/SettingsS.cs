@@ -6,16 +6,24 @@ using System.Collections.Generic;
 /// </summary>
 public class SettingsS
 {
+    /// <summary>private instance of the singleton</summary>
     private static SettingsS instance;
 
+    /// <summary>
+    /// Property that ensures that this is a singleton
+    /// </summary>
     public static SettingsS Instance
     {
-        get {
+        get
+        {
             instance ??= new SettingsS();
             return instance;
         }
     }
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
     private SettingsS()
     {
         UIScale = 3;
@@ -23,7 +31,7 @@ public class SettingsS
         MusicVolume = .5f;
         MasterVolume = .5f;
         TextboxSpeed = 60f;
-        // Load Settings from File or default settings
+        //Todo: Load Settings from File or default settings
     }
 
 
@@ -47,6 +55,4 @@ public class SettingsS
 
     /// <summary>The scale of the UI Canvas</summary>
     public float UIScale { get; set; }
-
-
 }

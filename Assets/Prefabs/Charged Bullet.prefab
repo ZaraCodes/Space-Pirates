@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6861578211103938801}
   - component: {fileID: 6861578211103938800}
   - component: {fileID: 6861578211103938815}
-  - component: {fileID: 2246023741586482037}
   m_Layer: 6
   m_Name: Charged Bullet
   m_TagString: Bullet
@@ -168,18 +167,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3eb949336bab884d948de239799f9ff, type: 3}
   - {fileID: 8300000, guid: f844650e7b6a848438dd878a08468ad8, type: 3}
   destroyedSound: {fileID: 8300000, guid: bfcb0ae708234a34dbb94a2fdf428b25, type: 3}
---- !u!114 &2246023741586482037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6861578211103938805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7f7ea794cc54ea4e8593de958c77b41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Origin>k__BackingField: 0
-  damage: 20
-  knockback: 10
+  PlayDestroySound: 0

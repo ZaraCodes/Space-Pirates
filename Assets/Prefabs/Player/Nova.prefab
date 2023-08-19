@@ -69,7 +69,6 @@ GameObject:
   - component: {fileID: 1657004508329249635}
   - component: {fileID: 1657004508329249632}
   - component: {fileID: 1657004508329249633}
-  - component: {fileID: 1657004508329249646}
   m_Layer: 0
   m_Name: Nova
   m_TagString: Player
@@ -133,10 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargeAttackTime: 0.95
   movementSpeed: 300
-  interactionPrompt: {fileID: 0}
   fallTime: 0.785
   rb: {fileID: 1657004508329249632}
-  spriteRenderer: {fileID: 1657004509160416977}
   animationSprites: {fileID: 1775815080405149539}
   animator: {fileID: 8588703526599844487}
   ballSpawnPosition: {fileID: 1657004508539838254}
@@ -153,19 +150,6 @@ MonoBehaviour:
   interacttionPromptPrefab: {fileID: 7477880418534170582, guid: b2a4c8d801bc9d046b0cfaa83364fd71, type: 3}
   chargeAudioSource: {fileID: 1657004508539838252}
   Fading: 0
---- !u!114 &1657004508329249646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657004508329249634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac46179bac87514f9b86f7d40a5526d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  self: 0
 --- !u!1 &1657004508463485050
 GameObject:
   m_ObjectHideFlags: 0

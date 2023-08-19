@@ -4,8 +4,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
+/// <summary>
+/// Static class that creates a string for a given binding
+/// </summary>
 public static class InputIconStringSetter
 {
+    /// <summary>
+    /// Makes a string that can get interpreted by the tmp sprite asset that's used to display button prompts
+    /// </summary>
+    /// <param name="bindings">The bindings of an input action</param>
+    /// <returns></returns>
     public static string GetIconStringFromBinding(ReadOnlyArray<InputBinding> bindings)
     {
         string binding;
@@ -22,8 +30,6 @@ public static class InputIconStringSetter
         binding = binding.Replace("<Gamepad>/", "Gamepad_");
         binding = binding.Replace("<Mouse>/", "Mouse_");
         binding = binding.Replace('/', '_');
-
-        //Debug.Log(binding);
         
         return binding;
     }

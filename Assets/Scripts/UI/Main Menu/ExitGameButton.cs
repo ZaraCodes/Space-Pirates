@@ -7,6 +7,9 @@ using UnityEngine.UI;
 /// <summary>This script is attached to a button that closes the game</summary>
 public class ExitGameButton : MonoBehaviour
 {
+    /// <summary>
+    /// Exits the game
+    /// </summary>
     public void ExitGame()
     {
     #if UNITY_EDITOR

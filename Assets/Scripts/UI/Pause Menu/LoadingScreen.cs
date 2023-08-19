@@ -2,13 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A fake loading screen that displays cat animations
+/// </summary>
 public class LoadingScreen : MonoBehaviour
 {
     #region Fields
+    /// <summary>
+    /// Reference to the cat animator
+    /// </summary>
     [SerializeField] private Animator iconAnimator;
     #endregion
 
     #region Unity Stuff
+    /// <summary>
+    /// Sets a random value between 0 and 8 to display a random animation
+    /// </summary>
     private void OnEnable()
     {
         switch (Random.Range(0, 8))
@@ -34,6 +43,9 @@ public class LoadingScreen : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// When the loading screen gets disabled, the values get reset
+    /// </summary>
     private void OnDisable()
     {
         iconAnimator.SetBool("LookAround", false);

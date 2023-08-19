@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.Audio;
 
+/// <summary>
+/// A bullet that gets fired by Nova. It has the ability to bounce off of walls.
+/// </summary>
 public class ChargedBullet : MonoBehaviour
 {
+    #region Fields
     /// <summary>Reference to the ball's rigidbody</summary>
     [SerializeField] private Rigidbody2D rb;
+
+    /// <summary>Property that allows reading access to the rigidbody of the bullet</summary>
     public Rigidbody2D Rb { get { return rb; } }
 
     /// <summary>Reference to the sprite renderer</summary>
@@ -16,6 +20,7 @@ public class ChargedBullet : MonoBehaviour
 
     /// <summary>The speed at which the ball will move</summary>
     [SerializeField] private float movementSpeed;
+    /// <summary>Property that allows reading access to the rigidbody's movement speed</summary>
     public float MovementSpeed { get { return movementSpeed; } }
 
     /// <summary>The maximum amount of bounces the ball will do before destroying itself.</summary>
@@ -27,16 +32,23 @@ public class ChargedBullet : MonoBehaviour
     /// <summary>Velocity of the ball</summary>
     private Vector2 velocity;
 
-    [Header("Audio Assets")]
-    [SerializeField] private AudioMixerGroup audioMixerGroup;
-
+    /// <summary>Reference to the audio mixer group for sound effects</summary>
+    [Header("Audio Assets"), SerializeField] private AudioMixerGroup audioMixerGroup;
+    /// <summary>Array of sound clips for bouncing off walls</summary>
     [SerializeField] private AudioClip[] bounceSounds;
+    /// <summary>Audio Clip for destroying a bullet</summary>
     [SerializeField] private AudioClip destroyedSound;
 
-    /// <summary>If true, the bullet will play a sound when it gets destroyed</summary>
-    public static bool playDestroySoundStatic;
+    /// <summary>If false, all bullets will not play a sound when it gets destroyed</summary>
+    public static bool PlayDestroySoundStatic;
+    /// <summary>If false, this bullet will not play a sound when it gets destroyed</summary>
     public bool PlayDestroySound;
+    #endregion
+
+    #region Methods
     /// <summary>Creates an audio source at the position of the collision and plays a sound</summary>
+    /// <param name="lifetime">The time for how long this audio clip will exist in the scene before it gets destroyed</param>
+    /// <param name="soundClip">The audio clip that will get played</param>
     private void SpawnAudioSource(float lifetime, AudioClip soundClip)
     {
         var audioSourceGO = new GameObject();
@@ -53,9 +65,13 @@ public class ChargedBullet : MonoBehaviour
         var selfDestruct = audioSourceGO.AddComponent<SelfDestructionScript>();
         selfDestruct.Lifetime = lifetime;
     }
+    #endregion
 
     #region Unity Stuff
-
+    /// <summary>
+    /// When the bullet enters a collision (like a wall), it will add 1 to its performed bounces. If that reaches the max allowed bounces, the bullet gets destroyed
+    /// </summary>
+    /// <param name="collision">The collision of the other object</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (++bounces >= maxBounces)
@@ -73,6 +89,9 @@ public class ChargedBullet : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// While it exists, the bullet continuously updates its sorting order
+    /// </summary>
     private void Update()
     {
         if (GameManager.Instance.IsPlaying)
@@ -81,10 +100,13 @@ public class ChargedBullet : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets up the parameters for the bullet
+    /// </summary>
     private void Start()
     {
         bounces = 0;
-        playDestroySoundStatic = true;
+        PlayDestroySoundStatic = true;
         PlayDestroySound = true;
         if (transform.parent == null)
         {
@@ -96,21 +118,25 @@ public class ChargedBullet : MonoBehaviour
         selfDestruct.OnTimerEnded += () => PlayDestroySound = false;
     }
 
+    /// <summary>
+    /// Caches the current velocity
+    /// </summary>
     private void FixedUpdate()
     {
         velocity = rb.velocity;
     }
 
+    /// <summary>
+    /// Plays an audio clip when the bullet gets destroyed if the conditions are met
+    /// </summary>
     private void OnDestroy()
     {
-        if (playDestroySoundStatic && PlayDestroySound)
+        if (PlayDestroySoundStatic && PlayDestroySound)
         {
             SpawnAudioSource(.2f, destroyedSound);
         }
         //Todo: Play ball destroyed animation.
     }
-
-
     #endregion
 }
    

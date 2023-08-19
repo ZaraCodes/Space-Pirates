@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
+/// <summary>
+/// The Credits display everyone who contributed something to this project
+/// </summary>
 public class Credits : MonoBehaviour
 {
     #region Fields
@@ -17,7 +19,7 @@ public class Credits : MonoBehaviour
     [SerializeField] private float waitDuration;
     /// <summary>The scrolling speed of the credits</summary>
     [SerializeField] private float scrollSpeed;
-
+    /// <summary>Are the credits currently scrolling?</summary>
     private bool scrolling;
     #endregion
 
@@ -54,6 +56,9 @@ public class Credits : MonoBehaviour
     #endregion
 
     #region Unity Stuff
+    /// <summary>
+    /// Starts the credits if the object gets enabled
+    /// </summary>
     private void OnEnable()
     {
         if (!showEndGameText) endingText.color = new Color(0, 0, 0, 0);

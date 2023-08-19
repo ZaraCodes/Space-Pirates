@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This handles what happens at the ending of the credits
+/// </summary>
 public class CreditsEnding : MonoBehaviour
 {
     /// <summary>

@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-
+/// <summary>
+/// Enum that contains the possible last visited locations
+/// </summary>
 public enum ELastVisitedLocation
 {
     None,

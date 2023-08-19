@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-// [RequireComponent(typeof(BoxCollider2D))]
+/// <summary>
+/// Opens any kind of dialog
+/// </summary>
 public class TextboxTrigger : MonoBehaviour
 {
     #region Fields
+    /// <summary>The dialog sequence that will be loaded</summary>
     [SerializeField] private TextboxSequence dialogSequence;
+    /// <summary>true if the dialog will be displayed as a gameplay dialog, false if it will be displayed in the dialog overlay</summary>
     [SerializeField] private bool gameplayDialog;
     
     /// <summary>This array contains all the required progression flags that have to be set for this dialog to activate</summary>
@@ -15,11 +19,14 @@ public class TextboxTrigger : MonoBehaviour
     /// <summary>This arrac contains all progression flags that will prevent this dialog to be activated</summary>
     [SerializeField] private EProgressionFlag[] antiRequirements;
 
+    /// <summary>Unity Event that gets triggered when the dialog has finished</summary>
     [SerializeField] private UnityEvent OnDialogFinished;
-
     #endregion
 
     #region Methods
+    /// <summary>
+    /// If all requirements are fulfilled and anti requirements are not set, the dialog will load
+    /// </summary>
     public void LoadDialog()
     {
         foreach (var antiRequirement in antiRequirements)
@@ -64,18 +71,16 @@ public class TextboxTrigger : MonoBehaviour
     #endregion
 
     #region Unity Stuff
-
+    /// <summary>
+    /// If there is a trigger and Nova enters it, it will load the dialog
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             LoadDialog();
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("meow");
     }
     #endregion
 }

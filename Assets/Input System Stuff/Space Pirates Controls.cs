@@ -442,7 +442,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""beb16047-0d9f-47b0-9a11-1a11be7d7a64"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse + Keyboard"",

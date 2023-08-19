@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -14,26 +13,44 @@ using UnityEngine.UI;
 /// </summary>
 public class PauseMenuHandler : MonoBehaviour
 {
+    /// <summary>Reference to the controls</summary>
     private SpacePiratesControls controls;
 
+    /// <summary>Reference to the image that's used to fade in and out</summary>
     [SerializeField] private Image blackFade;
 
+    /// <summary>Reference to the image that's used to fade in and out</summary>
     public Image BlackFade { get { return blackFade; } }
 
+    /// <summary>The time it will take to fade in or out</summary>
     [field: SerializeField] public float FadeTime { get; set; }
+    /// <summary>The timer that's used to fade in and out</summary>
     private float fadeTimer;
 
+    /// <summary>Reference to the loading screen</summary>
     [field: SerializeField] public LoadingScreen LoadingScreen { get; set; }
 
+    /// <summary>Reference to the pause menu prefab</summary>
     [Header("Essential Prefabs"), SerializeField] private GameObject pauseMenuPrefab;
+    /// <summary>Reference to the settings menu prefab</summary>
     [SerializeField] private GameObject settingsMenuPrefab;
+    /// <summary>Reference to the gameplay dialog prefab</summary>
     [SerializeField] private GameObject gameplayDialogBoxPrefab;
+    /// <summary>Reference to the dialog overlay prefab</summary>
     [SerializeField] private GameObject dialogOverlayPrefab;
 
+    /// <summary>Cache of the pause menu</summary>
     private GameObject pauseMenuGO;
+    /// <summary>Cache of the settings menu</summary>
     private GameObject settingsMenuGO;
+    /// <summary>Cache of the resume button</summary>
     private Button resumeButton;
 
+    /// <summary>
+    /// Coroutine that fades the black image in
+    /// </summary>
+    /// <param name="callback">Unity Event that gets triggered when the fade has finished</param>
+    /// <returns></returns>
     public IEnumerator FadeIn(UnityEvent callback)
     {
         GameManager.Instance.IsFading = true;
@@ -53,6 +70,11 @@ public class PauseMenuHandler : MonoBehaviour
         callback?.Invoke();
     }
 
+    /// <summary>
+    /// Coroutine that fades the black image out
+    /// </summary>
+    /// <param name="callback">Unity Event that gets triggered when the fade has finished</param>
+    /// <returns></returns>
     public IEnumerator FadeOut(UnityEvent callback)
     {
         GameManager.Instance.IsFading = true;
@@ -75,6 +97,10 @@ public class PauseMenuHandler : MonoBehaviour
         callback?.Invoke();
     }
 
+    /// <summary>
+    /// Opens or closes the pause menu
+    /// </summary>
+    /// <param name="ctx">Callback context of the input action</param>
     private void TogglePauseMenu(InputAction.CallbackContext ctx)
     {
         if (ctx.action.WasPerformedThisFrame())
@@ -115,6 +141,9 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Create the pause menu object
+    /// </summary>
     private void InstantiatePauseMenu()
     {
         pauseMenuGO = Instantiate(pauseMenuPrefab);
@@ -140,18 +169,15 @@ public class PauseMenuHandler : MonoBehaviour
     }
 
     #region Unity Stuff
+    /// <summary>
+    /// When the pause menu awakes, it creates the objects for the gameplay dialog and the dialog overlay
+    /// </summary>
     private void Awake()
     {
         controls = new();
 
         controls.UI.Pause.performed += ctx => TogglePauseMenu(ctx);
         controls.UI.UIBack.performed += ctx => ClosePauseMenu(ctx);
-
-        //if (!dialogsInstantiated)
-        //{
-        //    Instantiate(dialogsPrefab);
-        //    dialogsInstantiated = true;
-        //}
 
         GameObject gameplayDialogBoxGO = Instantiate(gameplayDialogBoxPrefab);
         gameplayDialogBoxGO.transform.SetParent(transform, false);
@@ -172,11 +198,17 @@ public class PauseMenuHandler : MonoBehaviour
         GameManager.Instance.PauseMenuHandler = this;
     }
 
+    /// <summary>
+    /// Enables the controls
+    /// </summary>
     private void OnEnable()
     {
         controls.Enable();
     }
 
+    /// <summary>
+    /// Disables the controls
+    /// </summary>
     private void OnDisable()
     {
         controls.Disable();

@@ -6,18 +6,29 @@ using UnityEngine.Localization;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
+/// <summary>
+/// An Interaction Prompt that shows a text and a button icon
+/// </summary>
 public class InteractionPrompt : MonoBehaviour
 {
     #region Fields
+    /// <summary>Reference to the display text</summary>
     [Header("Reference"), SerializeField] private TextMeshProUGUI interactText;
+    /// <summary>RectTransform of the text</summary>
     [SerializeField] private RectTransform textTransform;
+    /// <summary>RectTransform of the background</summary>
     [SerializeField] private RectTransform backgroundTransform;
+    /// <summary>Reference to the sprite asset that contains the button icons</summary>
     [SerializeField] private TMP_SpriteAsset buttonIcons;
 
+    /// <summary>The localized text that will be displayed</summary>
     private LocalizedString promptText;
+    /// <summary>The bindings of the targeted input action</summary>
     private ReadOnlyArray<InputBinding> bindings;
 
+    /// <summary>Optional transform that tells the interaction prompt where to position itself on the canvas</summary>
     private Transform objectToAttachTo;
+    /// <summary>Reference to the camera</summary>
     private Camera cam;
     #endregion
 
@@ -35,11 +46,14 @@ public class InteractionPrompt : MonoBehaviour
         SetText(text);
     }
 
+    /// <summary>
+    /// Sets the text and button sprite for the prompt
+    /// </summary>
+    /// <param name="text">the localized text that will be displayed</param>
     public void SetText(LocalizedString text)
     {
         promptText = text;
         
-        //todo: test for availability of button sprite
         interactText.text = $"<sprite name=\"{InputIconStringSetter.GetIconStringFromBinding(bindings)}\"> {promptText.GetLocalizedString()}";
 
         Canvas.ForceUpdateCanvases();
@@ -48,27 +62,19 @@ public class InteractionPrompt : MonoBehaviour
         if (cam == null) cam = Camera.main;
     }
 
+    /// <summary>
+    /// Updates the icon for the prompt
+    /// </summary>
+    /// <param name="scheme"></param>
     public void UpdateIcon(EInputScheme scheme)
     {
         string buttonName = InputIconStringSetter.GetIconStringFromBinding(bindings);
-
-        //Todo: test for availability of button sprite
-        //bool noMatchFound = true;
-        //foreach (var buttonIcon in buttonIcons.spriteInfoList)
-        //{
-        //    if (buttonIcon.name == buttonName)
-        //    {
-        //        noMatchFound = false;
-        //    }
-        //}
-        //if (noMatchFound)
-        //{
-        //    interactText.text = $"[] {promptText.GetLocalizedString()}";
-        //}
-        //else
         interactText.text = $"<sprite name=\"{buttonName}\"> {promptText.GetLocalizedString()}";
     }
 
+    /// <summary>
+    /// Hides the prompt
+    /// </summary>
     public void Hide()
     {
         gameObject.SetActive(false);
@@ -76,6 +82,9 @@ public class InteractionPrompt : MonoBehaviour
     #endregion
 
     #region Unity Stuff
+    /// <summary>
+    /// Positions the prompt on the canvas
+    /// </summary>
     private void Update()
     {
         if (objectToAttachTo != null)
@@ -84,11 +93,13 @@ public class InteractionPrompt : MonoBehaviour
         }
     }
 
+    /// <summary>adds itself to the input scheme changed event</summary>
     private void OnEnable()
     {
         GameManager.Instance.OnInputSchemeChanged += newScheme => UpdateIcon(newScheme);
     }
 
+    /// <summary>removes itself from the input scheme changed event</summary>
     private void OnDisable()
     {
         GameManager.Instance.OnInputSchemeChanged -= newScheme => UpdateIcon(newScheme);

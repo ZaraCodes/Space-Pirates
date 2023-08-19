@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+/// <summary>
+/// Enum that contains the two interaction modes for interactions. Press only requires a single press to perform the interaction, Hold continuously performs the interaction while the button is pressed
+/// </summary>
 public enum EInteractMode
 {
     Press,

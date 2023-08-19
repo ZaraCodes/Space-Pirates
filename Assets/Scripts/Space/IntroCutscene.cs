@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Handles the intro of the game 
+/// </summary>
 public class IntroCutscene : MonoBehaviour
 {
     #region Fields
@@ -194,12 +197,18 @@ public class IntroCutscene : MonoBehaviour
     #endregion
 
     #region Unity Stuff
+    /// <summary>
+    /// The beginning of the cutscene resets the progression and sets the fade time
+    /// </summary>
     private void Start()
     {
         GameManager.Instance.PauseMenuHandler.FadeTime = 3f;
         ProgressionManager.Instance.ResetProgress();
     }
 
+    /// <summary>
+    /// This resets the ship position during the cutscene
+    /// </summary>
     private void Update()
     {
         if (!captainMeowAppeared && GameManager.Instance.IsFading)
@@ -208,6 +217,10 @@ public class IntroCutscene : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Triggers the fade and dialogs
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (captainMeowAppeared) BeginCaptainMeowDialog();

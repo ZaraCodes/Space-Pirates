@@ -4,52 +4,63 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.Extensions;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.UI;
 
-public class DynamicSettingsInfo
-{
-    public int uiScale;
-}
-
+/// <summary>
+/// The settings menu allows the player to change settings
+/// </summary>
 public class SettingsMenu : MonoBehaviour
 {
-    private DynamicSettingsInfo dynamicSettingsInfo;
-
+    /// <summary>Reference to the main canvas scaler</summary>
     private CanvasScaler mainCanvasScaler;
 
+    /// <summary>Reference to the controls</summary>
     private SpacePiratesControls controls;
 
-
+    /// <summary>Reference to the parent menu</summary>
     [SerializeField] private GameObject parentMenu;
+    /// <summary>Reference to the parent menu</summary>
     public GameObject ParentMenu
     {
         get { return parentMenu; }
         set { parentMenu = value; }
     }
+    /// <summary>The button that will be selected when returning to the parent menu</summary>
     [SerializeField] private Button returnButtonToSelect;
+    /// <summary>The button that will be selected when returning to the parent menu</summary>
     public Button ReturnButtonToSelect
     {
         get { return returnButtonToSelect; }
         set { returnButtonToSelect = value; }
     }
-    [Space]
-    [SerializeField] private Button controlsButton;
+    /// <summary>The controls buttons in the top</summary>
+    [Space, SerializeField] private Button controlsButton;
+    /// <summary>The general settings object</summary>
     [SerializeField] private GameObject generalSettings;
+    /// <summary>The control settings object</summary>
     [SerializeField] private GameObject controlSettings;
+    /// <summary>The accessibility settings object</summary>
     [SerializeField] private GameObject accessibilitySettings;
+    /// <summary>Event that's related to the UI Scale label when that receives a new value</summary>
     [SerializeField] private LocalizeStringEvent uiScaleLabelEvent;
 
+    /// <summary>Reference to the audio mixer</summary>
     [Header("Audio Settings"), SerializeField] private AudioMixer mixer;
+    /// <summary>reference to the display of the master volume</summary>
     [SerializeField] private TextMeshProUGUI masterVolumeDisplay;
+    /// <summary>reference to the display of the music volume</summary>
     [SerializeField] private TextMeshProUGUI musicVolumeDisplay;
+    /// <summary>reference to the display of the sound volume</summary>
     [SerializeField] private TextMeshProUGUI soundVolumeDisplay;
+    /// <summary>reference to the master volume slider</summary>
     [SerializeField] private Slider masterVolumeSlider;
+    /// <summary>reference to the music volume slider</summary>
     [SerializeField] private Slider musicVolumeSlider;
+    /// <summary>reference to the sound volume slider</summary>
     [SerializeField] private Slider soundVolumeSlider;
     
 
@@ -83,7 +94,7 @@ public class SettingsMenu : MonoBehaviour
     }
 
     /// <summary>Sets the Language</summary>
-    /// <param name="index"></param>
+    /// <param name="index">The language index</param>
     public void SetLanguage(int index)
     {
         if (index < LocalizationSettings.AvailableLocales.Locales.Count)
@@ -122,7 +133,7 @@ public class SettingsMenu : MonoBehaviour
     /// <summary>
     /// Closes the settings menu
     /// </summary>
-    /// <param name="ctx"></param>
+    /// <param name="ctx">Callback context of the input action</param>
     private void CloseSettingsMenu(InputAction.CallbackContext ctx)
     {
         GameManager.Instance.IsSettingsMenuOpen = false;
@@ -162,12 +173,18 @@ public class SettingsMenu : MonoBehaviour
     }
 
     #region Unity Stuff
+    /// <summary>
+    /// Initializes the controls
+    /// </summary>
     private void Awake()
     {
         controls = new();
         controls.UI.UIBack.performed += ctx => CloseSettingsMenu(ctx);
     }
 
+    /// <summary>
+    /// Enables the controls and opens the settings
+    /// </summary>
     private void OnEnable()
     {
         controls.Enable();
@@ -176,6 +193,9 @@ public class SettingsMenu : MonoBehaviour
         SetUiScaleLabel(SettingsS.Instance.UIScale);
     }
 
+    /// <summary>
+    /// disables the controls
+    /// </summary>
     private void OnDisable()
     {
         controls.Disable();

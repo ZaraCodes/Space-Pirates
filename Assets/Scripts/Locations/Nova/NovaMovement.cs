@@ -25,6 +25,8 @@ public class NovaMovement : MonoBehaviour
 
     /// <summary>Cache of the interaction prompt that is used for interactable objects</summary>
     private InteractionPrompt interactionPrompt;
+    /// <summary>Cache of the interaction prompt that is used for interactable objects</summary>
+    public InteractionPrompt InteractionPrompt { get {  return interactionPrompt; } }
     /// <summary>The time it takes for Nova to reach the lower floor from a jump</summary>
     [SerializeField] private float fallTime;
     /// <summary>The time it takes for Nova to reach the lower floor from a jump</summary>
@@ -164,7 +166,6 @@ public class NovaMovement : MonoBehaviour
         bulletGO.layer = ballSpawnPosition.gameObject.layer;
 
         bullet.Rb.velocity = attackDirection.normalized * bullet.MovementSpeed;
-        bullet.GetComponent<DamageSource>().Origin = DamageOriginator.Player;
 
         bulletGO.transform.parent = bulletContainer;
 
@@ -214,6 +215,20 @@ public class NovaMovement : MonoBehaviour
                     else interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings);
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Shows the interaction prompt when the dialog finishes
+    /// </summary>
+    /// <param name="ctx">Callback context of the input action</param>
+    private void ShowPromptWhenClosingDialog(InputAction.CallbackContext ctx)
+    {
+        GameManager.Instance.UpdateInputScheme(ctx);
+
+        if (GameManager.Instance.IsPlaying && ctx.action.WasReleasedThisFrame())
+        {
+            if (interactableTriggers.Contains(performedInteraction)) interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings);
         }
     }
 
@@ -302,7 +317,7 @@ public class NovaMovement : MonoBehaviour
     {
         ZeroGMovement = zeroG;
     }
-    
+
     /// <summary>Tests if Nova is currently on valid ground</summary>
     /// <returns>True if Nova stands on ground, false if not</returns>
     public bool IsOnGround()
@@ -339,6 +354,9 @@ public class NovaMovement : MonoBehaviour
     #endregion
 
     #region Unity Stuff
+    /// <summary>
+    /// Initializes the controls and creates a bullet container if it doesn't exist, as well as setting some variables
+    /// </summary>
     private void Awake()
     {
         controls ??= new();
@@ -350,6 +368,7 @@ public class NovaMovement : MonoBehaviour
         controls.Nova.Aim.performed += ctx => SetAttackDirection(ctx);
         controls.Nova.Interact.performed += ctx => DoInteract(ctx);
         controls.Nova.Interact.canceled += ctx => DoInteract(ctx);
+        controls.UI.ProceedDialog.canceled += ctx => ShowPromptWhenClosingDialog(ctx);
 
         interactableTriggers = new();
 
@@ -374,6 +393,9 @@ public class NovaMovement : MonoBehaviour
         MovementConstraint = new(1, 1);
     }
 
+    /// <summary>
+    /// Controls the charge attack timer, and the sorting order
+    /// </summary>
     private void Update()
     {
         if (GameManager.Instance.IsPlaying)
@@ -390,6 +412,9 @@ public class NovaMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This Update Methods is all about movement and the animator
+    /// </summary>
     private void FixedUpdate()
     {
         if (GameManager.Instance.IsPlaying)
@@ -460,21 +485,34 @@ public class NovaMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Centers the camera on nova
+    /// </summary>
     private void LateUpdate()
     {
         mainCamera.transform.position = new(transform.position.x, transform.position.y, mainCamera.transform.position.z);
     }
 
+    /// <summary>
+    /// Enables the controls
+    /// </summary>
     private void OnEnable()
     {
         controls.Enable();
     }
 
+    /// <summary>
+    /// Disables the controls
+    /// </summary>
     private void OnDisable()
     {
         controls.Disable();
     }
 
+    /// <summary>
+    /// When Nova enters a top floor from the movable box, they will be able to stand on top of it
+    /// </summary>
+    /// <param name="collision">The collider of the other object</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // movable box 1st floor
@@ -485,7 +523,12 @@ public class NovaMovement : MonoBehaviour
             MovableObject = firstFloorMovableBox.GetComponentInParent<Rigidbody2D>();
         }
     }
-
+    
+    /// <summary>
+    /// When leaving an interactable trigger, the performed interaction, in case it currently gets performed, will be ended.
+    /// When leaving the area of the top of a movable box, nova will start to fall.
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out InteractableTrigger interactableTrigger))

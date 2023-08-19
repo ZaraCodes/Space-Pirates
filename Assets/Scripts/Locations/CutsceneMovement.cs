@@ -3,21 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Allows Nova to get moved automatically to specific positions
+/// </summary>
 public class CutsceneMovement : MonoBehaviour
 {
     #region Fields
+    /// <summary>A list of targets to move to</summary>
     public CutsceneMovementTarget[] Targets;
+    /// <summary>A unity event that gets triggered once the movement to the last target has been completed</summary>
     public UnityEvent OnMovementFinished;
 
+    /// <summary>Index of the current target</summary>
     private int targetIndex;
+    /// <summary>The current target that Nova tries to move to</summary>
     private CutsceneMovementTarget currentTarget;
+    /// <summary>Keeps track if Nova reached the x position of the target</summary>
     private bool xReached;
+    /// <summary>Keeps track if Nova reached the y position of the target</summary>
     private bool yReached;
 
+    /// <summary>The position Nova started from for the current target</summary>
     private Vector3 startPosition;
     #endregion
 
     #region Methods
+    /// <summary>Activates the cutscene movement</summary>
     public void Activate()
     {
         targetIndex = 0;
@@ -28,6 +39,9 @@ public class CutsceneMovement : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Concludes the movement for the current target. If it is the last target in the array, the event OnMovementFinished gets invoked. If not, the movement towards the next target starts.
+    /// </summary>
     public void FinishMovement()
     {
         if (targetIndex < Targets.Length - 1)
@@ -36,6 +50,7 @@ public class CutsceneMovement : MonoBehaviour
             currentTarget = Targets[targetIndex];
             xReached = false;
             yReached = false;
+            startPosition = GameManager.Instance.Nova.transform.position;
         }
         else
         {
@@ -48,6 +63,9 @@ public class CutsceneMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Approaches the x value of the target position
+    /// </summary>
     private void ApproachX()
     {
         float diffA = currentTarget.Target.x - GameManager.Instance.Nova.transform.position.x;
@@ -75,7 +93,9 @@ public class CutsceneMovement : MonoBehaviour
             GameManager.Instance.Nova.transform.position = new Vector3(currentTarget.Target.x, GameManager.Instance.Nova.transform.position.y);
         }
     }
-
+    /// <summary>
+    /// Approaches the y value of the target position
+    /// </summary>
     private void ApproachY()
     {
         float diffA = currentTarget.Target.y - GameManager.Instance.Nova.transform.position.y;
@@ -107,16 +127,19 @@ public class CutsceneMovement : MonoBehaviour
     #endregion
 
     #region Unity Stuff
+    /// <summary>
+    /// While the game object is active, it executes the movement code until it terminates
+    /// </summary>
     private void Update()
     {
         currentTarget = Targets[targetIndex];
-        if (currentTarget.PrioritizedAxis == PrioritizedAxis.X)
+        if (currentTarget.PrioritizedAxis == EPrioritizedAxis.X)
         {
             if (!xReached) ApproachX();
             else if (!yReached) ApproachY();
             else FinishMovement();            
         }
-        else if (currentTarget.PrioritizedAxis == PrioritizedAxis.Y)
+        else if (currentTarget.PrioritizedAxis == EPrioritizedAxis.Y)
         {
             if (!yReached) ApproachY();
             else if (!xReached) ApproachX();

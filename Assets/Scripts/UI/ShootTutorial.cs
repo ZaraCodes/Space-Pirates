@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 
+/// <summary>
+/// Displays the controls for the shoot tutorial
+/// </summary>
 public class ShootTutorial : MonoBehaviour
 {
     /// <summary>Reference to the aim prompt</summary>
