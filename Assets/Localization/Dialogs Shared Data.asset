@@ -471,6 +471,74 @@ MonoBehaviour:
     m_Key: Credits - Thanks for playing
     m_Metadata:
       m_Items: []
+  - m_Id: 15934490854662144
+    m_Key: Name - Ayuzu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15934812784271360
+    m_Key: Island - Ayuzu - 00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15935040417538048
+    m_Key: Island - Ayuzu - 01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15935284232429568
+    m_Key: Island - Ayuzu - 02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15936380845793280
+    m_Key: Island - Ayuzu - 03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15937725778731008
+    m_Key: Island - Ayuzu - 04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15938724278935552
+    m_Key: Island - Ayuzu - 05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15939984986054656
+    m_Key: Island - Ayuzu - 06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15940780502917120
+    m_Key: Island - Ayuzu - 07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15942052568211456
+    m_Key: Island - Ayuzu - 08
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15942264313454592
+    m_Key: Island - Ayuzu - 09
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15943720307367936
+    m_Key: Island - Ayuzu - 10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15944139003764736
+    m_Key: Island - Ayuzu - 11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15945717471354880
+    m_Key: Island - Ayuzu B - 00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15946071189594112
+    m_Key: Island - Ayuzu B - 01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15946699290812416
+    m_Key: Island - Ayuzu B - 02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15947572427464704
+    m_Key: Island - Ayuzu B - 03
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

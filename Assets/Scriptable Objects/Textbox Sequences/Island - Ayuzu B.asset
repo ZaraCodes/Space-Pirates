@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3aac54705bfd34db7ab111ab6e5d6c, type: 3}
+  m_Name: Island - Ayuzu B
+  m_EditorClassIdentifier: 
+  ID: Island - Ayuzu Short
+  Contents:
+  - {fileID: 11400000, guid: cc13557e541d5c7418e8cda49ee76633, type: 2}
+  - {fileID: 11400000, guid: 1d036ba503a5c0449acba2e21a4517d5, type: 2}
+  - {fileID: 11400000, guid: 5a00e74dab261414fbd54edcbf65c2d5, type: 2}
+  - {fileID: 11400000, guid: 00c8dfbf201baeb488a90a894a5f2785, type: 2}
+  Repeat: 1
+  SummaryDialog: {fileID: 0}

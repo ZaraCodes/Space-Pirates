@@ -410,7 +410,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7559886977212416
-    m_Localized: 
+    m_Localized: Here in the city all the cats were stolen as well. Captain Meow
+      seems to be... on a big mission.
     m_Metadata:
       m_Items: []
   - m_Id: 12564889680846848
@@ -694,6 +695,217 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 15588437429166080
     m_Localized: Thanks for playing <3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544382401126400
+    m_Localized: Good day! What can I do for you?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7545149778403328
+    m_Localized: There are "Cat missing" posters everywhere around the city. Do you
+      know anything about that?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7545672770363392
+    m_Localized: Oh yeah, just a bit ago all the cats from city got kidnapped...
+      very tragic.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7547053828841472
+    m_Localized: Is it Captain Meow?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7547624715558912
+    m_Localized: Captain Meow? What do you want from her?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7548146247901184
+    m_Localized: She stole my cat too.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7548289034592256
+    m_Localized: 'Oh, that''s terrible. I sadly cannot help you with this.
+
+      ||
+
+      I
+      have no idea where Captain Meow currently is.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7548740945682432
+    m_Localized: I don't believe you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7549516149530624
+    m_Localized: Huh?!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7549622546440192
+    m_Localized: 'I don''t believe you that you don''t know where Captain Meow is.
+
+      ||
+
+      She''s
+      a space pirate, and you''re a space ship trader. You have to know each other!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7550184604147712
+    m_Localized: I ... I don't know what you mean.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7550386903818240
+    m_Localized: 'LAST CHANCE!
+
+      ||
+
+      You tell me NOW where Captain Meow
+      is or you''re going to regret it!
+
+      ||
+
+      *looks very evil*'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7551031723532288
+    m_Localized: 'I... uh...
+
+      ||
+
+      Here! Take this! This is the space
+      ship registration from her space ship.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7552242132557824
+    m_Localized: There we go. Thanks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7552365432512512
+    m_Localized: 'And please be careful.
+
+      ||
+
+      Captain Meow is very dangerous.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7552636665569280
+    m_Localized: I know.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7560686696767488
+    m_Localized: Oh no, that's terrible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7560978733572096
+    m_Localized: 'But I found a space ship trader who I... had to convince.
+
+      ||
+
+      But
+      now I know what kind of space ship she got here. Maybe we can derive from that
+      where she went.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7566063484116992
+    m_Localized: 'Oh, surely that will help us!
+
+      Thanks :3'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15934490854662144
+    m_Localized: Ayuzu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15934812784271360
+    m_Localized: 'Excuse me...
+
+      ||
+
+      Is everything alright?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15935040417538048
+    m_Localized: 'No...
+
+      Not at all. :(
+
+      ||
+
+      I am devastated-'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15935284232429568
+    m_Localized: Oh no, what's wrong?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15936380845793280
+    m_Localized: 'My cat... he just dissolved... into nothing. D:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15937725778731008
+    m_Localized: That- freaking Captain Meow...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15938724278935552
+    m_Localized: 'Yes! You know her?
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15939984986054656
+    m_Localized: Indeed. I'm hunting her.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15940780502917120
+    m_Localized: Oh, that's good news for once! If you promise to revenge my cat,
+      I can give you a valuable hint.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15942052568211456
+    m_Localized: Promise.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15942264313454592
+    m_Localized: 'Okay, so when this monster tried to rob me, she lost some type
+      of device.
+
+      ||
+
+      You can have it!
+
+      Maybe it can help you.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15943720307367936
+    m_Localized: Oh, thanks a lot. Maybe it can help me lead me to her.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15944139003764736
+    m_Localized: Good luck :c
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15945717471354880
+    m_Localized: Nova, you calling?~
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15946071189594112
+    m_Localized: 'Yeah...
+
+      You know there was a woman here on an island who
+      also lost her cat.
+
+      ||
+
+      She gave me a valuable device that might
+      help us find out where Captain Meow went.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15946699290812416
+    m_Localized: Oh, that's awesome. Come back so we can see what we can do with
+      it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15947572427464704
+    m_Localized: Okie.
     m_Metadata:
       m_Items: []
   references:

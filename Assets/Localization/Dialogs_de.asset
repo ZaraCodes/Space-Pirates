@@ -261,7 +261,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7548146247901184
-    m_Localized: 'Sie hat meine Katze gestohlen. '
+    m_Localized: 'Sie hat auch meine Katze gestohlen. '
     m_Metadata:
       m_Items: []
   - m_Id: 7548289034592256
@@ -297,8 +297,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7551031723532288
-    m_Localized: "Ich... \xE4h...\n||\nHier! Das ist die Raumschiffregistrierung
-      von Captain Meows Raumschiff. "
+    m_Localized: "Ich... \xE4h...\n||\nHier! Nimm das hier! Das ist die Raumschiffregistrierung
+      von ihrem Raumschiff. "
     m_Metadata:
       m_Items: []
   - m_Id: 7552242132557824
@@ -589,6 +589,84 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 15588437429166080
     m_Localized: "Danke f\xFCr's Spielen <3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15934490854662144
+    m_Localized: Ayuzu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15934812784271360
+    m_Localized: 'Entschuldigung...
+
+      ||
+
+      Ist alles okay?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15935040417538048
+    m_Localized: "Nein...\n\xDCberhaupt nicht...\n||\nIch bin am Boden zerst\xF6rt-"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15935284232429568
+    m_Localized: Oh nein, was ist los?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15936380845793280
+    m_Localized: "Mein Kater... er hat sich einfach... in Luft aufgel\xF6st. D:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15937725778731008
+    m_Localized: Diese... verdammte Captain Meow.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15938724278935552
+    m_Localized: Ja! Du kennst sie?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15939984986054656
+    m_Localized: Yeah, wirklich. Ich jage sie.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15940780502917120
+    m_Localized: "Oh, endlich mal gute Neuigkeiten! Wenn du mir versprichst, meine
+      Katze zu r\xE4chen, kann ich dir einen wertvollen Hinweis geben."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15942052568211456
+    m_Localized: Versprochen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15942264313454592
+    m_Localized: "Okay, also als dieses Monster versucht hat mich auszurauben, hat
+      sie irgendeine Art von Ger\xE4t verloren.\n||\nDu kannst es haben!\nVielleicht
+      hilft es dir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15943720307367936
+    m_Localized: "Oh vielen Dank! Vielleicht hilft es mir, mich zu ihr zu f\xFChren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15944139003764736
+    m_Localized: "Viel Gl\xFCck :c"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15945717471354880
+    m_Localized: Nova, du rufst an?~
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15946071189594112
+    m_Localized: "Yeah...\nWei\xDFt du, hier auf einer Insel war eine Frau die auch
+      ihre Katze verloren hat.\n||\nSie hat mir ein Ger\xE4t gegeben, das uns vielleicht
+      helfen kann, Captain Meow zu finden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15946699290812416
+    m_Localized: "Ohh gro\xDFartig. Komm zur\xFCck, damit wir sehen k\xF6nnen, was
+      wir damit anfangen k\xF6nnen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15947572427464704
+    m_Localized: Okie.
     m_Metadata:
       m_Items: []
   references:

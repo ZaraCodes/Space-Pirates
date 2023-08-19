@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3aac54705bfd34db7ab111ab6e5d6c, type: 3}
+  m_Name: Island - Ayuzu
+  m_EditorClassIdentifier: 
+  ID: Island - Ayuzu
+  Contents:
+  - {fileID: 11400000, guid: 9ffc05f09e6f07d4b8ff1653b41ba78e, type: 2}
+  - {fileID: 11400000, guid: 1f161516794b3ca4087941ea3d4d4a68, type: 2}
+  - {fileID: 11400000, guid: baff113054a1f9e47a2a9f9b658e281a, type: 2}
+  - {fileID: 11400000, guid: 75d199e559af9a148b539a47b7767f45, type: 2}
+  - {fileID: 11400000, guid: 1a3221fb0d060af47b66941ba3e129a6, type: 2}
+  - {fileID: 11400000, guid: d8a8110e14f8b8c4e83190ddf3e10768, type: 2}
+  - {fileID: 11400000, guid: e12403602b6c332409fd53bfe8a77080, type: 2}
+  - {fileID: 11400000, guid: 4ec98dc657b72c143b4c612cf6d00501, type: 2}
+  - {fileID: 11400000, guid: a09c616fbe5842447838a3f6afe04bca, type: 2}
+  - {fileID: 11400000, guid: a260430f14a4e0e489a3d177ab08757c, type: 2}
+  - {fileID: 11400000, guid: a91a71549fb89c141961d57902f6cd26, type: 2}
+  - {fileID: 11400000, guid: e8ac20889a48638498349b2d6051693a, type: 2}
+  Repeat: 0
+  SummaryDialog: {fileID: 11400000, guid: e1706260d8524d54ca8498f145751acc, type: 2}
