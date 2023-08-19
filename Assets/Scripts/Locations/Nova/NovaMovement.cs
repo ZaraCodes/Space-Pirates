@@ -452,7 +452,7 @@ public class NovaMovement : MonoBehaviour
             {
                 rb.velocity += MovableObject.velocity;
 
-                var normalizedVelocity = rb.velocity.normalized - MovableObject.velocity;
+                var normalizedVelocity = (rb.velocity - MovableObject.velocity).normalized;
                 animator.SetFloat("velocityX", normalizedVelocity.x);
                 animator.SetFloat("velocityY", normalizedVelocity.y);
             }

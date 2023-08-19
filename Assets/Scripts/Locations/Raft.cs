@@ -59,6 +59,7 @@ public class Raft : MonoBehaviour
         {
             collider.enabled = false;
         }
+        rb.bodyType = RigidbodyType2D.Static;
     }
 
     /// <summary>
@@ -73,6 +74,7 @@ public class Raft : MonoBehaviour
     public void ResetRaft()
     {
         accelerationTimer = 0;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         move = false;
         brake = false;
         StopMovement();
