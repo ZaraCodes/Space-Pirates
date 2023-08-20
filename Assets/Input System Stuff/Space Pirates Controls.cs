@@ -202,7 +202,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""43e88560-b802-4708-b0d2-1556fb19d66b"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/f1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse + Keyboard"",
@@ -224,7 +224,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""36df2007-e026-4b69-a9e7-fcd1c462bd1f"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/f1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse + Keyboard"",

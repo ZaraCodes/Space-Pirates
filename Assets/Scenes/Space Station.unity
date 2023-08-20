@@ -37075,6 +37075,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  OnDialogStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &181976011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1344413370451628506, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
@@ -72765,7 +72768,7 @@ Transform:
   m_GameObject: {fileID: 1070109627}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 466668012}
@@ -72812,7 +72815,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -101285669, guid: e1db709f902a6fc468eda8002f4e3c6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -76470,6 +76473,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDialogStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1678038283
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77704,6 +77710,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  OnDialogStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1859097272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77735,6 +77744,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  OnDialogStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1859097273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77802,6 +77814,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDialogStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1862029035
 GameObject:
   m_ObjectHideFlags: 0
@@ -78165,6 +78180,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  OnDialogStarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1904713725
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -78544,6 +78562,9 @@ MonoBehaviour:
   requirements: 01000000
   antiRequirements: 
   OnDialogFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDialogStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &2014714120
@@ -79524,6 +79545,9 @@ MonoBehaviour:
   requirements: 
   antiRequirements: 03000000
   OnDialogFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDialogStarted:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &7354671626861435104 stripped

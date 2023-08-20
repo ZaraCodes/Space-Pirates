@@ -74,10 +74,10 @@ public class Raft : MonoBehaviour
     public void ResetRaft()
     {
         accelerationTimer = 0;
+        StopMovement();
         rb.bodyType = RigidbodyType2D.Kinematic;
         move = false;
         brake = false;
-        StopMovement();
         interactableTrigger.gameObject.SetActive(true);
     }
 

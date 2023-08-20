@@ -211,11 +211,9 @@ public class HopeShip : MonoBehaviour
         if (ctx.action.WasPerformedThisFrame() && currentPlanet != null && !GameManager.Instance.IsFading)
         {
             // If both hints have been found, the player is only allowed to land on the moon
-            if ((ProgressionManager.Instance.Flags.Contains(EProgressionFlag.IslandHint) &&
+            if (!(ProgressionManager.Instance.Flags.Contains(EProgressionFlag.IslandHint) &&
                 ProgressionManager.Instance.Flags.Contains(EProgressionFlag.ShipSellerHint) &&
-                currentPlanet.Location == ELastVisitedLocation.Moon)
-                ||
-                (!ProgressionManager.Instance.Flags.Contains(EProgressionFlag.IslandHint)))
+                currentPlanet.Location != ELastVisitedLocation.Moon))
             {
                 ProgressionManager.Instance.LastVisitedLocation = currentPlanet.Location;
 

@@ -1429,10 +1429,10 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: velocityX
-    m_EventTreshold: -0.499
+    m_EventTreshold: -0.7
   - m_ConditionMode: 4
     m_ConditionEvent: velocityX
-    m_EventTreshold: 0.499
+    m_EventTreshold: 0.7
   - m_ConditionMode: 4
     m_ConditionEvent: velocityY
     m_EventTreshold: -0.001
