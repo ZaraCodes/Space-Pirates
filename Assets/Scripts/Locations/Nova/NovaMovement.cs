@@ -81,6 +81,8 @@ public class NovaMovement : MonoBehaviour
     [SerializeField] private CollisionManager collisionManager;
     /// <summary>Reference to the ground tilemap. Used in the islands level to see if Nova is in an invalid tile</summary>
     [SerializeField] private Tilemap groundTilemap;
+    /// <summary>Array of the aim points </summary>
+    [SerializeField] private GameObject[] aimPoints;
 
     /// <summary>Prefab of a charged bullet that can bounce off of walls</summary>
     [Header("Prefabs"), SerializeField] private GameObject chargedBulletPrefab;
@@ -97,6 +99,8 @@ public class NovaMovement : MonoBehaviour
     private Vector2 attackDirection;
     /// <summary>Input value the game gets to make calculation for the attack direction</summary>
     private Vector2 initialAttackDirectionInput;
+    /// <summary>Saves the initialAttackDirectionInput if the input is currently 0</summary>
+    private Vector2 initialAttackDirectionCache;
 
     /// <summary>List of interactable triggers Nova currently is in</summary>
     private List<InteractableTrigger> interactableTriggers;
@@ -115,6 +119,11 @@ public class NovaMovement : MonoBehaviour
     public bool Fading;
     /// <summary>Cache of the rigidbody velocity</summary>
     public Vector2 RbVelBuffer { get; set; }
+
+    /// <summary>This tracks whether Nova is currently aiming and should display the aim helper points</summary>
+    private bool aiming;
+    /// <summary>Layer mask of the aim help raycast</summary>
+    private int aimHelpLayer;
     #endregion
 
     #region Methods
@@ -138,6 +147,9 @@ public class NovaMovement : MonoBehaviour
         {
             if (ctx.action.WasReleasedThisFrame())
             {
+                aiming = false;
+                foreach (var point in aimPoints) point.SetActive(false);
+
                 animator.SetTrigger("shooting");
                 chargeAudioSource.Stop();
 
@@ -148,6 +160,7 @@ public class NovaMovement : MonoBehaviour
             }
             else if (ctx.action.WasPerformedThisFrame())
             {
+                aiming = true;
                 animator.SetTrigger("charging");
                 chargeAttackTimer = chargeAttackTime;
                 chargeAudioSource.PlayDelayed(.15f);
@@ -181,7 +194,13 @@ public class NovaMovement : MonoBehaviour
         if (GameManager.Instance.IsPlaying)
         {
             initialAttackDirectionInput = ctx.ReadValue<Vector2>();
-            if (initialAttackDirectionInput == Vector2.zero) initialAttackDirectionInput = Vector2.down;
+            if (initialAttackDirectionInput == Vector2.zero)
+            {
+                if (initialAttackDirectionCache == Vector2.zero) initialAttackDirectionInput = Vector2.down;
+                else initialAttackDirectionInput = initialAttackDirectionCache;
+            }
+            else initialAttackDirectionCache = initialAttackDirectionInput;
+            
             if (GameManager.Instance.CurrentInputScheme == EInputScheme.Gamepad) attackDirection = initialAttackDirectionInput;
         }
     }
@@ -238,6 +257,7 @@ public class NovaMovement : MonoBehaviour
     {
         if (groundFloor)
         {
+            aimHelpLayer = LayerMask.GetMask("Damage Receiver");
             if (!IsOnGround())
             {
                 Respawn();
@@ -249,6 +269,7 @@ public class NovaMovement : MonoBehaviour
         }
         else
         {
+            aimHelpLayer = LayerMask.GetMask("Damage Receiver Floor 1");
             SetColliderLayers(13, 10, 11, 12);
         }
     }
@@ -351,6 +372,22 @@ public class NovaMovement : MonoBehaviour
             interactionPrompt.EnablePrompt(performedInteraction.InteractText, controls.Nova.Interact.bindings, performedInteraction.gameObject.transform);
         }
     }
+
+    /// <summary>
+    /// Sets the positions of the aim points
+    /// </summary>
+    /// <param name="spawnPosition">the position at which the points start from</param>
+    /// <param name="maxPoints">the max amount of points getting displayed</param>
+    private void SetAimPointsPositions(Vector2 spawnPosition, float maxDistance)
+    {
+        for (int i = 0; i < aimPoints.Length; i++)
+        {
+            aimPoints[i].transform.position = spawnPosition + attackDirection * (i + 2);
+            if ((spawnPosition - new Vector2(aimPoints[i].transform.position.x, aimPoints[i].transform.position.y)).magnitude < maxDistance)
+                aimPoints[i].SetActive(true);
+            else break;
+        }
+    }
     #endregion
 
     #region Unity Stuff
@@ -391,6 +428,8 @@ public class NovaMovement : MonoBehaviour
 
         Fading = false;
         MovementConstraint = new(1, 1);
+
+        aimHelpLayer = LayerMask.GetMask("Damage Receiver");
     }
 
     /// <summary>
@@ -423,6 +462,22 @@ public class NovaMovement : MonoBehaviour
             {
                 Vector3 screenPos = mainCamera.WorldToScreenPoint(transform.position);
                 attackDirection = (new Vector3(initialAttackDirectionInput.x, initialAttackDirectionInput.y) - screenPos).normalized;
+            }
+            else if (attackDirection.magnitude != 1f) attackDirection = attackDirection.normalized;
+
+            if (aiming)
+            {
+                foreach (var point in aimPoints) point.SetActive(false);
+
+                var spawnPosition = new Vector2(ballSpawnPosition.position.x, ballSpawnPosition.position.y);
+                var maxDistance = 8f;
+                RaycastHit2D raycastHit = Physics2D.Raycast(spawnPosition, attackDirection, maxDistance, aimHelpLayer);
+                if (raycastHit.collider != null)
+                {
+                    maxDistance = (spawnPosition - raycastHit.point).magnitude;
+                    SetAimPointsPositions(spawnPosition, maxDistance);
+                }
+                else SetAimPointsPositions(spawnPosition, 10);
             }
 
             animator.SetFloat("attackDirX", attackDirection.x);
