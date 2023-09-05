@@ -37,6 +37,12 @@ public class SpaceMiniMap : MonoBehaviour
     /// <summary>Reference to the hope ship on the mini map</summary>
     [SerializeField] private RectTransform hopeOnMap;
 
+    /// <summary>Reference to the quest marker for the island planet</summary>
+    [Header("Quest Markers"), SerializeField] private GameObject islandQuestMarker;
+    /// <summary>Reference to the quest marker for the city planet</summary>
+    [SerializeField] private GameObject cityQuestMarker;
+    //[SerializeField] private GameObject moonQuestMarker;
+
     /// <summary>
     /// Sets the positions of the space objects on the map
     /// </summary>
@@ -47,6 +53,11 @@ public class SpaceMiniMap : MonoBehaviour
         islandOnMap.localPosition = (islandPlanet.position - sun.position) / divisionFactorForMap;
         cityOnMap.localPosition = (cityPlanet.position - sun.position) / divisionFactorForMap;
         stationOnMap.localPosition = (spaceStation.position - sun.position) / divisionFactorForMap;
+
+        if (ProgressionManager.Instance.Flags.Contains(EProgressionFlag.IslandHint))
+            islandQuestMarker.SetActive(false);
+        if (ProgressionManager.Instance.Flags.Contains(EProgressionFlag.ShipSellerHint)) 
+            cityQuestMarker.SetActive(false);
     }
 
     /// <summary>
