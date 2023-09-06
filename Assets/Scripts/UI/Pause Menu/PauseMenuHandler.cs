@@ -45,6 +45,11 @@ public class PauseMenuHandler : MonoBehaviour
     private GameObject settingsMenuGO;
     /// <summary>Cache of the resume button</summary>
     private Button resumeButton;
+    /// <summary>Cache of the save button</summary>
+    private Button saveButton;
+
+    /// <summary>Caches wether the save button should be hidden when instanciating the menu</summary>
+    private bool hideSaveButton;
 
     /// <summary>
     /// Coroutine that fades the black image in
@@ -141,6 +146,15 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
+    /// <summary>Hides the save button</summary>
+    public void HideSaveButton()
+    {
+        if (saveButton != null)
+            saveButton.gameObject.SetActive(false);
+        else
+            hideSaveButton = true;
+    }
+
     /// <summary>
     /// Create the pause menu object
     /// </summary>
@@ -151,6 +165,8 @@ public class PauseMenuHandler : MonoBehaviour
 
         PauseMenu pauseMenu = pauseMenuGO.GetComponent<PauseMenu>();
         resumeButton = pauseMenu.ResumeButton;
+        saveButton = pauseMenu.SaveButton;
+        if (hideSaveButton) HideSaveButton();
 
         settingsMenuGO = Instantiate(settingsMenuPrefab);
         settingsMenuGO.transform.SetParent(transform, false);
@@ -168,6 +184,26 @@ public class PauseMenuHandler : MonoBehaviour
         settingsMenuGO.SetActive(false);
     }
 
+    private void TakeScreenshot(InputAction.CallbackContext ctx)
+    {
+        if (ctx.action.WasPerformedThisFrame())
+        {
+            var path = $"{Application.persistentDataPath}\\Screenshots";
+            ReaderWriter.CreateFolderIfNotExists(path);
+
+            var fileName = $"{path}\\Screenshot_{TrimTime(System.DateTime.Now.Year)}-{TrimTime(System.DateTime.Now.Month)}-{TrimTime(System.DateTime.Now.Day)}_{TrimTime(System.DateTime.Now.Hour)}-{TrimTime(System.DateTime.Now.Minute)}-{TrimTime(System.DateTime.Now.Second)}.png";
+            ScreenCapture.CaptureScreenshot(fileName);
+        }
+    }
+
+    /// <summary>Fills up a time string to two digits</summary>
+    /// <param name="time">The input value</param>
+    /// <returns>The modified string</returns>
+    private string TrimTime(int time)
+    {
+        return time.ToString().PadLeft(2, '0');
+    }
+
     #region Unity Stuff
     /// <summary>
     /// When the pause menu awakes, it creates the objects for the gameplay dialog and the dialog overlay
@@ -178,6 +214,7 @@ public class PauseMenuHandler : MonoBehaviour
 
         controls.UI.Pause.performed += ctx => TogglePauseMenu(ctx);
         controls.UI.UIBack.performed += ctx => ClosePauseMenu(ctx);
+        controls.UI.TakeScreenshot.performed += TakeScreenshot;
 
         GameObject gameplayDialogBoxGO = Instantiate(gameplayDialogBoxPrefab);
         gameplayDialogBoxGO.transform.SetParent(transform, false);

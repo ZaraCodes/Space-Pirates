@@ -23,6 +23,7 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     public Button SettingsButton;
 
+    /// <summary>Saves the progress</summary>
     public void OnSaveButtonClick()
     {
         ProgressionManager.Instance.SaveProgress();

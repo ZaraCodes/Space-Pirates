@@ -53,7 +53,41 @@ public class ProgressionManager
     /// <summary>Loads the progression saved from the save file</summary>
     public void LoadProgress()
     {
-        //todo
+        var saveDataPath = $"{Application.persistentDataPath}\\Data\\Saves";
+        var saveData = ReaderWriter.LoadFile(saveDataPath);
+
+        if (saveData == null) return;
+
+        Flags.Clear();
+        Flags = saveData.Flags;
+        LastVisitedLocation = saveData.LastVisitedLocation;
+        ViewedDialogs.Clear();
+        ViewedDialogs = saveData.ViewedDialogs;
+
+        if (!saveData.InOrbit)
+        {
+            SceneManager.LoadScene(1);
+            return;
+        }
+
+        switch (LastVisitedLocation)
+        {
+            case ELastVisitedLocation.SpaceStation:
+                SceneManager.LoadScene(3);
+                break;
+            case ELastVisitedLocation.Island:
+                SceneManager.LoadScene(2);
+                break;
+            case ELastVisitedLocation.City:
+                SceneManager.LoadScene(4);
+                break;
+            case ELastVisitedLocation.Moon:
+                SceneManager.LoadScene(6);
+                break;
+            default:
+                SceneManager.LoadScene(1);
+                break;
+        }
     }
 
     /// <summary>Saves the current save state to a json file</summary>
@@ -78,6 +112,14 @@ public class ProgressionManager
         flags.Clear();
         ViewedDialogs.Clear();
         LastVisitedLocation = ELastVisitedLocation.None;
+    }
+    
+    /// <summary>
+    /// Deletes the save file
+    /// </summary>
+    public void DeleteSaveFile()
+    {
+        ReaderWriter.DeleteFile($"{Application.persistentDataPath}\\Data\\Saves\\save.json");
     }
     #endregion
 }

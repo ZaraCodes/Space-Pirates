@@ -215,7 +215,7 @@ public class HopeShip : MonoBehaviour
                 ProgressionManager.Instance.Flags.Contains(EProgressionFlag.ShipSellerHint) &&
                 currentPlanet.Location != ELastVisitedLocation.Moon))
             {
-                ProgressionManager.Instance.LastVisitedLocation = currentPlanet.Location;
+                //ProgressionManager.Instance.LastVisitedLocation = currentPlanet.Location;
 
                 UnityEvent unityEvent = new();
                 unityEvent.AddListener(() => StartCoroutine(LoadPlanetAsync()));

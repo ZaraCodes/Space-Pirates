@@ -37090,6 +37090,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 505114315}
     m_Modifications:
+    - target: {fileID: 1219725745566399232, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1344413370451628504, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -38354,6 +38358,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1424363871}
     m_Modifications:
+    - target: {fileID: 1219725745566399232, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1344413370451628504, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
       propertyPath: m_SortingOrder
       value: -19999
@@ -41319,6 +41327,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1960451892}
     m_Modifications:
+    - target: {fileID: 1219725745566399232, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1344413370451628504, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
       propertyPath: m_FlipY
       value: 1
@@ -73655,6 +73667,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 59009302}
     m_Modifications:
+    - target: {fileID: 1219725745566399232, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1344413370451628505, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -78020,6 +78036,10 @@ PrefabInstance:
     - target: {fileID: 2767529181771509620, guid: 063aa3466098f9d46a53291b8afc8da9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767529181771509621, guid: 063aa3466098f9d46a53291b8afc8da9, type: 3}
+      propertyPath: location
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2767529181771509621, guid: 063aa3466098f9d46a53291b8afc8da9, type: 3}
       propertyPath: musicSource

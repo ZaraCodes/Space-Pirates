@@ -23,6 +23,8 @@ public class SpaceMiniMap : MonoBehaviour
     [SerializeField] private Transform spaceStation;
     /// <summary>Reference to the hope ship</summary>
     [SerializeField] private Transform hopeShip;
+    /// <summary>Reference to the moon ring that's used for landing</summary>
+    [SerializeField] private GameObject moonRing;
 
     /// <summary>Reference to the sun on the mini map</summary>
     [Header("Mini Map Objects"), SerializeField] private RectTransform sunOnMap;
@@ -41,10 +43,10 @@ public class SpaceMiniMap : MonoBehaviour
     [Header("Quest Markers"), SerializeField] private GameObject islandQuestMarker;
     /// <summary>Reference to the quest marker for the city planet</summary>
     [SerializeField] private GameObject cityQuestMarker;
-    //[SerializeField] private GameObject moonQuestMarker;
+    [SerializeField] private GameObject moonQuestMarker;
 
     /// <summary>
-    /// Sets the positions of the space objects on the map
+    /// Sets the positions of the space objects on the map and sets up the correct progression state
     /// </summary>
     private void Start()
     {
@@ -58,6 +60,12 @@ public class SpaceMiniMap : MonoBehaviour
             islandQuestMarker.SetActive(false);
         if (ProgressionManager.Instance.Flags.Contains(EProgressionFlag.ShipSellerHint)) 
             cityQuestMarker.SetActive(false);
+        if (ProgressionManager.Instance.Flags.Contains(EProgressionFlag.ShipSellerHint) &&
+            ProgressionManager.Instance.Flags.Contains(EProgressionFlag.IslandHint))
+        {
+            moonQuestMarker.SetActive(true);
+            moonRing.SetActive(true);
+        }
     }
 
     /// <summary>

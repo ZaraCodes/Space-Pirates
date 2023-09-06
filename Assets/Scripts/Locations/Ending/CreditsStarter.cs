@@ -21,6 +21,7 @@ public class CreditsStarter : MonoBehaviour
     public void BeginCredits()
     {
         ProgressionManager.Instance.ResetProgress();
+        ProgressionManager.Instance.DeleteSaveFile();
 
         UnityEvent onFadeInFinished = new();
         var fadeTime = GameManager.Instance.PauseMenuHandler.FadeTime;

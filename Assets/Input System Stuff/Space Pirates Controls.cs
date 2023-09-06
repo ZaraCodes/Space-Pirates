@@ -185,6 +185,15 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TakeScreenshot"",
+                    ""type"": ""Button"",
+                    ""id"": ""736c8b20-241e-4a55-b717-2de64773f07b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -251,6 +260,28 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Mouse + Keyboard"",
                     ""action"": ""Proceed Dialog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74c37607-64d3-455d-a4a0-e4fc867f2727"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""TakeScreenshot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d284adb8-7594-4fcc-9b9f-67e0f57cd6ac"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse + Keyboard"",
+                    ""action"": ""TakeScreenshot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -494,6 +525,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         m_UI_UIBack = m_UI.FindAction("UI Back", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         m_UI_ProceedDialog = m_UI.FindAction("Proceed Dialog", throwIfNotFound: true);
+        m_UI_TakeScreenshot = m_UI.FindAction("TakeScreenshot", throwIfNotFound: true);
         // Nova
         m_Nova = asset.FindActionMap("Nova", throwIfNotFound: true);
         m_Nova_Move = m_Nova.FindAction("Move", throwIfNotFound: true);
@@ -635,6 +667,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_UIBack;
     private readonly InputAction m_UI_Pause;
     private readonly InputAction m_UI_ProceedDialog;
+    private readonly InputAction m_UI_TakeScreenshot;
     public struct UIActions
     {
         private @SpacePiratesControls m_Wrapper;
@@ -642,6 +675,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         public InputAction @UIBack => m_Wrapper.m_UI_UIBack;
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputAction @ProceedDialog => m_Wrapper.m_UI_ProceedDialog;
+        public InputAction @TakeScreenshot => m_Wrapper.m_UI_TakeScreenshot;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -660,6 +694,9 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             @ProceedDialog.started += instance.OnProceedDialog;
             @ProceedDialog.performed += instance.OnProceedDialog;
             @ProceedDialog.canceled += instance.OnProceedDialog;
+            @TakeScreenshot.started += instance.OnTakeScreenshot;
+            @TakeScreenshot.performed += instance.OnTakeScreenshot;
+            @TakeScreenshot.canceled += instance.OnTakeScreenshot;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -673,6 +710,9 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
             @ProceedDialog.started -= instance.OnProceedDialog;
             @ProceedDialog.performed -= instance.OnProceedDialog;
             @ProceedDialog.canceled -= instance.OnProceedDialog;
+            @TakeScreenshot.started -= instance.OnTakeScreenshot;
+            @TakeScreenshot.performed -= instance.OnTakeScreenshot;
+            @TakeScreenshot.canceled -= instance.OnTakeScreenshot;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -798,6 +838,7 @@ public partial class @SpacePiratesControls: IInputActionCollection2, IDisposable
         void OnUIBack(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnProceedDialog(InputAction.CallbackContext context);
+        void OnTakeScreenshot(InputAction.CallbackContext context);
     }
     public interface INovaActions
     {

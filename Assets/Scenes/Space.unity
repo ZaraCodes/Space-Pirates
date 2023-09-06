@@ -128,35 +128,35 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1882403483}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3850566f371252d44a7cb896da4c1673, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3850566f371252d44a7cb896da4c1673, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.6203334
+      value: 108.61
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3850566f371252d44a7cb896da4c1673, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.6203334
+      value: 108.61
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3850566f371252d44a7cb896da4c1673, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.6203334
+      value: 108.61
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3850566f371252d44a7cb896da4c1673, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 400.001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3850566f371252d44a7cb896da4c1673, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 360.501
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3850566f371252d44a7cb896da4c1673, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.013333335
+      value: 0.40000004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3850566f371252d44a7cb896da4c1673, type: 3}
       propertyPath: m_LocalRotation.w
@@ -303,7 +303,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180928705
 GameObject:
@@ -840,7 +840,7 @@ GameObject:
   - component: {fileID: 448212847}
   - component: {fileID: 448212846}
   m_Layer: 5
-  m_Name: Marker
+  m_Name: Moon Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1063,7 +1063,7 @@ GameObject:
   - component: {fileID: 513857903}
   - component: {fileID: 513857902}
   m_Layer: 5
-  m_Name: Marker
+  m_Name: Island Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1162,7 +1162,7 @@ Transform:
   - {fileID: 406703191}
   - {fileID: 1608162777}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519600726
 MonoBehaviour:
@@ -1269,7 +1269,7 @@ Transform:
   m_Children:
   - {fileID: 1890547992}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &520834694
 MonoBehaviour:
@@ -1452,7 +1452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f419a2a823d0952428351cafaba9a44e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f419a2a823d0952428351cafaba9a44e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1605,11 +1605,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599257775}
   m_CullTransparentMesh: 1
---- !u!4 &610931323 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3850566f371252d44a7cb896da4c1673, type: 3}
-  m_PrefabInstance: {fileID: 59222383}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &646645586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,7 +1906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
       propertyPath: OnDialogStarted.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
       propertyPath: OnDialogFinished.m_PersistentCalls.m_Calls.Array.size
@@ -1944,7 +1939,7 @@ PrefabInstance:
     - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
       propertyPath: OnDialogStarted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1937969619}
+      objectReference: {fileID: 448212844}
     - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
       propertyPath: OnDialogStarted.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -2219,7 +2214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
       propertyPath: OnDialogStarted.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
       propertyPath: OnDialogFinished.m_PersistentCalls.m_Calls.Array.size
@@ -2252,7 +2247,7 @@ PrefabInstance:
     - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
       propertyPath: OnDialogStarted.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1937969619}
+      objectReference: {fileID: 448212844}
     - target: {fileID: 574606961546856517, guid: 11b2f7f9b7b037441943417e36209da2, type: 3}
       propertyPath: OnDialogStarted.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -2464,7 +2459,7 @@ GameObject:
   - component: {fileID: 801066226}
   - component: {fileID: 801066225}
   m_Layer: 5
-  m_Name: Marker
+  m_Name: City Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2803,7 +2798,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &872993950
 GameObject:
@@ -3311,7 +3306,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1073981013
 GameObject:
@@ -3400,7 +3395,7 @@ Transform:
   m_Children:
   - {fileID: 1539385785}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1075727556
 PrefabInstance:
@@ -3985,7 +3980,7 @@ Transform:
   - {fileID: 659438347}
   - {fileID: 1892744873}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1399794504
 GameObject:
@@ -4045,6 +4040,7 @@ MonoBehaviour:
   cityPlanet: {fileID: 1516948824}
   spaceStation: {fileID: 1892744873}
   hopeShip: {fileID: 820247304}
+  moonRing: {fileID: 1937969619}
   sunOnMap: {fileID: 1009580551}
   gasOnMap: {fileID: 180928706}
   islandOnMap: {fileID: 646645587}
@@ -4053,6 +4049,7 @@ MonoBehaviour:
   hopeOnMap: {fileID: 2128918746}
   islandQuestMarker: {fileID: 513857900}
   cityQuestMarker: {fileID: 801066223}
+  moonQuestMarker: {fileID: 448212844}
 --- !u!1 &1488616562
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,7 +4080,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1488616564
 AudioSource:
@@ -5235,7 +5232,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1941656520}
-  - {fileID: 610931323}
   m_Father: {fileID: 1286519539}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

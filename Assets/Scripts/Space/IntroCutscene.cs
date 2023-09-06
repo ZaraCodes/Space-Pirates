@@ -203,6 +203,7 @@ public class IntroCutscene : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.PauseMenuHandler.FadeTime = 3f;
+        GameManager.Instance.PauseMenuHandler.HideSaveButton();
         ProgressionManager.Instance.ResetProgress();
     }
 

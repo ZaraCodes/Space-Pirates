@@ -16,6 +16,8 @@ public class LevelIntro : MonoBehaviour
 
     /// <summary>if true, it plays the intro, if not, it jumps instantly into the action</summary>
     [SerializeField] private bool playIntro;
+    /// <summary>The location of this intro</summary>
+    [SerializeField] private ELastVisitedLocation location;
 
     /// <summary>Cache of the initial fade time</summary>
     private float originalFadeTime;
@@ -28,6 +30,7 @@ public class LevelIntro : MonoBehaviour
     /// <returns></returns>
     private IEnumerator Intro()
     {
+        ProgressionManager.Instance.LastVisitedLocation = location;
         GameManager.Instance.PauseMenuHandler.LoadingScreen.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(3f);

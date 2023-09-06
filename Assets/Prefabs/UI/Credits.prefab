@@ -3129,6 +3129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2123248626465934377}
   - component: {fileID: 2123248626465934376}
+  - component: {fileID: 5250394375896781646}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -3175,6 +3176,22 @@ MonoBehaviour:
   endingText: {fileID: 2123248625181699687}
   waitDuration: 0
   scrollSpeed: 50
+--- !u!114 &5250394375896781646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123248626465934378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c36927151ea21a43997735706f5b4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenu: {fileID: 0}
+  credits: {fileID: 2123248626465934378}
+  creditsEnding: {fileID: 2123248625946519029}
+  loadMainMenu: 1
 --- !u!1 &2123248626612235888
 GameObject:
   m_ObjectHideFlags: 0
