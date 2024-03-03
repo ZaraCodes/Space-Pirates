@@ -71,6 +71,10 @@ public class PauseMenuHandler : MonoBehaviour
             blackFade.color = new(0, 0, 0, 1 - fadeTimer / FadeTime);
             yield return null;
         }
+        
+        if (GameManager.Instance.Nova != null)
+            GameManager.Instance.Nova.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        
         GameManager.Instance.IsFading = false;
         callback?.Invoke();
     }

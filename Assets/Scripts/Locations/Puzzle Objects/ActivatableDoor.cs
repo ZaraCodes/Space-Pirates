@@ -99,10 +99,21 @@ public class ActivatableDoor : ActivatableObject
         if (collision.CompareTag("Button Trigger") && collision.name.Contains("Nova"))
         {
             //connectedDoor.teleportEnabled = false;
-            var rb = collision.transform.parent.GetComponent<Rigidbody2D>();
-            var angle = Vector2.Angle(rb.velocity, transform.right);
+            var nova = collision.transform.parent.GetComponent<NovaMovement>();
+            if (nova.ZeroGMovement)
+            {
+                var rb = nova.GetComponent<Rigidbody2D>();
+                var angleVelocity = Vector2.Angle(rb.velocity, transform.right);
+                var angleLastBullet = Vector2.Angle(nova.LastBulletDirection, -transform.right);
 
-            if (rb.velocity.sqrMagnitude > 0 && angle < 45 && !GameManager.Instance.Nova.Fading) TeleportPlayer(collision.transform.parent);
+                if (rb.velocity.sqrMagnitude > 0 && angleVelocity <= 90f && angleLastBullet < 90f && !GameManager.Instance.Nova.Fading) TeleportPlayer(collision.transform.parent);
+
+            }
+            else
+            {
+                var angle = Vector2.Angle(nova.MoveInput, transform.right);
+                if (nova.MoveInput.sqrMagnitude > 0 && angle < 80f && !GameManager.Instance.Nova.Fading) TeleportPlayer(collision.transform.parent);
+            }
         }
     }
 

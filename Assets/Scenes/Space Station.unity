@@ -40301,7 +40301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1344413370451628507, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
       propertyPath: invertState
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1344413370451628507, guid: 521da98eba63a704d8bfebd242e4bc6b, type: 3}
       propertyPath: BulletsParent
@@ -76911,7 +76911,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BoundingShape2D: {fileID: 493989425}
   m_Damping: 0
-  m_MaxWindowSize: -1
+  m_MaxWindowSize: 568
 --- !u!114 &1712814852
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -96,7 +96,9 @@ public class NovaMovement : MonoBehaviour
     /// <summary>Timer that keeps track of the time the attack button has been held</summary>
     private float chargeAttackTimer;
     /// <summary>The direction Nova will use to shoot a bullet</summary>
-    private Vector2 attackDirection;
+    public Vector2 AttackDirection { get; private set; }
+    /// <summary>Contains the direction the last bullet was fired in</summary>
+    public Vector2 LastBulletDirection { get; private set; }
     /// <summary>Input value the game gets to make calculation for the attack direction</summary>
     private Vector2 initialAttackDirectionInput;
     /// <summary>Saves the initialAttackDirectionInput if the input is currently 0</summary>
@@ -116,7 +118,7 @@ public class NovaMovement : MonoBehaviour
     private BoxCollider2D firstFloorMovableBox;
 
     /// <summary>Tracks if the black fade currently is fading</summary>
-    public bool Fading;
+    public bool Fading { get; set; }
     /// <summary>Cache of the rigidbody velocity</summary>
     public Vector2 RbVelBuffer { get; set; }
 
@@ -153,10 +155,9 @@ public class NovaMovement : MonoBehaviour
                 animator.SetTrigger("shooting");
                 chargeAudioSource.Stop();
 
-                if (attackDirection == Vector2.zero) attackDirection = Vector2.right;
+                if (AttackDirection == Vector2.zero) AttackDirection = Vector2.right;
 
-                if (chargeAttackTimer <= 0) SpawnBullet(chargedBulletPrefab);
-                else SpawnBullet(smallBulletPrefab);
+                SpawnBullet();
             }
             else if (ctx.action.WasPerformedThisFrame())
             {
@@ -170,19 +171,30 @@ public class NovaMovement : MonoBehaviour
 
     /// <summary>Spawns a bullet and sets its velocity and floor</summary>
     /// <param name="bulletPrefab">The prefab that gets used to spawn a specific type of bullet</param>
-    private void SpawnBullet(GameObject bulletPrefab)
+    private void SpawnBullet()
     {
+        GameObject bulletPrefab;
+        if (chargeAttackTimer <= 0)
+        {
+            if (ZeroGMovement) MoveInput = AttackDirection.normalized * 2;
+            bulletPrefab = chargedBulletPrefab;
+        }
+        else
+        {
+            if (ZeroGMovement) MoveInput = AttackDirection.normalized;
+            bulletPrefab = smallBulletPrefab;
+        }
         var bulletGO = Instantiate(bulletPrefab);
         var bullet = bulletGO.GetComponent<ChargedBullet>();
 
         bulletGO.transform.position = ballSpawnPosition.position;
         bulletGO.layer = ballSpawnPosition.gameObject.layer;
 
-        bullet.Rb.velocity = attackDirection.normalized * bullet.MovementSpeed;
+        bullet.Rb.velocity = AttackDirection.normalized * bullet.MovementSpeed;
+        LastBulletDirection = bullet.Rb.velocity.normalized;
 
         bulletGO.transform.parent = bulletContainer;
 
-        if (ZeroGMovement) MoveInput = attackDirection.normalized;
     }
 
     /// <summary>Sets the attack direction for nova</summary>
@@ -201,7 +213,7 @@ public class NovaMovement : MonoBehaviour
             }
             else initialAttackDirectionCache = initialAttackDirectionInput;
             
-            if (GameManager.Instance.CurrentInputScheme == EInputScheme.Gamepad) attackDirection = initialAttackDirectionInput;
+            if (GameManager.Instance.CurrentInputScheme == EInputScheme.Gamepad) AttackDirection = initialAttackDirectionInput;
         }
     }
 
@@ -382,7 +394,7 @@ public class NovaMovement : MonoBehaviour
     {
         for (int i = 0; i < aimPoints.Length; i++)
         {
-            aimPoints[i].transform.position = spawnPosition + attackDirection * (i + 2);
+            aimPoints[i].transform.position = spawnPosition + AttackDirection * (i + 2);
             if ((spawnPosition - new Vector2(aimPoints[i].transform.position.x, aimPoints[i].transform.position.y)).magnitude < maxDistance)
                 aimPoints[i].SetActive(true);
             else break;
@@ -461,9 +473,9 @@ public class NovaMovement : MonoBehaviour
             if (GameManager.Instance.CurrentInputScheme == EInputScheme.MouseKeyboard)
             {
                 Vector3 screenPos = mainCamera.WorldToScreenPoint(transform.position);
-                attackDirection = (new Vector3(initialAttackDirectionInput.x, initialAttackDirectionInput.y) - screenPos).normalized;
+                AttackDirection = (new Vector3(initialAttackDirectionInput.x, initialAttackDirectionInput.y) - screenPos).normalized;
             }
-            else if (attackDirection.magnitude != 1f) attackDirection = attackDirection.normalized;
+            else if (AttackDirection.magnitude != 1f) AttackDirection = AttackDirection.normalized;
 
             if (aiming)
             {
@@ -471,7 +483,7 @@ public class NovaMovement : MonoBehaviour
 
                 var spawnPosition = new Vector2(ballSpawnPosition.position.x, ballSpawnPosition.position.y);
                 var maxDistance = 8f;
-                RaycastHit2D raycastHit = Physics2D.Raycast(spawnPosition, attackDirection, maxDistance, aimHelpLayer);
+                RaycastHit2D raycastHit = Physics2D.Raycast(spawnPosition, AttackDirection, maxDistance, aimHelpLayer);
                 if (raycastHit.collider != null)
                 {
                     maxDistance = (spawnPosition - raycastHit.point).magnitude;
@@ -480,8 +492,8 @@ public class NovaMovement : MonoBehaviour
                 else SetAimPointsPositions(spawnPosition, 10);
             }
 
-            animator.SetFloat("attackDirX", attackDirection.x);
-            animator.SetFloat("attackDirY", attackDirection.y);
+            animator.SetFloat("attackDirX", AttackDirection.x);
+            animator.SetFloat("attackDirY", AttackDirection.y);
 
             if (ZeroGMovement)
             {
