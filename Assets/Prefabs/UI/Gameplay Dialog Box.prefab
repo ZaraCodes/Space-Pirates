@@ -70,8 +70,8 @@ MonoBehaviour:
   m_text: This is a very long text to fill up this textbox completely so I know where
     I can put the button prompt in this textbox... it has to be outside...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5beade0583d1164ab26231742a5c5e2, type: 2}
-  m_sharedMaterial: {fileID: -2015894506654442584, guid: c5beade0583d1164ab26231742a5c5e2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b09f5c5646a1bd47ba1c51248c5cb83, type: 2}
+  m_sharedMaterial: {fileID: -2015894506654442584, guid: 4b09f5c5646a1bd47ba1c51248c5cb83, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

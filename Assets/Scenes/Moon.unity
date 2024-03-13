@@ -449,6 +449,7 @@ MonoBehaviour:
   movementSpeed: 5
   captainMeowDialog: {fileID: 792187572}
   captainMeowMusic: {fileID: 1130821267}
+  captainMeowLoop: {fileID: 8300000, guid: 170bea704792dff4db32cc0aad700bd5, type: 3}
   moonMusic: {fileID: 1373601983}
 --- !u!50 &466707247
 Rigidbody2D:
@@ -1271,11 +1272,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7877704325436221873, guid: 473490cfa95219a41b7298790decd578, type: 2}
-  m_audioClip: {fileID: 8300000, guid: c453b8e4f7fa0ac4bb27649b9946f86b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 16e14946d1ec1d54cafbc6d81ba27cc9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

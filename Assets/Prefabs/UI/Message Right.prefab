@@ -147,8 +147,8 @@ MonoBehaviour:
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
     At vero eos et accusam et justo duo dolor '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5beade0583d1164ab26231742a5c5e2, type: 2}
-  m_sharedMaterial: {fileID: -2015894506654442584, guid: c5beade0583d1164ab26231742a5c5e2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b09f5c5646a1bd47ba1c51248c5cb83, type: 2}
+  m_sharedMaterial: {fileID: -2015894506654442584, guid: 4b09f5c5646a1bd47ba1c51248c5cb83, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -429,8 +429,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Character B
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5beade0583d1164ab26231742a5c5e2, type: 2}
-  m_sharedMaterial: {fileID: -2015894506654442584, guid: c5beade0583d1164ab26231742a5c5e2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b09f5c5646a1bd47ba1c51248c5cb83, type: 2}
+  m_sharedMaterial: {fileID: -2015894506654442584, guid: 4b09f5c5646a1bd47ba1c51248c5cb83, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -56,7 +56,7 @@ public class NewGameButton : MonoBehaviour
         {
             timer += Time.deltaTime;
             fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, timer / fadeTime);
-            Debug.Log(timer/fadeTime);
+
             yield return null;
         }
         OnFadeFinished.Invoke();

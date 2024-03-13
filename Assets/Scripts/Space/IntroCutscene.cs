@@ -25,6 +25,9 @@ public class IntroCutscene : MonoBehaviour
     /// <summary>Reference to the audio source that plays the theme for captain meow</summary>
     [SerializeField] private AudioSource captainMeowMusic;
 
+    /// <summary>Reference to the audio clip that will loop the music</summary>
+    [SerializeField] private AudioClip captainMeowLoop;
+
     /// <summary>Transform where the ship will be moved to in the cutscene</summary>
     [SerializeField] private Transform spawn;
 
@@ -109,6 +112,7 @@ public class IntroCutscene : MonoBehaviour
     private IEnumerator CrossFadeMusic()
     {
         captainMeowMusic.Play();
+        StartCoroutine(SwitchToMeowLoop());
         var limit = .4f;
         var timer = 5f;
         var maxTime = timer;
@@ -122,6 +126,16 @@ public class IntroCutscene : MonoBehaviour
         }
         yield return null;
         preMeowMusic.Stop();
+    }
+
+    /// <summary>Coroutine that waits for the first clip to finish to start the second one</summary>
+    /// <returns></returns>
+    private IEnumerator SwitchToMeowLoop()
+    {
+        while (captainMeowMusic.isPlaying) yield return null;
+        captainMeowMusic.loop = true;
+        captainMeowMusic.clip = captainMeowLoop;
+        captainMeowMusic.Play();
     }
 
     /// <summary>Starts the third dialog</summary>

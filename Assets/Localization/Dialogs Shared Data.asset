@@ -555,6 +555,10 @@ MonoBehaviour:
     m_Key: Space - Two Hints - 00
     m_Metadata:
       m_Items: []
+  - m_Id: 87610671336890368
+    m_Key: Escape To Go Back
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

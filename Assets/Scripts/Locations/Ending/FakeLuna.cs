@@ -30,6 +30,9 @@ public class FakeLuna : MonoBehaviour
     /// </summary>
     [SerializeField] private AudioSource captainMeowMusic;
 
+    /// <summary>Reference to the audio clip that will loop the music</summary>
+    [SerializeField] private AudioClip captainMeowLoop;
+
     /// <summary>
     /// Reference to the audio source that plays the music for the moon
     /// </summary>
@@ -72,6 +75,7 @@ public class FakeLuna : MonoBehaviour
     private IEnumerator CrossFadeMusic()
     {
         captainMeowMusic.Play();
+        StartCoroutine(SwitchToMeowLoop());
         var limit = .4f;
         var timer = 4f;
         var maxTime = timer;
@@ -85,6 +89,16 @@ public class FakeLuna : MonoBehaviour
         }
         yield return null;
         moonMusic.Stop();
+    }
+
+    /// <summary>Coroutine that waits for the first clip to finish to start the second one</summary>
+    /// <returns></returns>
+    private IEnumerator SwitchToMeowLoop()
+    {
+        while (captainMeowMusic.isPlaying) yield return null;
+        captainMeowMusic.loop = true;
+        captainMeowMusic.clip = captainMeowLoop;
+        captainMeowMusic.Play();
     }
     #endregion
 
